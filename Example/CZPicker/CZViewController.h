@@ -7,7 +7,10 @@
 //
 
 @import UIKit;
+#import <CZPicker/CZPickerView.h>
 
-@interface CZViewController : UIViewController
+@interface CZViewController : UIViewController<CZPickerViewDataSource, CZPickerViewDelegate>
+- (IBAction)showWithFooter:(id)sender;
+- (IBAction)showWithoutFooter:(id)sender;
 
 @end

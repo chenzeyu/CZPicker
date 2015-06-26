@@ -3,12 +3,10 @@ platform :ios, '7.0'
 
 target 'CZPicker_Example', :exclusive => true do
   pod "CZPicker", :path => "../"
-  pod 'pop'
 end
 
 target 'CZPicker_Tests', :exclusive => true do
   pod "CZPicker", :path => "../"
-  pod 'pop'
 
   pod 'Specta'
   pod 'Expecta'

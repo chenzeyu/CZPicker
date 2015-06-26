@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.version          = "0.1.0"
   s.summary          = "CZPicker is a picker view shown as a popup."
   s.description      = <<-DESC
-                        TODO
+                        CZPicker is flexible. It is shown as a popup with customizations.
 
                        DESC
   s.homepage         = "https://github.com/chenzeyu/CZPicker"
@@ -31,5 +31,5 @@ Pod::Spec.new do |s|
   }
   s.public_header_files = 'Pod/Classes/*.h'
   s.frameworks = 'UIKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'pop'
 end

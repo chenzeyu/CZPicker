@@ -2,7 +2,7 @@
   "name": "CZPicker",
   "version": "0.1.0",
   "summary": "CZPicker is a picker view shown as a popup.",
-  "description": "                        TODO\n\n",
+  "description": "                        CZPicker is flexible. It is shown as a popup with customizations.\n\n",
   "homepage": "https://github.com/chenzeyu/CZPicker",
   "license": "MIT",
   "authors": {
@@ -24,5 +24,10 @@
     ]
   },
   "public_header_files": "Pod/Classes/*.h",
-  "frameworks": "UIKit"
+  "frameworks": "UIKit",
+  "dependencies": {
+    "pop": [
+
+    ]
+  }
 }

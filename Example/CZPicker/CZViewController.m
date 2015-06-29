@@ -44,7 +44,7 @@
 }
 
 - (IBAction)showWithFooter:(id)sender {
-    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Header" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
+    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
     picker.delegate = self;
     picker.dataSource = self;
     picker.needFooterView = YES;
@@ -52,7 +52,7 @@
 }
 
 - (IBAction)showWithoutFooter:(id)sender {
-    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Header" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
+    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
     picker.delegate = self;
     picker.dataSource = self;
     picker.needFooterView = NO;

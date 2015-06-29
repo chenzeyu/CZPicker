@@ -47,7 +47,7 @@
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Header" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
     picker.delegate = self;
     picker.dataSource = self;
-    picker.footerViewNeeded = YES;
+    picker.needFooterView = YES;
     [picker show];
 }
 
@@ -55,7 +55,7 @@
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Header" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
     picker.delegate = self;
     picker.dataSource = self;
-    picker.footerViewNeeded = NO;
+    picker.needFooterView = NO;
     [picker show];
 }
 @end

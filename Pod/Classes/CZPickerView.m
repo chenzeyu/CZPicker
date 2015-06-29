@@ -7,6 +7,7 @@
 //
 
 #import "CZPickerView.h"
+
 #define TP_FOOTER_HEIGHT 44.0
 #define TP_HEADER_HEIGHT 44.0
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1 
@@ -29,7 +30,6 @@ typedef void (^CZDismissCompletionCallback)(void);
 @property UIView *footerview;
 @property UITableView *tableView;
 @property NSIndexPath *selectedIndexPath;
-
 @end
 
 @implementation CZPickerView{
@@ -41,11 +41,24 @@ typedef void (^CZDismissCompletionCallback)(void);
        confirmButtonTitle:(NSString *)confirmButtonTitle{
     self = [super init];
     if(self){
-        self.canClickBackgroudToDismiss = YES;
-        self.footerViewNeeded = NO;
+        self.tapBackgroundToDismiss = YES;
+        self.needFooterView = NO;
+        
         self.confirmButtonTitle = confirmButtonTitle;
         self.cancelButtonTitle = cancelButtonTitle;
         self.headerTitle = headerTitle ? headerTitle : @"";
+        
+        self.headerTitleColor = [UIColor whiteColor];
+        self.headerBackgroundColor = [UIColor colorWithRed:56.0/255 green:185.0/255 blue:158.0/255 alpha:1];
+        
+        self.cancelButtonNormalColor = [UIColor colorWithRed:59.0/255 green:72/255.0 blue:5.0/255 alpha:1];
+        self.cancelButtonHighlightedColor = [UIColor grayColor];
+        self.cancelButtonBackgroundColor = [UIColor colorWithRed:236.0/255 green:240/255.0 blue:241.0/255 alpha:1];
+        
+        self.confirmButtonNormalColor = [UIColor whiteColor];
+        self.confirmButtonHighlightedColor = [UIColor colorWithRed:236.0/255 green:240/255.0 blue:241.0/255 alpha:1];
+        self.confirmButtonBackgroundColor = [UIColor colorWithRed:56.0/255 green:185.0/255 blue:158.0/255 alpha:1];
+        
         CGRect rect= [UIScreen mainScreen].bounds;
         self.frame = rect;
     }
@@ -99,7 +112,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 - (void)dismissPicker:(CZDismissCompletionCallback)completion{
     callback = completion;
     POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
-    springAnimation.toValue = [NSValue valueWithCGPoint:(CGPointMake(self.center.x, self.center.y + 600))];
+    springAnimation.toValue = [NSValue valueWithCGPoint:(CGPointMake(self.center.x, self.center.y + self.frame.size.height))];
     springAnimation.velocity = [NSValue valueWithCGPoint:CGPointMake(2, 2)];
     springAnimation.springBounciness = 10.f;
     [self.containerView pop_addAnimation:springAnimation forKey:@"springAnimation_out"];
@@ -117,7 +130,7 @@ typedef void (^CZDismissCompletionCallback)(void);
     UIView *cv = [[UIView alloc] initWithFrame:newRect];
     cv.layer.cornerRadius = 6.0f;
     cv.clipsToBounds = YES;
-    cv.center = CGPointMake(self.center.x, self.center.y + 600);
+    cv.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
     return cv;
 }
 
@@ -128,7 +141,7 @@ typedef void (^CZDismissCompletionCallback)(void);
     CGRect tableRect;
     float heightOffset = TP_HEADER_HEIGHT + TP_FOOTER_HEIGHT;
     if(n > 0){
-        float height = n * 46.0;
+        float height = n * 44.0;
         height = height > newRect.size.height - heightOffset ? newRect.size.height -heightOffset : height;
         tableRect = CGRectMake(0, 44.0, newRect.size.width, height);
     } else {
@@ -155,7 +168,7 @@ typedef void (^CZDismissCompletionCallback)(void);
         bgView.backgroundColor = [UIColor blackColor];
     }
     bgView.alpha = 0.0;
-    if(self.canClickBackgroudToDismiss){
+    if(self.tapBackgroundToDismiss){
         [bgView addGestureRecognizer:
          [[UITapGestureRecognizer alloc] initWithTarget:self
                                                  action:@selector(cancelButtonPressed:)]];
@@ -164,7 +177,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (UIView *)buildFooterView{
-    if (!self.footerViewNeeded){
+    if (!self.needFooterView){
         return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     }
     CGRect rect = self.tableView.frame;
@@ -178,19 +191,19 @@ typedef void (^CZDismissCompletionCallback)(void);
     UIView *view = [[UIView alloc] initWithFrame:newRect];
     UIButton *cancelButton = [[UIButton alloc] initWithFrame:leftRect];
     [cancelButton setTitle:self.cancelButtonTitle forState:UIControlStateNormal];
-    [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [cancelButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [cancelButton setTitleColor: self.cancelButtonNormalColor forState:UIControlStateNormal];
+    [cancelButton setTitleColor:self.cancelButtonHighlightedColor forState:UIControlStateHighlighted];
     cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-    cancelButton.backgroundColor = [UIColor grayColor];
+    cancelButton.backgroundColor = self.cancelButtonBackgroundColor;
     [cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:cancelButton];
     
     UIButton *confirmButton = [[UIButton alloc] initWithFrame:rightRect];
     [confirmButton setTitle:self.confirmButtonTitle forState:UIControlStateNormal];
-    [confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [confirmButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    [confirmButton setTitleColor:self.confirmButtonNormalColor forState:UIControlStateNormal];
+    [confirmButton setTitleColor:self.confirmButtonHighlightedColor forState:UIControlStateHighlighted];
     confirmButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    confirmButton.backgroundColor = [UIColor greenColor];
+    confirmButton.backgroundColor = self.confirmButtonBackgroundColor;
     [confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:confirmButton];
     return view;
@@ -198,8 +211,9 @@ typedef void (^CZDismissCompletionCallback)(void);
 
 - (UIView *)buildHeaderView{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, TP_HEADER_HEIGHT)];
-    view.backgroundColor = [UIColor greenColor];
-    NSDictionary *dict = @{NSForegroundColorAttributeName: [UIColor whiteColor],
+    view.backgroundColor = self.headerBackgroundColor;
+    NSDictionary *dict = @{
+                           NSForegroundColorAttributeName: self.headerTitleColor,
                            NSFontAttributeName: [UIFont systemFontOfSize:18.0]
                            };
     NSAttributedString *at = [[NSAttributedString alloc] initWithString:self.headerTitle attributes:dict];
@@ -281,7 +295,7 @@ typedef void (^CZDismissCompletionCallback)(void);
     }
     self.selectedIndexPath = indexPath;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(!self.footerViewNeeded && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemAtRow:)]){
+    if(!self.needFooterView && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemAtRow:)]){
         [self dismissPicker:^{
             [self.delegate CZPickerView:self didConfirmWithItemAtRow:indexPath.row];
         }];

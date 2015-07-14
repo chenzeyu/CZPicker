@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cv3-BG-QnL">
-                                <rect key="frame" x="241" y="285" width="116" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cv3-BG-QnL">
+                                <rect key="frame" x="241" y="209" width="116" height="30"/>
                                 <state key="normal" title="Show with footer">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -26,8 +26,8 @@
                                     <action selector="showWithFooter:" destination="whP-gf-Uak" eventType="touchUpInside" id="tFS-SS-7pL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWY-IM-Kir">
-                                <rect key="frame" x="230" y="363" width="139" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWY-IM-Kir">
+                                <rect key="frame" x="230" y="287" width="139" height="30"/>
                                 <state key="normal" title="Show without footer">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -35,13 +35,24 @@
                                     <action selector="showWithoutFooter:" destination="whP-gf-Uak" eventType="touchUpInside" id="P69-S8-mhG"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgB-o4-OzF">
+                                <rect key="frame" x="202" y="360" width="196" height="30"/>
+                                <state key="normal" title="Show with multiple selection">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showWithMultipleSelection:" destination="whP-gf-Uak" eventType="touchUpInside" id="vgE-Hv-lw0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nWY-IM-Kir" firstAttribute="top" secondItem="cv3-BG-QnL" secondAttribute="bottom" constant="48" id="0Zx-vJ-u4V"/>
-                            <constraint firstAttribute="centerY" secondItem="cv3-BG-QnL" secondAttribute="centerY" id="Dmc-8Y-Mfn"/>
-                            <constraint firstItem="nWY-IM-Kir" firstAttribute="centerX" secondItem="cv3-BG-QnL" secondAttribute="centerX" id="GZm-KU-rQR"/>
-                            <constraint firstAttribute="centerX" secondItem="cv3-BG-QnL" secondAttribute="centerX" id="Wu0-DY-Ety"/>
+                            <constraint firstItem="KgB-o4-OzF" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="Cd2-bT-vQS"/>
+                            <constraint firstItem="nWY-IM-Kir" firstAttribute="top" secondItem="cv3-BG-QnL" secondAttribute="bottom" constant="48" id="MfM-8m-qIc"/>
+                            <constraint firstItem="cv3-BG-QnL" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="189" id="PKJ-5D-sW9"/>
+                            <constraint firstItem="nWY-IM-Kir" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="230" id="rxU-dk-dtk"/>
+                            <constraint firstItem="KgB-o4-OzF" firstAttribute="top" secondItem="nWY-IM-Kir" secondAttribute="bottom" constant="43" id="uaX-XO-9oP"/>
+                            <constraint firstItem="cv3-BG-QnL" firstAttribute="centerX" secondItem="nWY-IM-Kir" secondAttribute="centerX" id="zvn-AY-fzZ"/>
                         </constraints>
                     </view>
                 </viewController>

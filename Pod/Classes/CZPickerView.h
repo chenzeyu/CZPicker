@@ -1,6 +1,5 @@
 //
 //  CZPickerView.h
-//  Tut
 //
 //  Created by chenzeyu on 9/6/15.
 //  Copyright (c) 2015 chenzeyu. All rights reserved.
@@ -30,6 +29,13 @@
 - (void)CZPickerView:(CZPickerView *)pickerView
           didConfirmWithItemAtRow:(NSInteger)row;
 
+/** delegate method for picking multiple items,
+ implement this method if allowMultipleSelection is YES,
+ rows is an array of NSNumbers
+ */
+- (void)CZPickerView:(CZPickerView *)pickerView
+          didConfirmWithItemsAtRows:(NSArray *)rows;
+
 /** delegate method for canceling */
 - (void)CZPickerViewDidClickCancelButton:(CZPickerView *)pickerView;
 @end
@@ -57,6 +63,10 @@
 
 /** whether allow tap background to dismiss the picker, default YES */
 @property BOOL tapBackgroundToDismiss;
+
+/** whether allow selection of multiple items/rows, default NO, if this
+ property is YES, then footerView will be shown */
+@property BOOL allowMultipleSelection;
 
 /** picker header background color */
 @property (nonatomic, strong) UIColor *headerBackgroundColor;

@@ -106,7 +106,9 @@ typedef void (^CZDismissCompletionCallback)(void);
 
 - (void)show{
     
-    self.needFooterView = self.allowMultipleSelection;
+    if(self.allowMultipleSelection && !self.needFooterView){
+        self.needFooterView = self.allowMultipleSelection;
+    }
     
     UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
     self.frame = mainWindow.frame;

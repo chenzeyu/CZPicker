@@ -11,20 +11,22 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 To show the picker, simply adding the following code:
 
-```Objective-C
-    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
-    picker.delegate = self;
-    picker.dataSource = self;
-    [picker show];
+```objective-c
+CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits"
+                        cancelButtonTitle:@"Cancel"
+                        confirmButtonTitle:@"Confirm"];
+picker.delegate = self;
+picker.dataSource = self;
+[picker show];
 ```
-
 and implement the dataSource and Delegate methods:
-```Objective-C
+
+```objective-c
 #prama mark - CZPickerViewDataSource
 @required
 /* picker item title for each row */
 - (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
-                            titleForRow:(NSInteger)row;
+                         titleForRow:(NSInteger)row;
 
 
 /* number of items for picker */
@@ -43,8 +45,7 @@ and implement the dataSource and Delegate methods:
 ## Customization
 There alot of things can be customized, change the following properties to customize the picker of your own:
 
-```Objective-C
-
+```objective-c
 /** whether to show footer (including confirm and cancel buttons), default NO */
 @property BOOL needFooterView;
 

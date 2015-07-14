@@ -5,6 +5,9 @@
 [![License](https://img.shields.io/cocoapods/l/CZPicker.svg?style=flat)](http://cocoapods.org/pods/CZPicker)
 [![Platform](https://img.shields.io/cocoapods/p/CZPicker.svg?style=flat)](http://cocoapods.org/pods/CZPicker)
 
+## Demo
+![](demo.gif)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -38,6 +41,12 @@ and implement the dataSource and Delegate methods:
 - (void)CZPickerView:(CZPickerView *)pickerView
           didConfirmWithItemAtRow:(NSInteger)row;
 
+/** delegate method for picking multiple items,
+ implement this method if allowMultipleSelection is YES,
+ rows is an array of NSNumbers
+ */
+- (void)CZPickerView:(CZPickerView *)pickerView
+          didConfirmWithItemsAtRows:(NSArray *)rows;
 /** delegate method for canceling */
 - (void)CZPickerViewDidClickCancelButton:(CZPickerView *)pickerView;
 ```
@@ -51,6 +60,10 @@ There alot of things can be customized, change the following properties to custo
 
 /** whether allow tap background to dismiss the picker, default YES */
 @property BOOL tapBackgroundToDismiss;
+
+/** whether allow selection of multiple items/rows, default NO, if this
+ property is YES, then footerView will be shown */
+@property BOOL allowMultipleSelection;
 
 /** picker header background color */
 @property (nonatomic, strong) UIColor *headerBackgroundColor;
@@ -76,9 +89,6 @@ There alot of things can be customized, change the following properties to custo
 /** picker confirm button highlighted state color */
 @property (nonatomic, strong) UIColor *confirmButtonHighlightedColor;
 ```
-
-## Demo
-![](demo.gif)
 
 ## Installation
 

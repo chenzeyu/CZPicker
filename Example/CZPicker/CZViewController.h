@@ -12,5 +12,6 @@
 @interface CZViewController : UIViewController<CZPickerViewDataSource, CZPickerViewDelegate>
 - (IBAction)showWithFooter:(id)sender;
 - (IBAction)showWithoutFooter:(id)sender;
+- (IBAction)showWithMultipleSelection:(id)sender;
 
 @end

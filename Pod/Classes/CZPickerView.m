@@ -8,12 +8,12 @@
 
 #import "CZPickerView.h"
 
-#define TP_FOOTER_HEIGHT 44.0
-#define TP_HEADER_HEIGHT 44.0
+#define CZP_FOOTER_HEIGHT 44.0
+#define CZP_HEADER_HEIGHT 44.0
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1 
-#define TP_BACKGROUND_ALPHA 0.9
+#define CZP_BACKGROUND_ALPHA 0.9
 #else
-#define TP_BACKGROUND_ALPHA 0.3
+#define CZP_BACKGROUND_ALPHA 0.3
 #endif
 
 
@@ -41,6 +41,8 @@ typedef void (^CZDismissCompletionCallback)(void);
        confirmButtonTitle:(NSString *)confirmButtonTitle{
     self = [super init];
     if(self){
+        [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(deviceOrientationDidChange:) name: UIDeviceOrientationDidChangeNotification object: nil];
+        
         self.tapBackgroundToDismiss = YES;
         self.needFooterView = NO;
         
@@ -66,9 +68,10 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (void)setupSubviews{
-    
-    self.backgroundDimmingView = [self buildBackgroundDimmingView];
-    [self addSubview:self.backgroundDimmingView];
+    if(!self.backgroundDimmingView){
+        self.backgroundDimmingView = [self buildBackgroundDimmingView];
+        [self addSubview:self.backgroundDimmingView];
+    }
     
     self.containerView = [self buildContainerView];
     [self addSubview:self.containerView];
@@ -82,8 +85,8 @@ typedef void (^CZDismissCompletionCallback)(void);
     self.footerview = [self buildFooterView];
     [self.containerView addSubview:self.footerview];
     
-    
     CGRect frame = self.containerView.frame;
+    
     self.containerView.frame = CGRectMake(frame.origin.x,
                                           frame.origin.y,
                                           frame.size.width,
@@ -92,20 +95,23 @@ typedef void (^CZDismissCompletionCallback)(void);
     
 }
 
-- (void)show{
-    [self setupSubviews];
-    UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
-    self.frame = mainWindow.frame;
-    [mainWindow addSubview:self];
-    
+- (void)performContainerAnimation {
     POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
     springAnimation.toValue = [NSValue valueWithCGPoint:self.center];
     springAnimation.velocity = [NSValue valueWithCGPoint:CGPointMake(2, 2)];
     springAnimation.springBounciness = 10.f;
     [self.containerView pop_addAnimation:springAnimation forKey:@"springAnimation_in"];
+}
+
+- (void)show{
+    UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
+    self.frame = mainWindow.frame;
+    [mainWindow addSubview:self];
+    [self setupSubviews];
+    [self performContainerAnimation];
     
     POPBasicAnimation *alphaAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-    alphaAnimation.toValue = @(TP_BACKGROUND_ALPHA);
+    alphaAnimation.toValue = @(CZP_BACKGROUND_ALPHA);
     [self.backgroundDimmingView pop_addAnimation:alphaAnimation forKey:@"diming_view_in"];
 }
 
@@ -139,7 +145,7 @@ typedef void (^CZDismissCompletionCallback)(void);
     CGRect newRect = CGRectApplyAffineTransform(self.frame, transform);
     NSInteger n = [self.dataSource numberOfRowsInPickerView:self];
     CGRect tableRect;
-    float heightOffset = TP_HEADER_HEIGHT + TP_FOOTER_HEIGHT;
+    float heightOffset = CZP_HEADER_HEIGHT + CZP_FOOTER_HEIGHT;
     if(n > 0){
         float height = n * 44.0;
         height = height > newRect.size.height - heightOffset ? newRect.size.height -heightOffset : height;
@@ -158,10 +164,13 @@ typedef void (^CZDismissCompletionCallback)(void);
     
     UIView *bgView;
     //blur effect for iOS8
+    CGFloat frameHeight = self.frame.size.height;
+    CGFloat frameWidth = self.frame.size.width;
+    CGFloat sideLength = frameHeight > frameWidth ? frameHeight : frameWidth;
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) {
         UIBlurEffect *eff = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         bgView = [[UIVisualEffectView alloc] initWithEffect:eff];
-        bgView.frame = self.frame;
+        bgView.frame = CGRectMake(0, 0, sideLength, sideLength);
     }
     else {
         bgView = [[UIView alloc] initWithFrame:self.frame];
@@ -184,9 +193,9 @@ typedef void (^CZDismissCompletionCallback)(void);
     CGRect newRect = CGRectMake(0,
                                 rect.origin.y + rect.size.height,
                                 rect.size.width,
-                                TP_FOOTER_HEIGHT);
-    CGRect leftRect = CGRectMake(0,0, newRect.size.width /2, TP_FOOTER_HEIGHT);
-    CGRect rightRect = CGRectMake(newRect.size.width /2,0, newRect.size.width /2, TP_FOOTER_HEIGHT);
+                                CZP_FOOTER_HEIGHT);
+    CGRect leftRect = CGRectMake(0,0, newRect.size.width /2, CZP_FOOTER_HEIGHT);
+    CGRect rightRect = CGRectMake(newRect.size.width /2,0, newRect.size.width /2, CZP_FOOTER_HEIGHT);
     
     UIView *view = [[UIView alloc] initWithFrame:newRect];
     UIButton *cancelButton = [[UIButton alloc] initWithFrame:leftRect];
@@ -210,7 +219,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (UIView *)buildHeaderView{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, TP_HEADER_HEIGHT)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, CZP_HEADER_HEIGHT)];
     view.backgroundColor = self.headerBackgroundColor;
     NSDictionary *dict = @{
                            NSForegroundColorAttributeName: self.headerTitleColor,
@@ -262,7 +271,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"picker_view_identifier";
+    static NSString *cellIdentifier = @"czpicker_view_identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
@@ -277,7 +286,6 @@ typedef void (^CZDismissCompletionCallback)(void);
     }
     return cell;
 }
-
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -300,5 +308,28 @@ typedef void (^CZDismissCompletionCallback)(void);
             [self.delegate CZPickerView:self didConfirmWithItemAtRow:indexPath.row];
         }];
     }
+}
+
+#pragma mark - Notification Handler
+- (void)deviceOrientationDidChange:(NSNotification *)notification{
+    self.frame = [UIScreen mainScreen].bounds;
+    for(UIView *v in self.subviews){
+        if([v isEqual:self.backgroundDimmingView]) continue;
+        
+        [UIView animateWithDuration:0.2f animations:^{
+            v.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [v removeFromSuperview];
+            //as backgroundDimmingView will not be removed
+            if(self.subviews.count == 1){
+                [self setupSubviews];
+                [self performContainerAnimation];
+            }
+        }];
+    }
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Pop/POP.h>
 
 @class CZPickerView;
 
@@ -40,7 +39,7 @@
 - (void)CZPickerViewDidClickCancelButton:(CZPickerView *)pickerView;
 @end
 
-@interface CZPickerView : UIView<UITableViewDataSource, UITableViewDelegate, POPAnimationDelegate>
+@interface CZPickerView : UIView<UITableViewDataSource, UITableViewDelegate>
 
 /** Initialize the picker view with titles
  @param headerTitle The title of header

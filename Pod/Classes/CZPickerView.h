@@ -12,8 +12,8 @@
 @class CZPickerView;
 
 @protocol CZPickerViewDataSource <NSObject>
-@required
 
+@required
 /* picker item title for each row */
 - (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
                             titleForRow:(NSInteger)row;
@@ -21,12 +21,11 @@
 
 /* number of items for picker */
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView;
-
 @end
 
 @protocol CZPickerViewDelegate <NSObject>
-@optional
 
+@optional
 /** delegate method for picking one item */
 - (void)CZPickerView:(CZPickerView *)pickerView
           didConfirmWithItemAtRow:(NSInteger)row;
@@ -37,12 +36,6 @@
 
 @interface CZPickerView : UIView<UITableViewDataSource, UITableViewDelegate, POPAnimationDelegate>
 
-/** whether to show footer (including confirm and cancel buttons) */
-@property BOOL needFooterView;
-
-/** whether allow tap background to dismiss the picker */
-@property BOOL tapBackgroundToDismiss;
-
 /** Initialize the picker view with titles
  @param headerTitle The title of header
  @param cancelButtonTitle The title for cancelButton
@@ -52,8 +45,18 @@
         cancelButtonTitle:(NSString *)cancelButtonTitle
        confirmButtonTitle:(NSString *)confirmButtonTitle;
 
+/** show the picker */
+- (void)show;
+
 @property id<CZPickerViewDelegate> delegate;
+
 @property id<CZPickerViewDataSource> dataSource;
+
+/** whether to show footer (including confirm and cancel buttons), default NO */
+@property BOOL needFooterView;
+
+/** whether allow tap background to dismiss the picker, default YES */
+@property BOOL tapBackgroundToDismiss;
 
 /** picker header background color */
 @property (nonatomic, strong) UIColor *headerBackgroundColor;
@@ -78,8 +81,5 @@
 
 /** picker confirm button highlighted state color */
 @property (nonatomic, strong) UIColor *confirmButtonHighlightedColor;
-
-/** show the picker */
-- (void)show;
 
 @end

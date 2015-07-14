@@ -39,6 +39,13 @@
     NSLog(@"%@ is chosen!", self.fruits[row]);
 }
 
+-(void)CZPickerView:(CZPickerView *)pickerView didConfirmWithItemsAtRows:(NSArray *)rows{
+    for(NSNumber *n in rows){
+        NSInteger row = [n integerValue];
+        NSLog(@"%@ is chosen!", self.fruits[row]);
+    }
+}
+
 - (void)CZPickerViewDidClickCancelButton:(CZPickerView *)pickerView{
     NSLog(@"Canceled.");
 }
@@ -56,6 +63,14 @@
     picker.delegate = self;
     picker.dataSource = self;
     picker.needFooterView = NO;
+    [picker show];
+}
+
+- (IBAction)showWithMultipleSelection:(id)sender {
+    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
+    picker.delegate = self;
+    picker.dataSource = self;
+    picker.allowMultipleSelection = YES;
     [picker show];
 }
 @end

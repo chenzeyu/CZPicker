@@ -1,6 +1,5 @@
 //
 //  CZPickerView.h
-//  Tut
 //
 //  Created by chenzeyu on 9/6/15.
 //  Copyright (c) 2015 chenzeyu. All rights reserved.
@@ -30,6 +29,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 @property UIView *footerview;
 @property UITableView *tableView;
 @property NSIndexPath *selectedIndexPath;
+@property NSMutableArray *selectedRows;
 @end
 
 @implementation CZPickerView{
@@ -45,11 +45,12 @@ typedef void (^CZDismissCompletionCallback)(void);
         
         self.tapBackgroundToDismiss = YES;
         self.needFooterView = NO;
+        self.allowMultipleSelection = NO;
         
         self.confirmButtonTitle = confirmButtonTitle;
         self.cancelButtonTitle = cancelButtonTitle;
-        self.headerTitle = headerTitle ? headerTitle : @"";
         
+        self.headerTitle = headerTitle ? headerTitle : @"";
         self.headerTitleColor = [UIColor whiteColor];
         self.headerBackgroundColor = [UIColor colorWithRed:56.0/255 green:185.0/255 blue:158.0/255 alpha:1];
         
@@ -104,6 +105,11 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (void)show{
+    
+    if(self.allowMultipleSelection && !self.needFooterView){
+        self.needFooterView = self.allowMultipleSelection;
+    }
+    
     UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
     self.frame = mainWindow.frame;
     [mainWindow addSubview:self];
@@ -244,7 +250,10 @@ typedef void (^CZDismissCompletionCallback)(void);
 
 - (IBAction)confirmButtonPressed:(id)sender{
     [self dismissPicker:^{
-        if(self.selectedIndexPath && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemAtRow:)]){
+        if(self.allowMultipleSelection && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemsAtRows:)]){
+            [self.delegate CZPickerView:self didConfirmWithItemsAtRows:self.selectedRows];
+        }
+        else if(self.selectedIndexPath && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemAtRow:)]){
             [self.delegate CZPickerView:self didConfirmWithItemAtRow:self.selectedIndexPath.row];
         }
     }];
@@ -290,23 +299,39 @@ typedef void (^CZDismissCompletionCallback)(void);
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if(self.selectedIndexPath){
-        UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
-        if(prevCell){
-            prevCell.accessoryType = UITableViewCellAccessoryNone;
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(self.allowMultipleSelection){
+        if(!self.selectedRows){
+            self.selectedRows = [NSMutableArray new];
+        }
+        NSNumber *row = @(indexPath.row);
+        // the row has already been selected
+        if([self.selectedRows containsObject:row]){
+            [self.selectedRows removeObject:row];
+            cell.accessoryType = UITableViewCellAccessoryNone;
         } else {
+            [self.selectedRows addObject:row];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
-    } else{
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    self.selectedIndexPath = indexPath;
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(!self.needFooterView && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemAtRow:)]){
-        [self dismissPicker:^{
-            [self.delegate CZPickerView:self didConfirmWithItemAtRow:indexPath.row];
-        }];
+    else {
+        if(self.selectedIndexPath){
+            UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
+            if(prevCell){
+                prevCell.accessoryType = UITableViewCellAccessoryNone;
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+        } else{
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        self.selectedIndexPath = indexPath;
+        if(!self.needFooterView && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemAtRow:)]){
+            [self dismissPicker:^{
+                [self.delegate CZPickerView:self didConfirmWithItemAtRow:indexPath.row];
+            }];
+        }
     }
 }
 

@@ -7,9 +7,4 @@ end
 
 target 'CZPicker_Tests', :exclusive => true do
   pod "CZPicker", :path => "../"
-
-  pod 'Specta'
-  pod 'Expecta'
-  pod 'FBSnapshotTestCase'
-  pod 'Expecta+Snapshots'
 end

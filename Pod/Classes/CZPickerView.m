@@ -32,9 +32,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 @property NSMutableArray *selectedRows;
 @end
 
-@implementation CZPickerView{
-    CZDismissCompletionCallback callback;
-}
+@implementation CZPickerView
 
 - (id)initWithHeaderTitle:(NSString *)headerTitle
         cancelButtonTitle:(NSString *)cancelButtonTitle
@@ -97,11 +95,17 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (void)performContainerAnimation {
-    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
-    springAnimation.toValue = [NSValue valueWithCGPoint:self.center];
-    springAnimation.velocity = [NSValue valueWithCGPoint:CGPointMake(2, 2)];
-    springAnimation.springBounciness = 10.f;
-    [self.containerView pop_addAnimation:springAnimation forKey:@"springAnimation_in"];
+    
+    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        self.containerView.center = self.center;
+    } completion:^(BOOL finished) {
+        
+    }];
+    //    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+    //    springAnimation.toValue = [NSValue valueWithCGPoint:self.center];
+    //    springAnimation.velocity = [NSValue valueWithCGPoint:CGPointMake(2, 2)];
+    //    springAnimation.springBounciness = 10.f;
+    //    [self.containerView pop_addAnimation:springAnimation forKey:@"springAnimation_in"];
 }
 
 - (void)show{
@@ -116,24 +120,30 @@ typedef void (^CZDismissCompletionCallback)(void);
     [self setupSubviews];
     [self performContainerAnimation];
     
-    POPBasicAnimation *alphaAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-    alphaAnimation.toValue = @(CZP_BACKGROUND_ALPHA);
-    [self.backgroundDimmingView pop_addAnimation:alphaAnimation forKey:@"diming_view_in"];
+    [UIView animateWithDuration:0.3f animations:^{
+        self.backgroundDimmingView.alpha = CZP_BACKGROUND_ALPHA;
+    }];
+    //    POPBasicAnimation *alphaAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    //    alphaAnimation.toValue = @(CZP_BACKGROUND_ALPHA);
+    //    [self.backgroundDimmingView pop_addAnimation:alphaAnimation forKey:@"diming_view_in"];
 }
 
 - (void)dismissPicker:(CZDismissCompletionCallback)completion{
-    callback = completion;
-    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
-    springAnimation.toValue = [NSValue valueWithCGPoint:(CGPointMake(self.center.x, self.center.y + self.frame.size.height))];
-    springAnimation.velocity = [NSValue valueWithCGPoint:CGPointMake(2, 2)];
-    springAnimation.springBounciness = 10.f;
-    [self.containerView pop_addAnimation:springAnimation forKey:@"springAnimation_out"];
+    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        self.containerView.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
+    }completion:^(BOOL finished) {
+    }];
     
-    POPBasicAnimation *alphaAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-    alphaAnimation.toValue = @(0.0);
-    alphaAnimation.delegate = self;
-    [self.backgroundDimmingView pop_addAnimation:alphaAnimation forKey:@"diming_view_out"];
-    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.backgroundDimmingView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        if(finished){
+            if(completion){
+                completion();
+            }
+            [self removeFromSuperview];
+        }
+    }];
 }
 
 - (UIView *)buildContainerView{
@@ -259,19 +269,7 @@ typedef void (^CZDismissCompletionCallback)(void);
     }];
 }
 
-
-#pragma mark - POPAnimationDelegate
-- (void)pop_animationDidStop:(POPAnimation *)anim finished:(BOOL)finished{
-    if(finished){
-        if(callback){
-            callback();
-        }
-        [self removeFromSuperview];
-    }
-}
-
 #pragma mark - UITableViewDataSource
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if ([self.dataSource respondsToSelector:@selector(numberOfRowsInPickerView:)]) {
         return [self.dataSource numberOfRowsInPickerView:self];

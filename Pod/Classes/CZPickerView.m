@@ -101,11 +101,6 @@ typedef void (^CZDismissCompletionCallback)(void);
     } completion:^(BOOL finished) {
         
     }];
-    //    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
-    //    springAnimation.toValue = [NSValue valueWithCGPoint:self.center];
-    //    springAnimation.velocity = [NSValue valueWithCGPoint:CGPointMake(2, 2)];
-    //    springAnimation.springBounciness = 10.f;
-    //    [self.containerView pop_addAnimation:springAnimation forKey:@"springAnimation_in"];
 }
 
 - (void)show{

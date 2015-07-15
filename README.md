@@ -8,6 +8,24 @@
 ## Demo
 ![](demo.gif)
 
+## Change Log
+All notable changes to this project will be documented here.
+
+### [0.3.2] - 2015-07-16
+#### Changed
+- Changed return type of ```CZPickerView:titleForRow:``` to NSString.
+
+#### Added
+- Added ```CZPickerView:attributedTitleForRow``` to support attributed row title.
+
+### [0.2.2] - 2015-07-14
+#### Added
+- Added ```allowMultipleSelection``` flag to support multiple selections.
+
+### [0.2.1] - 2015-07-14
+#### Fixed
+- Fixed orientation issue.
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -26,14 +44,27 @@ and implement the dataSource and Delegate methods:
 
 ```objective-c
 #prama mark - CZPickerViewDataSource
+
 @required
-/* picker item title for each row */
-- (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
-                         titleForRow:(NSInteger)row;
-
-
 /* number of items for picker */
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView;
+
+@optional
+/*
+ Implement at least one of the following method,
+ CZPickerView:(CZPickerView *)pickerView
+ attributedTitleForRow:(NSInteger)row has higer priority
+*/
+
+/* attributed picker item title for each row */
+- (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
+                            attributedTitleForRow:(NSInteger)row;
+
+/* picker item title for each row */
+- (NSString *)CZPickerView:(CZPickerView *)pickerView
+                            titleForRow:(NSInteger)row;
+
+
 
 #prama mark - CZPickerViewDelegate
 @optional

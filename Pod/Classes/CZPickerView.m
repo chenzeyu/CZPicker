@@ -288,8 +288,10 @@ typedef void (^CZDismissCompletionCallback)(void);
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    if ([self.dataSource respondsToSelector:@selector(CZPickerView:titleForRow:)]) {
-        cell.textLabel.attributedText = [self.dataSource CZPickerView:self titleForRow:indexPath.row];
+    if ([self.dataSource respondsToSelector:@selector(CZPickerView:attributedTitleForRow:)]) {
+        cell.textLabel.attributedText = [self.dataSource CZPickerView:self attributedTitleForRow:indexPath.row];
+    } else if([self.dataSource respondsToSelector:@selector(CZPickerView:titleForRow:)]){
+        cell.textLabel.text = [self.dataSource CZPickerView:self titleForRow:indexPath.row];
     }
     return cell;
 }

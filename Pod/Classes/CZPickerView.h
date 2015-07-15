@@ -12,23 +12,36 @@
 @protocol CZPickerViewDataSource <NSObject>
 
 @required
-/* picker item title for each row */
-- (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
-                            titleForRow:(NSInteger)row;
-
-
 /* number of items for picker */
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView;
+
+@optional
+/*
+ Implement at least one of the following method,
+ CZPickerView:(CZPickerView *)pickerView
+ attributedTitleForRow:(NSInteger)row has higer priority
+*/
+
+/* attributed picker item title for each row */
+- (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
+                            attributedTitleForRow:(NSInteger)row;
+
+/* picker item title for each row */
+- (NSString *)CZPickerView:(CZPickerView *)pickerView
+                            titleForRow:(NSInteger)row;
+
 @end
 
 @protocol CZPickerViewDelegate <NSObject>
 
 @optional
+
 /** delegate method for picking one item */
 - (void)CZPickerView:(CZPickerView *)pickerView
           didConfirmWithItemAtRow:(NSInteger)row;
 
-/** delegate method for picking multiple items,
+/*
+ delegate method for picking multiple items,
  implement this method if allowMultipleSelection is YES,
  rows is an array of NSNumbers
  */

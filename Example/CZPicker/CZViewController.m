@@ -18,7 +18,7 @@
 {
     [super viewDidLoad];
     self.fruits = @[@"Apple", @"Banana", @"Grape", @"Watermelon", @"Lychee"];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -27,14 +27,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+/* comment out this method to allow
+ CZPickerView:titleForRow: to work.
+ */
 - (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
-                         titleForRow:(NSInteger)row{
-    NSAttributedString *str = [[NSAttributedString alloc] initWithString:self.fruits[row]];
-    return str;
+               attributedTitleForRow:(NSInteger)row{
+    
+    NSAttributedString *att = [[NSAttributedString alloc]
+                               initWithString:self.fruits[row]
+                               attributes:@{
+                                            NSFontAttributeName:[UIFont fontWithName:@"Avenir-Light" size:18.0]
+                                            }];
+    return att;
 }
+
+- (NSString *)CZPickerView:(CZPickerView *)pickerView
+               titleForRow:(NSInteger)row{
+    return self.fruits[row];
+}
+
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView{
     return self.fruits.count;
 }
+
 - (void)CZPickerView:(CZPickerView *)pickerView didConfirmWithItemAtRow:(NSInteger)row{
     NSLog(@"%@ is chosen!", self.fruits[row]);
 }

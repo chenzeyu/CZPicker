@@ -279,10 +279,14 @@ typedef void (^CZDismissCompletionCallback)(void);
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
     }
-    if(self.selectedIndexPath && [self.selectedIndexPath isEqual:indexPath]){
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    for(NSNumber *n in self.selectedRows){
+        if([n integerValue] == indexPath.row){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
+    if([self.selectedIndexPath isEqual:indexPath]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     if ([self.dataSource respondsToSelector:@selector(CZPickerView:attributedTitleForRow:)]) {
         cell.textLabel.attributedText = [self.dataSource CZPickerView:self attributedTitleForRow:indexPath.row];

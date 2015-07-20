@@ -81,7 +81,7 @@ and implement the dataSource and Delegate methods:
 ```
 
 ## Customization
-There alot of things can be customized, change the following properties to customize the picker of your own:
+There are a lot of things can be customized, change the following properties to customize the picker of your own:
 
 ```objective-c
 /** whether to show footer (including confirm and cancel buttons), default NO */

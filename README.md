@@ -26,6 +26,13 @@ Full [change logs](CHANGELOG.md)
 
 ## Usage
 
+CZPicker is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "CZPicker"
+```
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 To show the picker, simply adding the following code:
@@ -119,14 +126,6 @@ There are a lot of things can be customized, change the following properties to 
 @property (nonatomic, strong) UIColor *confirmButtonHighlightedColor;
 ```
 
-## Installation
-
-CZPicker is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod "CZPicker"
-```
 
 
 ## Author

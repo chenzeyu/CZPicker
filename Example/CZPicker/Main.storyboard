@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cv3-BG-QnL">
-                                <rect key="frame" x="241" y="209" width="116" height="30"/>
+                                <rect key="frame" x="242" y="209" width="116" height="30"/>
                                 <state key="normal" title="Show with footer">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWY-IM-Kir">
-                                <rect key="frame" x="230" y="287" width="139" height="30"/>
+                                <rect key="frame" x="230" y="285" width="139" height="30"/>
                                 <state key="normal" title="Show without footer">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -47,12 +47,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KgB-o4-OzF" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="Cd2-bT-vQS"/>
-                            <constraint firstItem="nWY-IM-Kir" firstAttribute="top" secondItem="cv3-BG-QnL" secondAttribute="bottom" constant="48" id="MfM-8m-qIc"/>
-                            <constraint firstItem="cv3-BG-QnL" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="189" id="PKJ-5D-sW9"/>
-                            <constraint firstAttribute="centerX" secondItem="nWY-IM-Kir" secondAttribute="centerX" id="PhS-Sf-3gB"/>
-                            <constraint firstItem="KgB-o4-OzF" firstAttribute="top" secondItem="nWY-IM-Kir" secondAttribute="bottom" constant="43" id="uaX-XO-9oP"/>
-                            <constraint firstItem="cv3-BG-QnL" firstAttribute="centerX" secondItem="nWY-IM-Kir" secondAttribute="centerX" id="zvn-AY-fzZ"/>
+                            <constraint firstAttribute="centerY" secondItem="nWY-IM-Kir" secondAttribute="centerY" id="GB2-Xj-REz"/>
+                            <constraint firstAttribute="centerX" secondItem="nWY-IM-Kir" secondAttribute="centerX" id="HN2-F7-DRO"/>
+                            <constraint firstAttribute="centerX" secondItem="cv3-BG-QnL" secondAttribute="centerX" id="MFz-0f-ylF"/>
+                            <constraint firstAttribute="centerX" secondItem="KgB-o4-OzF" secondAttribute="centerX" id="MXT-jg-GP5"/>
+                            <constraint firstItem="nWY-IM-Kir" firstAttribute="top" secondItem="cv3-BG-QnL" secondAttribute="bottom" constant="46" id="SYl-75-n3W"/>
+                            <constraint firstItem="KgB-o4-OzF" firstAttribute="top" secondItem="nWY-IM-Kir" secondAttribute="bottom" constant="45" id="mtH-gZ-BEc"/>
                         </constraints>
                     </view>
                 </viewController>

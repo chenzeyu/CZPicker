@@ -39,8 +39,12 @@ typedef void (^CZDismissCompletionCallback)(void);
        confirmButtonTitle:(NSString *)confirmButtonTitle{
     self = [super init];
     if(self){
-        [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(deviceOrientationDidChange:) name: UIDeviceOrientationDidChangeNotification object: nil];
-        
+        if([self needHandleOrientation]){
+            [[NSNotificationCenter defaultCenter] addObserver: self
+                                                     selector:@selector(deviceOrientationDidChange:)
+                                                         name:UIDeviceOrientationDidChangeNotification
+                                                       object: nil];
+        }
         self.tapBackgroundToDismiss = YES;
         self.needFooterView = NO;
         self.allowMultipleSelection = NO;
@@ -118,9 +122,6 @@ typedef void (^CZDismissCompletionCallback)(void);
     [UIView animateWithDuration:0.3f animations:^{
         self.backgroundDimmingView.alpha = CZP_BACKGROUND_ALPHA;
     }];
-    //    POPBasicAnimation *alphaAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-    //    alphaAnimation.toValue = @(CZP_BACKGROUND_ALPHA);
-    //    [self.backgroundDimmingView pop_addAnimation:alphaAnimation forKey:@"diming_view_in"];
 }
 
 - (void)dismissPicker:(CZDismissCompletionCallback)completion{
@@ -331,7 +332,58 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 #pragma mark - Notification Handler
+
+- (BOOL)needHandleOrientation{
+    NSArray *supportedOrientations = [[[NSBundle mainBundle] infoDictionary]
+                                      objectForKey:@"UISupportedInterfaceOrientations"];
+    NSMutableSet *set = [NSMutableSet set];
+    for(NSString *o in supportedOrientations){
+        NSRange range = [o rangeOfString:@"Portrait"];
+        if ( range.location != NSNotFound ) {
+            [set addObject:@"Portrait"];
+        }
+        
+        range = [o rangeOfString:@"Landscape"];
+        if ( range.location != NSNotFound ) {
+            [set addObject:@"Landscape"];
+        }
+    }
+    return set.count == 2;
+}
+
+- (BOOL)orientationSupported:(UIDeviceOrientation)orientation{
+    NSString *orientationStr;
+    switch (orientation) {
+        case UIDeviceOrientationPortrait:
+            orientationStr = @"UIInterfaceOrientationPortrait";
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            orientationStr = @"UIInterfaceOrientationPortraitUpsideDown";
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            orientationStr = @"UIInterfaceOrientationLandscapeLeft";
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            orientationStr = @"UIInterfaceOrientationLandscapeRight";
+            break;
+        default:
+            orientationStr = @"Invalid Interface Orientation";
+            break;
+    }
+    NSArray *supportedOrientations = [[[NSBundle mainBundle] infoDictionary]
+                                      objectForKey:@"UISupportedInterfaceOrientations"];
+    for(NSString *o in supportedOrientations){
+        if([o hasPrefix:orientationStr]){
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (void)deviceOrientationDidChange:(NSNotification *)notification{
+    if(![self orientationSupported:[[UIDevice currentDevice] orientation]]){
+        return;
+    }
     self.frame = [UIScreen mainScreen].bounds;
     for(UIView *v in self.subviews){
         if([v isEqual:self.backgroundDimmingView]) continue;

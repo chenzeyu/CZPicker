@@ -1,3 +1,7 @@
+### v0.3.4 - 2015-07-20
+#### Fixed
+- Fixed multiple selection mode cell selection not remembered issue. [#8](https://github.com/chenzeyu/CZPicker/issues/8)
+
 ### v0.3.3 - 2015-07-20
 #### Fixed
 - Listen to orientation change when needed. (App supports landscape & portrait)

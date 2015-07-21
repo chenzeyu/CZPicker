@@ -30,7 +30,7 @@
 /* comment out this method to allow
  CZPickerView:titleForRow: to work.
  */
-- (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
+- (NSAttributedString *)czpickerView:(CZPickerView *)pickerView
                attributedTitleForRow:(NSInteger)row{
     
     NSAttributedString *att = [[NSAttributedString alloc]
@@ -41,7 +41,7 @@
     return att;
 }
 
-- (NSString *)CZPickerView:(CZPickerView *)pickerView
+- (NSString *)czpickerView:(CZPickerView *)pickerView
                titleForRow:(NSInteger)row{
     return self.fruits[row];
 }
@@ -50,18 +50,18 @@
     return self.fruits.count;
 }
 
-- (void)CZPickerView:(CZPickerView *)pickerView didConfirmWithItemAtRow:(NSInteger)row{
+- (void)czpickerView:(CZPickerView *)pickerView didConfirmWithItemAtRow:(NSInteger)row{
     NSLog(@"%@ is chosen!", self.fruits[row]);
 }
 
--(void)CZPickerView:(CZPickerView *)pickerView didConfirmWithItemsAtRows:(NSArray *)rows{
+-(void)czpickerView:(CZPickerView *)pickerView didConfirmWithItemsAtRows:(NSArray *)rows{
     for(NSNumber *n in rows){
         NSInteger row = [n integerValue];
         NSLog(@"%@ is chosen!", self.fruits[row]);
     }
 }
 
-- (void)CZPickerViewDidClickCancelButton:(CZPickerView *)pickerView{
+- (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView{
     NSLog(@"Canceled.");
 }
 

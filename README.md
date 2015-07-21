@@ -13,15 +13,16 @@
 
 Full [change logs](CHANGELOG.md)
 
+### v0.3.5 - 2015-07-21
+
+#### Changed
+- Change delegate & dataSource methods names to conform to apple's guideline and avoid error in swift.(methods' names start with 'CZPicker' to 'czpicker')[#5](https://github.com/chenzeyu/CZPicker/issues/5)
+- Make picker higher in landscape mode.
+
 ### v0.3.4 - 2015-07-21
 
 #### Fixed
 - Fixed multiple selection mode cell selection not remembered issue. [#8](https://github.com/chenzeyu/CZPicker/issues/8)
-
-### v0.3.3 - 2015-07-20
-#### Fixed
-- Listen to orientation change when needed. (App supports landscape & portrait)
-- Animate picker only on supported orientations.
 
 ## Usage
 

@@ -57,16 +57,16 @@ and implement the dataSource and Delegate methods:
 @optional
 /*
  Implement at least one of the following method,
- CZPickerView:(CZPickerView *)pickerView
+ czpickerView:(CZPickerView *)pickerView
  attributedTitleForRow:(NSInteger)row has higer priority
 */
 
 /* attributed picker item title for each row */
-- (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
+- (NSAttributedString *)czpickerView:(CZPickerView *)pickerView
                             attributedTitleForRow:(NSInteger)row;
 
 /* picker item title for each row */
-- (NSString *)CZPickerView:(CZPickerView *)pickerView
+- (NSString *)czpickerView:(CZPickerView *)pickerView
                             titleForRow:(NSInteger)row;
 
 
@@ -74,17 +74,17 @@ and implement the dataSource and Delegate methods:
 #prama mark - CZPickerViewDelegate
 @optional
 /** delegate method for picking one item */
-- (void)CZPickerView:(CZPickerView *)pickerView
+- (void)czpickerView:(CZPickerView *)pickerView
           didConfirmWithItemAtRow:(NSInteger)row;
 
 /** delegate method for picking multiple items,
  implement this method if allowMultipleSelection is YES,
  rows is an array of NSNumbers
  */
-- (void)CZPickerView:(CZPickerView *)pickerView
+- (void)czpickerView:(CZPickerView *)pickerView
           didConfirmWithItemsAtRows:(NSArray *)rows;
 /** delegate method for canceling */
-- (void)CZPickerViewDidClickCancelButton:(CZPickerView *)pickerView;
+- (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView;
 ```
 
 ## Customization

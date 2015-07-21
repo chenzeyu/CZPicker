@@ -23,11 +23,11 @@
 */
 
 /* attributed picker item title for each row */
-- (NSAttributedString *)CZPickerView:(CZPickerView *)pickerView
+- (NSAttributedString *)czpickerView:(CZPickerView *)pickerView
                             attributedTitleForRow:(NSInteger)row;
 
 /* picker item title for each row */
-- (NSString *)CZPickerView:(CZPickerView *)pickerView
+- (NSString *)czpickerView:(CZPickerView *)pickerView
                             titleForRow:(NSInteger)row;
 
 @end
@@ -37,7 +37,7 @@
 @optional
 
 /** delegate method for picking one item */
-- (void)CZPickerView:(CZPickerView *)pickerView
+- (void)czpickerView:(CZPickerView *)pickerView
           didConfirmWithItemAtRow:(NSInteger)row;
 
 /*
@@ -45,11 +45,11 @@
  implement this method if allowMultipleSelection is YES,
  rows is an array of NSNumbers
  */
-- (void)CZPickerView:(CZPickerView *)pickerView
+- (void)czpickerView:(CZPickerView *)pickerView
           didConfirmWithItemsAtRows:(NSArray *)rows;
 
 /** delegate method for canceling */
-- (void)CZPickerViewDidClickCancelButton:(CZPickerView *)pickerView;
+- (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView;
 @end
 
 @interface CZPickerView : UIView<UITableViewDataSource, UITableViewDelegate>

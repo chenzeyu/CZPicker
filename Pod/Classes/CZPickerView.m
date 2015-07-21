@@ -143,7 +143,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (UIView *)buildContainerView{
-    CGAffineTransform transform = CGAffineTransformMake(0.8, 0, 0, 0.6, 0, 0);
+    CGAffineTransform transform = CGAffineTransformMake(0.8, 0, 0, 0.8, 0, 0);
     CGRect newRect = CGRectApplyAffineTransform(self.frame, transform);
     UIView *cv = [[UIView alloc] initWithFrame:newRect];
     cv.layer.cornerRadius = 6.0f;
@@ -153,7 +153,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (UITableView *)buildTableView{
-    CGAffineTransform transform = CGAffineTransformMake(0.8, 0, 0, 0.6, 0, 0);
+    CGAffineTransform transform = CGAffineTransformMake(0.8, 0, 0, 0.8, 0, 0);
     CGRect newRect = CGRectApplyAffineTransform(self.frame, transform);
     NSInteger n = [self.dataSource numberOfRowsInPickerView:self];
     CGRect tableRect;
@@ -248,19 +248,19 @@ typedef void (^CZDismissCompletionCallback)(void);
 
 - (IBAction)cancelButtonPressed:(id)sender{
     [self dismissPicker:^{
-        if([self.delegate respondsToSelector:@selector(CZPickerViewDidClickCancelButton:)]){
-            [self.delegate CZPickerViewDidClickCancelButton:self];
+        if([self.delegate respondsToSelector:@selector(czpickerViewDidClickCancelButton:)]){
+            [self.delegate czpickerViewDidClickCancelButton:self];
         }
     }];
 }
 
 - (IBAction)confirmButtonPressed:(id)sender{
     [self dismissPicker:^{
-        if(self.allowMultipleSelection && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemsAtRows:)]){
-            [self.delegate CZPickerView:self didConfirmWithItemsAtRows:self.selectedRows];
+        if(self.allowMultipleSelection && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemsAtRows:)]){
+            [self.delegate czpickerView:self didConfirmWithItemsAtRows:self.selectedRows];
         }
-        else if(self.selectedIndexPath && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemAtRow:)]){
-            [self.delegate CZPickerView:self didConfirmWithItemAtRow:self.selectedIndexPath.row];
+        else if(self.selectedIndexPath && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemAtRow:)]){
+            [self.delegate czpickerView:self didConfirmWithItemAtRow:self.selectedIndexPath.row];
         }
     }];
 }
@@ -288,10 +288,10 @@ typedef void (^CZDismissCompletionCallback)(void);
     if([self.selectedIndexPath isEqual:indexPath]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    if ([self.dataSource respondsToSelector:@selector(CZPickerView:attributedTitleForRow:)]) {
-        cell.textLabel.attributedText = [self.dataSource CZPickerView:self attributedTitleForRow:indexPath.row];
-    } else if([self.dataSource respondsToSelector:@selector(CZPickerView:titleForRow:)]){
-        cell.textLabel.text = [self.dataSource CZPickerView:self titleForRow:indexPath.row];
+    if ([self.dataSource respondsToSelector:@selector(czpickerView:attributedTitleForRow:)]) {
+        cell.textLabel.attributedText = [self.dataSource czpickerView:self attributedTitleForRow:indexPath.row];
+    } else if([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)]){
+        cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];
     }
     return cell;
 }
@@ -327,9 +327,9 @@ typedef void (^CZDismissCompletionCallback)(void);
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
         self.selectedIndexPath = indexPath;
-        if(!self.needFooterView && [self.delegate respondsToSelector:@selector(CZPickerView:didConfirmWithItemAtRow:)]){
+        if(!self.needFooterView && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemAtRow:)]){
             [self dismissPicker:^{
-                [self.delegate CZPickerView:self didConfirmWithItemAtRow:indexPath.row];
+                [self.delegate czpickerView:self didConfirmWithItemAtRow:indexPath.row];
             }];
         }
     }

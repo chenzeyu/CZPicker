@@ -70,6 +70,7 @@
     picker.delegate = self;
     picker.dataSource = self;
     picker.needFooterView = YES;
+    picker.allowDeleteRows = YES;
     [picker show];
 }
 

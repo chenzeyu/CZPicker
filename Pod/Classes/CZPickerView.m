@@ -48,6 +48,7 @@ typedef void (^CZDismissCompletionCallback)(void);
         self.tapBackgroundToDismiss = YES;
         self.needFooterView = NO;
         self.allowMultipleSelection = NO;
+        self.allowDeleteRows = NO;
         
         self.confirmButtonTitle = confirmButtonTitle;
         self.cancelButtonTitle = cancelButtonTitle;
@@ -332,6 +333,23 @@ typedef void (^CZDismissCompletionCallback)(void);
                 [self.delegate czpickerView:self didConfirmWithItemAtRow:indexPath.row];
             }];
         }
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.allowDeleteRows? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        
+            [self dismissPicker:^{
+                if([self.delegate respondsToSelector:@selector(czpickerView:didDeleteItemAtRow:)]){
+                    
+                    [self.delegate czpickerView:self didDeleteItemAtRow:indexPath.row];
+                }
+            }];
     }
 }
 

@@ -48,6 +48,12 @@
 - (void)czpickerView:(CZPickerView *)pickerView
           didConfirmWithItemsAtRows:(NSArray *)rows;
 
+/*
+ delegate method for delete row 
+ */
+- (void)czpickerView:(CZPickerView *)pickerView
+didDeleteItemAtRow:(NSInteger)row;
+
 /** delegate method for canceling */
 - (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView;
 @end
@@ -79,6 +85,9 @@
 /** whether allow selection of multiple items/rows, default NO, if this
  property is YES, then footerView will be shown */
 @property BOOL allowMultipleSelection;
+
+/** wather allow delete rows by slide finger right to left */
+@property BOOL allowDeleteRows;
 
 /** picker header background color */
 @property (nonatomic, strong) UIColor *headerBackgroundColor;

@@ -48,6 +48,7 @@ typedef void (^CZDismissCompletionCallback)(void);
         self.tapBackgroundToDismiss = YES;
         self.needFooterView = NO;
         self.allowMultipleSelection = NO;
+        self.animationDuration = 0.5f;
         
         self.confirmButtonTitle = confirmButtonTitle;
         self.cancelButtonTitle = cancelButtonTitle;
@@ -100,7 +101,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 
 - (void)performContainerAnimation {
     
-    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+    [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = self.center;
     } completion:^(BOOL finished) {
         
@@ -125,7 +126,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (void)dismissPicker:(CZDismissCompletionCallback)completion{
-    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+    [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
     }completion:^(BOOL finished) {
     }];

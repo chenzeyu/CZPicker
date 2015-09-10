@@ -104,4 +104,7 @@
 /** picker confirm button highlighted state color */
 @property (nonatomic, strong) UIColor *confirmButtonHighlightedColor;
 
+/** picker's animation duration for showing and dismissing*/
+@property CGFloat animationDuration;
+
 @end

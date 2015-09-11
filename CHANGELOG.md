@@ -1,3 +1,10 @@
+### v0.3.6 - 2015-09-11
+#### Added
+- Added ```animationDuration``` for setting duration of animation (both showing and dismissing) [#14](https://github.com/chenzeyu/CZPicker/issues/14)
+- Added ```- (NSArray *)selectedRows``` to return previously selected items.[#10](https://github.com/chenzeyu/CZPicker/issues/10)
+- Added ```setSelectedRows:rows``` to pre-set selected items before showing.[#15](https://github.com/chenzeyu/CZPicker/issues/15)
+
+
 ### v0.3.5 - 2015-07-21
 #### Changed
 - Change delegate & dataSource methods names to conform to apple's guideline and avoid error in swift.(methods' names start with 'CZPicker' to 'czpicker')[#5](https://github.com/chenzeyu/CZPicker/issues/5)

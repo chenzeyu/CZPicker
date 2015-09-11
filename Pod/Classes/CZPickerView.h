@@ -66,6 +66,12 @@
 /** show the picker */
 - (void)show;
 
+/** return previously selected row, in array of NSNumber form. */
+- (NSArray *)selectedRows;
+
+/** set pre-selected rows, rows should be array of NSNumber. */
+- (void)setSelectedRows: (NSArray *)rows;
+
 @property id<CZPickerViewDelegate> delegate;
 
 @property id<CZPickerViewDataSource> dataSource;

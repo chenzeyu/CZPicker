@@ -1,5 +1,5 @@
 PODS:
-  - CZPicker (0.3.3)
+  - CZPicker (0.3.6)
 
 DEPENDENCIES:
   - CZPicker (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CZPicker: 5792cb5f6bc293d4eb43643315c7b819efab5730
+  CZPicker: bf966778ebd3af6c291b4a4190d08a0e2c5c6974
 
 COCOAPODS: 0.37.2

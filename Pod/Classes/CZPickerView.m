@@ -308,11 +308,7 @@ typedef void (^CZDismissCompletionCallback)(void);
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }
-    if([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)] && [self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)]){
-        cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];
-        // add image to cell
-        cell.imageView.image = [self.dataSource czpickerView:self imageForRow:indexPath.row];
-    } else if ([self.dataSource respondsToSelector:@selector(czpickerView:attributedTitleForRow:)]) {
+    if ([self.dataSource respondsToSelector:@selector(czpickerView:attributedTitleForRow:)]) {
         cell.textLabel.attributedText = [self.dataSource czpickerView:self attributedTitleForRow:indexPath.row];
     } else if([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)]){
         cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];

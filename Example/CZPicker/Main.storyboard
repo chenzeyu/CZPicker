@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,7 +18,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cv3-BG-QnL">
-                                <rect key="frame" x="242" y="209" width="116" height="30"/>
+                                <rect key="frame" x="242" y="214" width="116" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Show with footer">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -27,7 +28,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWY-IM-Kir">
-                                <rect key="frame" x="230" y="285" width="139" height="30"/>
+                                <rect key="frame" x="230.5" y="285" width="138" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Show without footer">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -36,7 +38,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgB-o4-OzF">
-                                <rect key="frame" x="202" y="360" width="196" height="30"/>
+                                <rect key="frame" x="202.5" y="356" width="195" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Show with multiple selection">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -45,14 +48,15 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="nWY-IM-Kir" secondAttribute="centerY" id="GB2-Xj-REz"/>
                             <constraint firstAttribute="centerX" secondItem="nWY-IM-Kir" secondAttribute="centerX" id="HN2-F7-DRO"/>
                             <constraint firstAttribute="centerX" secondItem="cv3-BG-QnL" secondAttribute="centerX" id="MFz-0f-ylF"/>
                             <constraint firstAttribute="centerX" secondItem="KgB-o4-OzF" secondAttribute="centerX" id="MXT-jg-GP5"/>
-                            <constraint firstItem="nWY-IM-Kir" firstAttribute="top" secondItem="cv3-BG-QnL" secondAttribute="bottom" constant="46" id="SYl-75-n3W"/>
-                            <constraint firstItem="KgB-o4-OzF" firstAttribute="top" secondItem="nWY-IM-Kir" secondAttribute="bottom" constant="45" id="mtH-gZ-BEc"/>
+                            <constraint firstItem="nWY-IM-Kir" firstAttribute="top" secondItem="cv3-BG-QnL" secondAttribute="bottom" constant="41" id="SYl-75-n3W"/>
+                            <constraint firstItem="KgB-o4-OzF" firstAttribute="top" secondItem="nWY-IM-Kir" secondAttribute="bottom" constant="41" id="mtH-gZ-BEc"/>
                         </constraints>
                     </view>
                 </viewController>

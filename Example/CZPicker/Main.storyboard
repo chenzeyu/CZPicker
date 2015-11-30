@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWY-IM-Kir">
-                                <rect key="frame" x="230.5" y="285" width="138" height="30"/>
+                                <rect key="frame" x="231" y="285" width="138" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Show without footer">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,13 +38,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgB-o4-OzF">
-                                <rect key="frame" x="202.5" y="356" width="195" height="30"/>
+                                <rect key="frame" x="203" y="356" width="195" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Show with multiple selection">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="showWithMultipleSelection:" destination="whP-gf-Uak" eventType="touchUpInside" id="vgE-Hv-lw0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMx-Uj-1R1">
+                                <rect key="frame" x="237" y="418" width="127" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Show With Images"/>
+                                <connections>
+                                    <action selector="showWithImages:" destination="whP-gf-Uak" eventType="touchUpInside" id="Zs1-Pj-Pgd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -55,7 +63,9 @@
                             <constraint firstAttribute="centerX" secondItem="nWY-IM-Kir" secondAttribute="centerX" id="HN2-F7-DRO"/>
                             <constraint firstAttribute="centerX" secondItem="cv3-BG-QnL" secondAttribute="centerX" id="MFz-0f-ylF"/>
                             <constraint firstAttribute="centerX" secondItem="KgB-o4-OzF" secondAttribute="centerX" id="MXT-jg-GP5"/>
+                            <constraint firstItem="OMx-Uj-1R1" firstAttribute="top" secondItem="KgB-o4-OzF" secondAttribute="bottom" constant="32" id="Mlx-kj-el4"/>
                             <constraint firstItem="nWY-IM-Kir" firstAttribute="top" secondItem="cv3-BG-QnL" secondAttribute="bottom" constant="41" id="SYl-75-n3W"/>
+                            <constraint firstItem="OMx-Uj-1R1" firstAttribute="centerX" secondItem="KgB-o4-OzF" secondAttribute="centerX" id="j65-mX-boI"/>
                             <constraint firstItem="KgB-o4-OzF" firstAttribute="top" secondItem="nWY-IM-Kir" secondAttribute="bottom" constant="41" id="mtH-gZ-BEc"/>
                         </constraints>
                     </view>

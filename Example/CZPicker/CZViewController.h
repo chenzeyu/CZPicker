@@ -10,6 +10,7 @@
 #import <CZPicker.h>
 
 @interface CZViewController : UIViewController<CZPickerViewDataSource, CZPickerViewDelegate>
+- (IBAction)showWithImages:(id)sender;
 - (IBAction)showWithFooter:(id)sender;
 - (IBAction)showWithoutFooter:(id)sender;
 - (IBAction)showWithMultipleSelection:(id)sender;

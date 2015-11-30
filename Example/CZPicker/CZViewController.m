@@ -11,6 +11,7 @@
 @interface CZViewController ()
 @property NSArray *fruits;
 @property NSArray *fruitImages;
+@property CZPickerView *pickerWithImage;
 @end
 
 @implementation CZViewController
@@ -49,7 +50,10 @@
 }
 
 - (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row {
-    return self.fruitImages[row];
+    if([pickerView isEqual:self.pickerWithImage]) {
+        return self.fruitImages[row];
+    }
+    return nil;
 }
 
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView{
@@ -69,6 +73,14 @@
 
 - (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView{
     NSLog(@"Canceled.");
+}
+
+- (IBAction)showWithImages:(id)sender {
+    self.pickerWithImage = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
+    self.pickerWithImage.delegate = self;
+    self.pickerWithImage.dataSource = self;
+    self.pickerWithImage.needFooterView = YES;
+    [self.pickerWithImage show];
 }
 
 - (IBAction)showWithFooter:(id)sender {

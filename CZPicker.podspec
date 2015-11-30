@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "CZPicker"
-  s.version          = "0.3.6"
+  s.version          = "0.3.7"
   s.summary          = "CZPicker is a picker view shown as a popup."
   s.description      = <<-DESC
                         CZPicker is flexible. It is shown as a popup with customizations.

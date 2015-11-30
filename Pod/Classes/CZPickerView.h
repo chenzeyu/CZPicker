@@ -30,6 +30,9 @@
 - (NSString *)czpickerView:(CZPickerView *)pickerView
                             titleForRow:(NSInteger)row;
 
+/* picker item image for each row */
+- (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row;
+
 @end
 
 @protocol CZPickerViewDelegate <NSObject>

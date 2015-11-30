@@ -10,6 +10,7 @@
 
 @interface CZViewController ()
 @property NSArray *fruits;
+@property NSArray *fruitImages;
 @end
 
 @implementation CZViewController
@@ -18,6 +19,7 @@
 {
     [super viewDidLoad];
     self.fruits = @[@"Apple", @"Banana", @"Grape", @"Watermelon", @"Lychee"];
+    self.fruitImages = @[[UIImage imageNamed:@"Apple"], [UIImage imageNamed:@"Banana"], [UIImage imageNamed:@"Grape"], [UIImage imageNamed:@"Watermelon"], [UIImage imageNamed:@"Lychee"]];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -44,6 +46,10 @@
 - (NSString *)czpickerView:(CZPickerView *)pickerView
                titleForRow:(NSInteger)row{
     return self.fruits[row];
+}
+
+- (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row {
+    return self.fruitImages[row];
 }
 
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView{

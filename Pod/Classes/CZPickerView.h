@@ -104,4 +104,7 @@
 /** picker confirm button highlighted state color */
 @property (nonatomic, strong) UIColor *confirmButtonHighlightedColor;
 
+/** tint color for tableview, also checkmark color */
+@property (nonatomic, strong) UIColor *checkmarkColor;
+
 @end

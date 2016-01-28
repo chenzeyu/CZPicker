@@ -293,6 +293,10 @@ typedef void (^CZDismissCompletionCallback)(void);
     } else if([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)]){
         cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];
     }
+    
+    if(self.checkmarkColor){
+        cell.tintColor = self.checkmarkColor;
+    }
     return cell;
 }
 

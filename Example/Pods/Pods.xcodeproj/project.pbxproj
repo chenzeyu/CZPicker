@@ -7,443 +7,348 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05D1F01CFF0DA5E481B8F17A /* CZPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = CF001CCE41C58D3D6C06A4AF /* CZPickerView.h */; };
-		182D417DA34E4913DB58FD4C /* CZPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A5087B304405145E33C131 /* CZPickerView.m */; };
-		209789DD2724F16E2BBE18AF /* Pods-CZPicker_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4537FE1994006DDBA08CA296 /* Pods-CZPicker_Tests-dummy.m */; };
-		30A59D5A9057DDA82A25998A /* Pods-CZPicker_Tests-CZPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB6253D119D271C56836732 /* Pods-CZPicker_Tests-CZPicker-dummy.m */; };
-		37B5B0BFE2966C45B1F6D556 /* Pods-CZPicker_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 045202141387F9758CE8ADB5 /* Pods-CZPicker_Example-dummy.m */; };
-		49340AC2B6EDF57C3B365A15 /* CZPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 901ECDF1B003D061F7658C46 /* CZPicker.h */; };
-		5AF05EEDB4E1E836574555D6 /* CZPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A5087B304405145E33C131 /* CZPickerView.m */; };
-		7A0CEB9970A7721C18C941B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4378BF50BDEDE843BC2679CE /* Foundation.framework */; };
-		83B5CFA72BCA59667373F9C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3817430F3248F174E02FC46B /* UIKit.framework */; };
-		8528FE81EA13BFE5F7DA545E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4378BF50BDEDE843BC2679CE /* Foundation.framework */; };
-		BD57C7BBC8A9E800BD4BD99A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3817430F3248F174E02FC46B /* UIKit.framework */; };
-		BD59312EDE1BB37FE5134A23 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4378BF50BDEDE843BC2679CE /* Foundation.framework */; };
-		C361F5F7FE49347FE65B04D0 /* CZPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = CF001CCE41C58D3D6C06A4AF /* CZPickerView.h */; };
-		E7F3A4D1519A34F0554CA2CB /* Pods-CZPicker_Example-CZPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B124EF2274D8181BEE97D3C /* Pods-CZPicker_Example-CZPicker-dummy.m */; };
-		E975030574D75B0A18D2420D /* CZPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 901ECDF1B003D061F7658C46 /* CZPicker.h */; };
-		ED16AB4266A45592BFF7917E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4378BF50BDEDE843BC2679CE /* Foundation.framework */; };
+		1ABACCF57A3966AF2E2258552CF5289E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
+		3F64E419EF8EC139DA599FBAB94EA655 /* CZPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 05823B33F3AA654C5493D2EBA324C534 /* CZPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41B84C936226775F9EECDDF843765BAE /* Pods-CZPicker_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 620321FD54EAEC4E73DCF9D6CF951CB6 /* Pods-CZPicker_Example-dummy.m */; };
+		62861968DA0CCA5F4884BCA2FB17FBF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
+		6FBFEFE277F0543B1D6FA5660AD61D34 /* CZPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C01293059A0C84FDC79339100EBAED /* CZPicker-dummy.m */; };
+		8E3EFA64B7C9E90118E8E93C843D3941 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */; };
+		9576099345E08DE8991DA98208F2E073 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
+		95DA62054A71898F375A4F3B9C7FFC3C /* CZPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 480F91681CE8564A2A4F0992920173CC /* CZPickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2AD7BF66C385323EBC4DC57AC63B8A7 /* Pods-CZPicker_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E2F5818C11FD1133B01C263AEC508AD4 /* Pods-CZPicker_Tests-dummy.m */; };
+		D787049EFB40814C8018D6AB53C00207 /* CZPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43093CEC2F1EBDB8542C2E274F31A0D1 /* CZPickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1169CCA791ADE49309090C79 /* PBXContainerItemProxy */ = {
+		7B5644FED90468C749F7242E612D6071 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 56FF8F8759CBCF98E2147E6B /* Project object */;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AA2A1EF536DA0935FC29677A;
-			remoteInfo = "Pods-CZPicker_Example-CZPicker-CZPicker";
+			remoteGlobalIDString = 1246D72EBE9DC6C28D83D23CB8AB1488;
+			remoteInfo = "CZPicker-CZPicker";
 		};
-		38B5FEA1DC4CAB3E3F75C734 /* PBXContainerItemProxy */ = {
+		BF7C45F0EEE145F6EADCF7CFDEDC4F74 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 56FF8F8759CBCF98E2147E6B /* Project object */;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7415E8A18BB23F228FEFBF88;
-			remoteInfo = "Pods-CZPicker_Tests-CZPicker";
+			remoteGlobalIDString = 66BAFE48E61D0FD962914D7A750DE26A;
+			remoteInfo = CZPicker;
 		};
-		A2C836512BDE13148B83EED5 /* PBXContainerItemProxy */ = {
+		D46ED80932F6019AF82B7CF470832ECC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 56FF8F8759CBCF98E2147E6B /* Project object */;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9F4AD9FF8ED4197E0497FBB7;
-			remoteInfo = "Pods-CZPicker_Example-CZPicker";
-		};
-		EAC285D89D88F35F75EE07DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 56FF8F8759CBCF98E2147E6B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A605173F8E7612D28F43252F;
-			remoteInfo = "Pods-CZPicker_Tests-CZPicker-CZPicker";
+			remoteGlobalIDString = 66BAFE48E61D0FD962914D7A750DE26A;
+			remoteInfo = CZPicker;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0149C4CE84C63F845902E372 /* Pods-CZPicker_Example-CZPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CZPicker_Example-CZPicker-prefix.pch"; sourceTree = "<group>"; };
-		045202141387F9758CE8ADB5 /* Pods-CZPicker_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CZPicker_Example-dummy.m"; sourceTree = "<group>"; };
-		10EA4A4FBBB4ACF90D4500D7 /* Pods-CZPicker_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CZPicker_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		182B50556084EC48A0F5A79B /* Pods-CZPicker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		1DDF0CD8AC616F1A0C6980EC /* libPods-CZPicker_Tests-CZPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CZPicker_Tests-CZPicker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		296FF3ACCE02844BB9421F3A /* Pods-CZPicker_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CZPicker_Example-resources.sh"; sourceTree = "<group>"; };
-		29F55577217EF2C2D9C76082 /* Pods-CZPicker_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CZPicker_Tests-resources.sh"; sourceTree = "<group>"; };
-		3817430F3248F174E02FC46B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		3B124EF2274D8181BEE97D3C /* Pods-CZPicker_Example-CZPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CZPicker_Example-CZPicker-dummy.m"; sourceTree = "<group>"; };
-		40A11D18D2B2EAED41CC99A6 /* Pods-CZPicker_Tests-CZPicker-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CZPicker_Tests-CZPicker-Private.xcconfig"; path = "../Pods-CZPicker_Tests-CZPicker/Pods-CZPicker_Tests-CZPicker-Private.xcconfig"; sourceTree = "<group>"; };
-		4378BF50BDEDE843BC2679CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		4537FE1994006DDBA08CA296 /* Pods-CZPicker_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CZPicker_Tests-dummy.m"; sourceTree = "<group>"; };
-		45A5087B304405145E33C131 /* CZPickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CZPickerView.m; sourceTree = "<group>"; };
-		52E495302FF14052F8796399 /* Pods-CZPicker_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		5430C30EE5E6097862D45A57 /* Pods-CZPicker_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CZPicker_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5DF8B067A11B2DD104B17E3F /* Pods-CZPicker_Tests-CZPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-CZPicker_Tests-CZPicker-prefix.pch"; path = "../Pods-CZPicker_Tests-CZPicker/Pods-CZPicker_Tests-CZPicker-prefix.pch"; sourceTree = "<group>"; };
-		8C5BA5CADFBEE1187F5D29C8 /* Pods-CZPicker_Example-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CZPicker_Example-environment.h"; sourceTree = "<group>"; };
-		901ECDF1B003D061F7658C46 /* CZPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CZPicker.h; sourceTree = "<group>"; };
-		9659A7BB285C7592F8A9EA3B /* Pods-CZPicker_Example-CZPicker-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Example-CZPicker-Private.xcconfig"; sourceTree = "<group>"; };
-		969B3EAC4F0CAF3BA5D9D387 /* CZPicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CZPicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F22A1209FBB27EFB56E9D70 /* libPods-CZPicker_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CZPicker_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A456225D3EAD36BC2FC54FA2 /* Pods-CZPicker_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CZPicker_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		A6014C7DD8AA1C89E25C807D /* Pods-CZPicker_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		AE6F6C6B07DFC275ACAE0916 /* Pods-CZPicker_Tests-CZPicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CZPicker_Tests-CZPicker.xcconfig"; path = "../Pods-CZPicker_Tests-CZPicker/Pods-CZPicker_Tests-CZPicker.xcconfig"; sourceTree = "<group>"; };
-		B0B5F6C8B2C296501A14348F /* libPods-CZPicker_Example-CZPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CZPicker_Example-CZPicker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B31F9E3D7A8DDD4FBF547E73 /* Pods-CZPicker_Example-CZPicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Example-CZPicker.xcconfig"; sourceTree = "<group>"; };
-		C6C8289C0436A80E17FD8AC9 /* Pods-CZPicker_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CZPicker_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		CF001CCE41C58D3D6C06A4AF /* CZPickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CZPickerView.h; sourceTree = "<group>"; };
-		D31AE08AFFDD140443EA3648 /* libPods-CZPicker_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CZPicker_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBE23378E8E136FF9FF580DF /* Pods-CZPicker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Example.release.xcconfig"; sourceTree = "<group>"; };
-		E93AEDA5BDAEEF68A1B589BA /* Pods-CZPicker_Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CZPicker_Tests-environment.h"; sourceTree = "<group>"; };
-		ECD0E0C120726D35D856DFAF /* CZPicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CZPicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		F13C0C0BF24F904F4C23DB2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		FCB6253D119D271C56836732 /* Pods-CZPicker_Tests-CZPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-CZPicker_Tests-CZPicker-dummy.m"; path = "../Pods-CZPicker_Tests-CZPicker/Pods-CZPicker_Tests-CZPicker-dummy.m"; sourceTree = "<group>"; };
+		03A57C78B6F5C7473BFB72D02E1B6DC7 /* Pods-CZPicker_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		05823B33F3AA654C5493D2EBA324C534 /* CZPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CZPicker.h; sourceTree = "<group>"; };
+		093B0C84ABCF4349ECD3165631BC4B8B /* Pods-CZPicker_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CZPicker_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		15721EFC16959E9C1D628A89E5A49E90 /* Pods-CZPicker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Example.release.xcconfig"; sourceTree = "<group>"; };
+		225971A92D5E9C21EDF30698BB5D9433 /* Pods-CZPicker_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		3E45447A7DA5A389AFD5C78994A95782 /* Pods-CZPicker_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CZPicker_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		41C437379AD6A450BCF0F982580453DD /* CZPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CZPicker-prefix.pch"; sourceTree = "<group>"; };
+		43093CEC2F1EBDB8542C2E274F31A0D1 /* CZPickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CZPickerView.m; sourceTree = "<group>"; };
+		480F91681CE8564A2A4F0992920173CC /* CZPickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CZPickerView.h; sourceTree = "<group>"; };
+		486462EB47FB92B838AC1625E3613DD3 /* libPods-CZPicker_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CZPicker_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EBFC09A7B744C9C8C33775B54D3E5CB /* Pods-CZPicker_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CZPicker_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		4FB47F20FED884168358E21E9AE6C4AE /* CZPicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CZPicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		52B62A4EDA8D108C23BE394F3A3C3456 /* Pods-CZPicker_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CZPicker_Example-resources.sh"; sourceTree = "<group>"; };
+		620321FD54EAEC4E73DCF9D6CF951CB6 /* Pods-CZPicker_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CZPicker_Example-dummy.m"; sourceTree = "<group>"; };
+		6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		8D126728FAC2ACD287DF9FBC37D12CC5 /* Pods-CZPicker_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CZPicker_Tests-resources.sh"; sourceTree = "<group>"; };
+		9E483E1C7DAC180BFA436CBCA8F52712 /* Pods-CZPicker_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CZPicker_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A2E5134851CC00670D1BBDCCAEBCBA48 /* CZPicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CZPicker.xcconfig; sourceTree = "<group>"; };
+		B4C01293059A0C84FDC79339100EBAED /* CZPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CZPicker-dummy.m"; sourceTree = "<group>"; };
+		B6F6FD7973C4A5256D96C2092522FDD8 /* Pods-CZPicker_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CZPicker_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BAAA6C79C7F01E16B0DEA07E03AAE515 /* libPods-CZPicker_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CZPicker_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		D011DE3568AC3E8AACBAFB12839321BD /* Pods-CZPicker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CZPicker_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		D62BC46E83E7AC61D892E5D6D684756D /* Pods-CZPicker_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CZPicker_Example-frameworks.sh"; sourceTree = "<group>"; };
+		DAA9C19F4180ABA8546938B86D2465E7 /* libCZPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCZPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2F5818C11FD1133B01C263AEC508AD4 /* Pods-CZPicker_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CZPicker_Tests-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		25E909FB2D4864EEA7136E70 /* Frameworks */ = {
+		08EB69F20F4114F1580753DD09B6E7C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD59312EDE1BB37FE5134A23 /* Foundation.framework in Frameworks */,
+				62861968DA0CCA5F4884BCA2FB17FBF6 /* Foundation.framework in Frameworks */,
+				8E3EFA64B7C9E90118E8E93C843D3941 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		552826C92BD3CCF41A2C104A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6197D5E98F80BE4A941E5202 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8528FE81EA13BFE5F7DA545E /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		665BDEFC76FDB6B1F6421DF3 /* Frameworks */ = {
+		382106383C7371DC3CEA951C7E6A05E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6FD7929FE71EE68BC1D82723 /* Frameworks */ = {
+		B4387D30C425EDEDED641CB69EE3293D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED16AB4266A45592BFF7917E /* Foundation.framework in Frameworks */,
-				83B5CFA72BCA59667373F9C0 /* UIKit.framework in Frameworks */,
+				9576099345E08DE8991DA98208F2E073 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1A85A05BC73B4565D6EBF7E /* Frameworks */ = {
+		E3DD93657E782327913BFD7739D1533D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A0CEB9970A7721C18C941B3 /* Foundation.framework in Frameworks */,
-				BD57C7BBC8A9E800BD4BD99A /* UIKit.framework in Frameworks */,
+				1ABACCF57A3966AF2E2258552CF5289E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0699139F481ECC0F7546DB0B = {
+		0AADFBAA04CD3CAF92B13C952561B339 /* Pods-CZPicker_Tests */ = {
 			isa = PBXGroup;
 			children = (
-				F13C0C0BF24F904F4C23DB2F /* Podfile */,
-				F49D05960C5008654D92D510 /* Development Pods */,
-				5A6502D0E8BD8E419B737810 /* Frameworks */,
-				3324C34E05E78454EEA81341 /* Products */,
-				F95173A1A44A892705A9BA2E /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		205DD0A6C4CF95EAFE3A9A49 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				BACC4D2EB1D6B1EA53DB6720 /* Classes */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		3324C34E05E78454EEA81341 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ECD0E0C120726D35D856DFAF /* CZPicker.bundle */,
-				969B3EAC4F0CAF3BA5D9D387 /* CZPicker.bundle */,
-				9F22A1209FBB27EFB56E9D70 /* libPods-CZPicker_Example.a */,
-				B0B5F6C8B2C296501A14348F /* libPods-CZPicker_Example-CZPicker.a */,
-				D31AE08AFFDD140443EA3648 /* libPods-CZPicker_Tests.a */,
-				1DDF0CD8AC616F1A0C6980EC /* libPods-CZPicker_Tests-CZPicker.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		5A6502D0E8BD8E419B737810 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				ED82D1B2999FD5B472968E1C /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A92A2B4086377CF8170CF2E8 /* Pods-CZPicker_Example */ = {
-			isa = PBXGroup;
-			children = (
-				10EA4A4FBBB4ACF90D4500D7 /* Pods-CZPicker_Example-acknowledgements.markdown */,
-				C6C8289C0436A80E17FD8AC9 /* Pods-CZPicker_Example-acknowledgements.plist */,
-				045202141387F9758CE8ADB5 /* Pods-CZPicker_Example-dummy.m */,
-				8C5BA5CADFBEE1187F5D29C8 /* Pods-CZPicker_Example-environment.h */,
-				296FF3ACCE02844BB9421F3A /* Pods-CZPicker_Example-resources.sh */,
-				182B50556084EC48A0F5A79B /* Pods-CZPicker_Example.debug.xcconfig */,
-				DBE23378E8E136FF9FF580DF /* Pods-CZPicker_Example.release.xcconfig */,
-			);
-			name = "Pods-CZPicker_Example";
-			path = "Target Support Files/Pods-CZPicker_Example";
-			sourceTree = "<group>";
-		};
-		AF785E3B2794E77A421DD514 /* Pods-CZPicker_Tests */ = {
-			isa = PBXGroup;
-			children = (
-				5430C30EE5E6097862D45A57 /* Pods-CZPicker_Tests-acknowledgements.markdown */,
-				A456225D3EAD36BC2FC54FA2 /* Pods-CZPicker_Tests-acknowledgements.plist */,
-				4537FE1994006DDBA08CA296 /* Pods-CZPicker_Tests-dummy.m */,
-				E93AEDA5BDAEEF68A1B589BA /* Pods-CZPicker_Tests-environment.h */,
-				29F55577217EF2C2D9C76082 /* Pods-CZPicker_Tests-resources.sh */,
-				52E495302FF14052F8796399 /* Pods-CZPicker_Tests.debug.xcconfig */,
-				A6014C7DD8AA1C89E25C807D /* Pods-CZPicker_Tests.release.xcconfig */,
+				3E45447A7DA5A389AFD5C78994A95782 /* Pods-CZPicker_Tests-acknowledgements.markdown */,
+				4EBFC09A7B744C9C8C33775B54D3E5CB /* Pods-CZPicker_Tests-acknowledgements.plist */,
+				E2F5818C11FD1133B01C263AEC508AD4 /* Pods-CZPicker_Tests-dummy.m */,
+				093B0C84ABCF4349ECD3165631BC4B8B /* Pods-CZPicker_Tests-frameworks.sh */,
+				8D126728FAC2ACD287DF9FBC37D12CC5 /* Pods-CZPicker_Tests-resources.sh */,
+				03A57C78B6F5C7473BFB72D02E1B6DC7 /* Pods-CZPicker_Tests.debug.xcconfig */,
+				225971A92D5E9C21EDF30698BB5D9433 /* Pods-CZPicker_Tests.release.xcconfig */,
 			);
 			name = "Pods-CZPicker_Tests";
 			path = "Target Support Files/Pods-CZPicker_Tests";
 			sourceTree = "<group>";
 		};
-		BACC4D2EB1D6B1EA53DB6720 /* Classes */ = {
+		1101649735A34D6AD3A4858AFF86666B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				901ECDF1B003D061F7658C46 /* CZPicker.h */,
-				CF001CCE41C58D3D6C06A4AF /* CZPickerView.h */,
-				45A5087B304405145E33C131 /* CZPickerView.m */,
+				A2E5134851CC00670D1BBDCCAEBCBA48 /* CZPicker.xcconfig */,
+				B4C01293059A0C84FDC79339100EBAED /* CZPicker-dummy.m */,
+				41C437379AD6A450BCF0F982580453DD /* CZPicker-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/CZPicker";
+			sourceTree = "<group>";
+		};
+		18340F12838DEE43507667CC74401EB1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */,
+				C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		2FF5C2631536768519614A90967B4F11 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				78BC1FA81F494A1F2305E8DDDF1E16AB /* Pods-CZPicker_Example */,
+				0AADFBAA04CD3CAF92B13C952561B339 /* Pods-CZPicker_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18340F12838DEE43507667CC74401EB1 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77CD4162DC34D1D1D273B948C88C7ED0 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CDFED11B79FCA9D3EAEE58B0799FAACE /* CZPicker */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		78BC1FA81F494A1F2305E8DDDF1E16AB /* Pods-CZPicker_Example */ = {
+			isa = PBXGroup;
+			children = (
+				9E483E1C7DAC180BFA436CBCA8F52712 /* Pods-CZPicker_Example-acknowledgements.markdown */,
+				B6F6FD7973C4A5256D96C2092522FDD8 /* Pods-CZPicker_Example-acknowledgements.plist */,
+				620321FD54EAEC4E73DCF9D6CF951CB6 /* Pods-CZPicker_Example-dummy.m */,
+				D62BC46E83E7AC61D892E5D6D684756D /* Pods-CZPicker_Example-frameworks.sh */,
+				52B62A4EDA8D108C23BE394F3A3C3456 /* Pods-CZPicker_Example-resources.sh */,
+				D011DE3568AC3E8AACBAFB12839321BD /* Pods-CZPicker_Example.debug.xcconfig */,
+				15721EFC16959E9C1D628A89E5A49E90 /* Pods-CZPicker_Example.release.xcconfig */,
+			);
+			name = "Pods-CZPicker_Example";
+			path = "Target Support Files/Pods-CZPicker_Example";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				77CD4162DC34D1D1D273B948C88C7ED0 /* Development Pods */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				99D9524F009A42B2659BE0749A2C232A /* Products */,
+				2FF5C2631536768519614A90967B4F11 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		99D9524F009A42B2659BE0749A2C232A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4FB47F20FED884168358E21E9AE6C4AE /* CZPicker.bundle */,
+				DAA9C19F4180ABA8546938B86D2465E7 /* libCZPicker.a */,
+				BAAA6C79C7F01E16B0DEA07E03AAE515 /* libPods-CZPicker_Example.a */,
+				486462EB47FB92B838AC1625E3613DD3 /* libPods-CZPicker_Tests.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C03653284FFC5173E223FBDE0175A5C8 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				05823B33F3AA654C5493D2EBA324C534 /* CZPicker.h */,
+				480F91681CE8564A2A4F0992920173CC /* CZPickerView.h */,
+				43093CEC2F1EBDB8542C2E274F31A0D1 /* CZPickerView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		E29EF08D9850621C302AEC7B /* CZPicker */ = {
+		CDFED11B79FCA9D3EAEE58B0799FAACE /* CZPicker */ = {
 			isa = PBXGroup;
 			children = (
-				205DD0A6C4CF95EAFE3A9A49 /* Pod */,
-				FC465B10483DC7AE79A02DA5 /* Support Files */,
+				CFDCB56011C2487F89E302B46BE4109D /* Pod */,
+				1101649735A34D6AD3A4858AFF86666B /* Support Files */,
 			);
 			name = CZPicker;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		ED82D1B2999FD5B472968E1C /* iOS */ = {
+		CFDCB56011C2487F89E302B46BE4109D /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				4378BF50BDEDE843BC2679CE /* Foundation.framework */,
-				3817430F3248F174E02FC46B /* UIKit.framework */,
+				C03653284FFC5173E223FBDE0175A5C8 /* Classes */,
 			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		F49D05960C5008654D92D510 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E29EF08D9850621C302AEC7B /* CZPicker */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		F95173A1A44A892705A9BA2E /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				A92A2B4086377CF8170CF2E8 /* Pods-CZPicker_Example */,
-				AF785E3B2794E77A421DD514 /* Pods-CZPicker_Tests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		FC465B10483DC7AE79A02DA5 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B31F9E3D7A8DDD4FBF547E73 /* Pods-CZPicker_Example-CZPicker.xcconfig */,
-				9659A7BB285C7592F8A9EA3B /* Pods-CZPicker_Example-CZPicker-Private.xcconfig */,
-				3B124EF2274D8181BEE97D3C /* Pods-CZPicker_Example-CZPicker-dummy.m */,
-				0149C4CE84C63F845902E372 /* Pods-CZPicker_Example-CZPicker-prefix.pch */,
-				AE6F6C6B07DFC275ACAE0916 /* Pods-CZPicker_Tests-CZPicker.xcconfig */,
-				40A11D18D2B2EAED41CC99A6 /* Pods-CZPicker_Tests-CZPicker-Private.xcconfig */,
-				FCB6253D119D271C56836732 /* Pods-CZPicker_Tests-CZPicker-dummy.m */,
-				5DF8B067A11B2DD104B17E3F /* Pods-CZPicker_Tests-CZPicker-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Pods-CZPicker_Example-CZPicker";
+			path = Pod;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		32FFD4636BF7BE50D44C7080 /* Headers */ = {
+		FD33CC4C29AE25C0ED9950F469558EBC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49340AC2B6EDF57C3B365A15 /* CZPicker.h in Headers */,
-				05D1F01CFF0DA5E481B8F17A /* CZPickerView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CBBB2C884C62B0594D456332 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E975030574D75B0A18D2420D /* CZPicker.h in Headers */,
-				C361F5F7FE49347FE65B04D0 /* CZPickerView.h in Headers */,
+				3F64E419EF8EC139DA599FBAB94EA655 /* CZPicker.h in Headers */,
+				95DA62054A71898F375A4F3B9C7FFC3C /* CZPickerView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3D92EE48CBAB95BADB283447 /* Pods-CZPicker_Tests */ = {
+		1246D72EBE9DC6C28D83D23CB8AB1488 /* CZPicker-CZPicker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6046931EA18A03383F281BA7 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Tests" */;
+			buildConfigurationList = 3877C3A95EF70432EA6BC46CF55F1A9E /* Build configuration list for PBXNativeTarget "CZPicker-CZPicker" */;
 			buildPhases = (
-				E4520A1EE8F138BB107CDA81 /* Sources */,
-				6197D5E98F80BE4A941E5202 /* Frameworks */,
+				3AA5E30A3D02B86CBB2E618E717605CB /* Sources */,
+				382106383C7371DC3CEA951C7E6A05E3 /* Frameworks */,
+				2C26AEF02C265D3741289DBC1C030E23 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3F90DDA1EFAAEFAB8604634C /* PBXTargetDependency */,
 			);
-			name = "Pods-CZPicker_Tests";
-			productName = "Pods-CZPicker_Tests";
-			productReference = D31AE08AFFDD140443EA3648 /* libPods-CZPicker_Tests.a */;
-			productType = "com.apple.product-type.library.static";
+			name = "CZPicker-CZPicker";
+			productName = "CZPicker-CZPicker";
+			productReference = 4FB47F20FED884168358E21E9AE6C4AE /* CZPicker.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
-		7415E8A18BB23F228FEFBF88 /* Pods-CZPicker_Tests-CZPicker */ = {
+		282A9B930668E426BF3DB9352425CEBF /* Pods-CZPicker_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14C5C81CC25142FD30DAE00F /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Tests-CZPicker" */;
+			buildConfigurationList = E8E77768FD9A67EA8937B74D9CAE9DCF /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Example" */;
 			buildPhases = (
-				EC3813BC51588F385D952370 /* Sources */,
-				6FD7929FE71EE68BC1D82723 /* Frameworks */,
-				CBBB2C884C62B0594D456332 /* Headers */,
+				3C697184A9B3151E128D8A7F420E6D52 /* Sources */,
+				E3DD93657E782327913BFD7739D1533D /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D55375B289239FAF1B454F11 /* PBXTargetDependency */,
-			);
-			name = "Pods-CZPicker_Tests-CZPicker";
-			productName = "Pods-CZPicker_Tests-CZPicker";
-			productReference = 1DDF0CD8AC616F1A0C6980EC /* libPods-CZPicker_Tests-CZPicker.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		7731979A5CD962512ED7D8FC /* Pods-CZPicker_Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FD2977C9AB1AE9F4A84F9D64 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Example" */;
-			buildPhases = (
-				75FC5B1DAC3D4FAB6E03F58C /* Sources */,
-				25E909FB2D4864EEA7136E70 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FDD1062E566851948C6910CE /* PBXTargetDependency */,
+				639CF85114200879135552676A3AE7F6 /* PBXTargetDependency */,
 			);
 			name = "Pods-CZPicker_Example";
 			productName = "Pods-CZPicker_Example";
-			productReference = 9F22A1209FBB27EFB56E9D70 /* libPods-CZPicker_Example.a */;
+			productReference = BAAA6C79C7F01E16B0DEA07E03AAE515 /* libPods-CZPicker_Example.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9F4AD9FF8ED4197E0497FBB7 /* Pods-CZPicker_Example-CZPicker */ = {
+		66BAFE48E61D0FD962914D7A750DE26A /* CZPicker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C4FD1DF3B0CE781E09AF6BD8 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Example-CZPicker" */;
+			buildConfigurationList = B74C8CF3DB924E3136F42D30CEF937BC /* Build configuration list for PBXNativeTarget "CZPicker" */;
 			buildPhases = (
-				F992EF6A9A38CD6A2C46CD2A /* Sources */,
-				E1A85A05BC73B4565D6EBF7E /* Frameworks */,
-				32FFD4636BF7BE50D44C7080 /* Headers */,
+				B1616FC51AEF307146B6C27F562072FD /* Sources */,
+				08EB69F20F4114F1580753DD09B6E7C3 /* Frameworks */,
+				FD33CC4C29AE25C0ED9950F469558EBC /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				868B8606D0390F5ED1B8AE0E /* PBXTargetDependency */,
+				23C8BD4D3E036C6A056E1849727EB2D2 /* PBXTargetDependency */,
 			);
-			name = "Pods-CZPicker_Example-CZPicker";
-			productName = "Pods-CZPicker_Example-CZPicker";
-			productReference = B0B5F6C8B2C296501A14348F /* libPods-CZPicker_Example-CZPicker.a */;
+			name = CZPicker;
+			productName = CZPicker;
+			productReference = DAA9C19F4180ABA8546938B86D2465E7 /* libCZPicker.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		A605173F8E7612D28F43252F /* Pods-CZPicker_Tests-CZPicker-CZPicker */ = {
+		81F8CBD13AFD36A20461A3D835BE6243 /* Pods-CZPicker_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4BE904BF395F7E08706D2B7 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Tests-CZPicker-CZPicker" */;
+			buildConfigurationList = D58D6DC893341DC51D34F9B1CD4FCB91 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Tests" */;
 			buildPhases = (
-				2A9EF48FDD3671702686B0C2 /* Sources */,
-				665BDEFC76FDB6B1F6421DF3 /* Frameworks */,
-				26B1A75C293F4D082C6FF990 /* Resources */,
+				B5B7579B69CD40B5F81BB07C4CE48E8B /* Sources */,
+				B4387D30C425EDEDED641CB69EE3293D /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E39CD11FC0BB19D729F054F90E36DFA0 /* PBXTargetDependency */,
 			);
-			name = "Pods-CZPicker_Tests-CZPicker-CZPicker";
-			productName = "Pods-CZPicker_Tests-CZPicker-CZPicker";
-			productReference = ECD0E0C120726D35D856DFAF /* CZPicker.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
-		AA2A1EF536DA0935FC29677A /* Pods-CZPicker_Example-CZPicker-CZPicker */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C5B37FD9F64D61ABFA62F6E3 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Example-CZPicker-CZPicker" */;
-			buildPhases = (
-				6D3C4688D59F138DD38A50A0 /* Sources */,
-				552826C92BD3CCF41A2C104A /* Frameworks */,
-				1934118504ECD70620ADB335 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-CZPicker_Example-CZPicker-CZPicker";
-			productName = "Pods-CZPicker_Example-CZPicker-CZPicker";
-			productReference = 969B3EAC4F0CAF3BA5D9D387 /* CZPicker.bundle */;
-			productType = "com.apple.product-type.bundle";
+			name = "Pods-CZPicker_Tests";
+			productName = "Pods-CZPicker_Tests";
+			productReference = 486462EB47FB92B838AC1625E3613DD3 /* libPods-CZPicker_Tests.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		56FF8F8759CBCF98E2147E6B /* Project object */ = {
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 			};
-			buildConfigurationList = B18D59E0C871A96443B2E929 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 0699139F481ECC0F7546DB0B;
-			productRefGroup = 3324C34E05E78454EEA81341 /* Products */;
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 99D9524F009A42B2659BE0749A2C232A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7731979A5CD962512ED7D8FC /* Pods-CZPicker_Example */,
-				9F4AD9FF8ED4197E0497FBB7 /* Pods-CZPicker_Example-CZPicker */,
-				AA2A1EF536DA0935FC29677A /* Pods-CZPicker_Example-CZPicker-CZPicker */,
-				3D92EE48CBAB95BADB283447 /* Pods-CZPicker_Tests */,
-				7415E8A18BB23F228FEFBF88 /* Pods-CZPicker_Tests-CZPicker */,
-				A605173F8E7612D28F43252F /* Pods-CZPicker_Tests-CZPicker-CZPicker */,
+				66BAFE48E61D0FD962914D7A750DE26A /* CZPicker */,
+				1246D72EBE9DC6C28D83D23CB8AB1488 /* CZPicker-CZPicker */,
+				282A9B930668E426BF3DB9352425CEBF /* Pods-CZPicker_Example */,
+				81F8CBD13AFD36A20461A3D835BE6243 /* Pods-CZPicker_Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1934118504ECD70620ADB335 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		26B1A75C293F4D082C6FF990 /* Resources */ = {
+		2C26AEF02C265D3741289DBC1C030E23 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -453,87 +358,65 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2A9EF48FDD3671702686B0C2 /* Sources */ = {
+		3AA5E30A3D02B86CBB2E618E717605CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D3C4688D59F138DD38A50A0 /* Sources */ = {
+		3C697184A9B3151E128D8A7F420E6D52 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41B84C936226775F9EECDDF843765BAE /* Pods-CZPicker_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		75FC5B1DAC3D4FAB6E03F58C /* Sources */ = {
+		B1616FC51AEF307146B6C27F562072FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37B5B0BFE2966C45B1F6D556 /* Pods-CZPicker_Example-dummy.m in Sources */,
+				6FBFEFE277F0543B1D6FA5660AD61D34 /* CZPicker-dummy.m in Sources */,
+				D787049EFB40814C8018D6AB53C00207 /* CZPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4520A1EE8F138BB107CDA81 /* Sources */ = {
+		B5B7579B69CD40B5F81BB07C4CE48E8B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				209789DD2724F16E2BBE18AF /* Pods-CZPicker_Tests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EC3813BC51588F385D952370 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5AF05EEDB4E1E836574555D6 /* CZPickerView.m in Sources */,
-				30A59D5A9057DDA82A25998A /* Pods-CZPicker_Tests-CZPicker-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F992EF6A9A38CD6A2C46CD2A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				182D417DA34E4913DB58FD4C /* CZPickerView.m in Sources */,
-				E7F3A4D1519A34F0554CA2CB /* Pods-CZPicker_Example-CZPicker-dummy.m in Sources */,
+				C2AD7BF66C385323EBC4DC57AC63B8A7 /* Pods-CZPicker_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3F90DDA1EFAAEFAB8604634C /* PBXTargetDependency */ = {
+		23C8BD4D3E036C6A056E1849727EB2D2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Pods-CZPicker_Tests-CZPicker";
-			target = 7415E8A18BB23F228FEFBF88 /* Pods-CZPicker_Tests-CZPicker */;
-			targetProxy = 38B5FEA1DC4CAB3E3F75C734 /* PBXContainerItemProxy */;
+			name = "CZPicker-CZPicker";
+			target = 1246D72EBE9DC6C28D83D23CB8AB1488 /* CZPicker-CZPicker */;
+			targetProxy = 7B5644FED90468C749F7242E612D6071 /* PBXContainerItemProxy */;
 		};
-		868B8606D0390F5ED1B8AE0E /* PBXTargetDependency */ = {
+		639CF85114200879135552676A3AE7F6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Pods-CZPicker_Example-CZPicker-CZPicker";
-			target = AA2A1EF536DA0935FC29677A /* Pods-CZPicker_Example-CZPicker-CZPicker */;
-			targetProxy = 1169CCA791ADE49309090C79 /* PBXContainerItemProxy */;
+			name = CZPicker;
+			target = 66BAFE48E61D0FD962914D7A750DE26A /* CZPicker */;
+			targetProxy = BF7C45F0EEE145F6EADCF7CFDEDC4F74 /* PBXContainerItemProxy */;
 		};
-		D55375B289239FAF1B454F11 /* PBXTargetDependency */ = {
+		E39CD11FC0BB19D729F054F90E36DFA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Pods-CZPicker_Tests-CZPicker-CZPicker";
-			target = A605173F8E7612D28F43252F /* Pods-CZPicker_Tests-CZPicker-CZPicker */;
-			targetProxy = EAC285D89D88F35F75EE07DF /* PBXContainerItemProxy */;
-		};
-		FDD1062E566851948C6910CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-CZPicker_Example-CZPicker";
-			target = 9F4AD9FF8ED4197E0497FBB7 /* Pods-CZPicker_Example-CZPicker */;
-			targetProxy = A2C836512BDE13148B83EED5 /* PBXContainerItemProxy */;
+			name = CZPicker;
+			target = 66BAFE48E61D0FD962914D7A750DE26A /* CZPicker */;
+			targetProxy = D46ED80932F6019AF82B7CF470832ECC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0FD1B658E20EB449692316D6 /* Debug */ = {
+		29267BDA22412243A72005AC365F398C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40A11D18D2B2EAED41CC99A6 /* Pods-CZPicker_Tests-CZPicker-Private.xcconfig */;
+			baseConfigurationReference = A2E5134851CC00670D1BBDCCAEBCBA48 /* CZPicker.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				PRODUCT_NAME = CZPicker;
@@ -543,12 +426,48 @@
 			};
 			name = Debug;
 		};
-		16BB78EA1C69C53DDC1ACFE7 /* Release */ = {
+		2F1F43F902F006D92E504AA8F49E166B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6014C7DD8AA1C89E25C807D /* Pods-CZPicker_Tests.release.xcconfig */;
+			baseConfigurationReference = A2E5134851CC00670D1BBDCCAEBCBA48 /* CZPicker.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CZPicker/CZPicker-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		444A0B4788CBA8BBCDE86BA8E7954494 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D011DE3568AC3E8AACBAFB12839321BD /* Pods-CZPicker_Example.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A6F818AB413861516C5A6ABCD9EA7E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15721EFC16959E9C1D628A89E5A49E90 /* Pods-CZPicker_Example.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -559,7 +478,7 @@
 			};
 			name = Release;
 		};
-		2AFBD3A344BD9D96735B6751 /* Debug */ = {
+		A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -598,24 +517,30 @@
 			};
 			name = Debug;
 		};
-		41719ED204644FA5C3D818BE /* Debug */ = {
+		C768514258F495FF687D2A47EE6E3D09 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9659A7BB285C7592F8A9EA3B /* Pods-CZPicker_Example-CZPicker-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = CZPicker;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		476FE6AD32A714914EFDD592 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 182B50556084EC48A0F5A79B /* Pods-CZPicker_Example.debug.xcconfig */;
+			baseConfigurationReference = 225971A92D5E9C21EDF30698BB5D9433 /* Pods-CZPicker_Tests.release.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C92E6ABFC70AEDDBADDB2679E9AE7F42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03A57C78B6F5C7473BFB72D02E1B6DC7 /* Pods-CZPicker_Tests.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -626,39 +551,37 @@
 			};
 			name = Debug;
 		};
-		4F534D92649523E4A778077D /* Release */ = {
+		D6C453EBC7116DFBC31CE75DB180CB03 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9659A7BB285C7592F8A9EA3B /* Pods-CZPicker_Example-CZPicker-Private.xcconfig */;
+			baseConfigurationReference = A2E5134851CC00670D1BBDCCAEBCBA48 /* CZPicker.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CZPicker_Example-CZPicker/Pods-CZPicker_Example-CZPicker-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/CZPicker/CZPicker-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		5A46AC4271F2F4F6F69791BE /* Debug */ = {
+		E7F4F45F3D3F7F69A6CA23884B9219AA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40A11D18D2B2EAED41CC99A6 /* Pods-CZPicker_Tests-CZPicker-Private.xcconfig */;
+			baseConfigurationReference = A2E5134851CC00670D1BBDCCAEBCBA48 /* CZPicker.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CZPicker_Tests-CZPicker/Pods-CZPicker_Tests-CZPicker-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CZPicker;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
 			};
-			name = Debug;
+			name = Release;
 		};
-		7BBA50DCBFB94212F287DE79 /* Release */ = {
+		FB45FFD90572718D82AB9092B750F0CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -692,161 +615,55 @@
 			};
 			name = Release;
 		};
-		90A860EA7B1E32132842C4A8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBE23378E8E136FF9FF580DF /* Pods-CZPicker_Example.release.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		A2B3B8FBBBD2C1AF1C566419 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40A11D18D2B2EAED41CC99A6 /* Pods-CZPicker_Tests-CZPicker-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CZPicker_Tests-CZPicker/Pods-CZPicker_Tests-CZPicker-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		A777C572CB80E560BAACB89E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52E495302FF14052F8796399 /* Pods-CZPicker_Tests.debug.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		DE3EAB99ED86F0F9A8BCF795 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9659A7BB285C7592F8A9EA3B /* Pods-CZPicker_Example-CZPicker-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CZPicker_Example-CZPicker/Pods-CZPicker_Example-CZPicker-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		E41816811A03EB46B5ED8BCF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40A11D18D2B2EAED41CC99A6 /* Pods-CZPicker_Tests-CZPicker-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = CZPicker;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		FE66CD58A6970C823149F564 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9659A7BB285C7592F8A9EA3B /* Pods-CZPicker_Example-CZPicker-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = CZPicker;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		14C5C81CC25142FD30DAE00F /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Tests-CZPicker" */ = {
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5A46AC4271F2F4F6F69791BE /* Debug */,
-				A2B3B8FBBBD2C1AF1C566419 /* Release */,
+				A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */,
+				FB45FFD90572718D82AB9092B750F0CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6046931EA18A03383F281BA7 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Tests" */ = {
+		3877C3A95EF70432EA6BC46CF55F1A9E /* Build configuration list for PBXNativeTarget "CZPicker-CZPicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A777C572CB80E560BAACB89E /* Debug */,
-				16BB78EA1C69C53DDC1ACFE7 /* Release */,
+				29267BDA22412243A72005AC365F398C /* Debug */,
+				E7F4F45F3D3F7F69A6CA23884B9219AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B18D59E0C871A96443B2E929 /* Build configuration list for PBXProject "Pods" */ = {
+		B74C8CF3DB924E3136F42D30CEF937BC /* Build configuration list for PBXNativeTarget "CZPicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2AFBD3A344BD9D96735B6751 /* Debug */,
-				7BBA50DCBFB94212F287DE79 /* Release */,
+				2F1F43F902F006D92E504AA8F49E166B /* Debug */,
+				D6C453EBC7116DFBC31CE75DB180CB03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C4FD1DF3B0CE781E09AF6BD8 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Example-CZPicker" */ = {
+		D58D6DC893341DC51D34F9B1CD4FCB91 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DE3EAB99ED86F0F9A8BCF795 /* Debug */,
-				4F534D92649523E4A778077D /* Release */,
+				C92E6ABFC70AEDDBADDB2679E9AE7F42 /* Debug */,
+				C768514258F495FF687D2A47EE6E3D09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5B37FD9F64D61ABFA62F6E3 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Example-CZPicker-CZPicker" */ = {
+		E8E77768FD9A67EA8937B74D9CAE9DCF /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				41719ED204644FA5C3D818BE /* Debug */,
-				FE66CD58A6970C823149F564 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E4BE904BF395F7E08706D2B7 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Tests-CZPicker-CZPicker" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0FD1B658E20EB449692316D6 /* Debug */,
-				E41816811A03EB46B5ED8BCF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FD2977C9AB1AE9F4A84F9D64 /* Build configuration list for PBXNativeTarget "Pods-CZPicker_Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				476FE6AD32A714914EFDD592 /* Debug */,
-				90A860EA7B1E32132842C4A8 /* Release */,
+				444A0B4788CBA8BBCDE86BA8E7954494 /* Debug */,
+				A6F818AB413861516C5A6ABCD9EA7E77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 56FF8F8759CBCF98E2147E6B /* Project object */;
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 }

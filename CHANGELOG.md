@@ -1,3 +1,8 @@
+### v0.3.8 - 2016-03-08
+
+#### Added
+- Added ```headerTitleFont``` for title setting font.
+
 ### v0.3.7 - 2015-11-29
 #### Added
 - Added ```- (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row``` for setting images for every item [#20](https://github.com/chenzeyu/CZPicker/issues/20)

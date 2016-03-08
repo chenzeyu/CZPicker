@@ -92,6 +92,9 @@
 /** picker header background color */
 @property (nonatomic, strong) UIColor *headerBackgroundColor;
 
+/** picker header title font */
+@property (nonatomic, strong) UIFont *headerTitleFont;
+
 /** picker header title color */
 @property (nonatomic, strong) UIColor *headerTitleColor;
 

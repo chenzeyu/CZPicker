@@ -93,6 +93,7 @@
 
 - (IBAction)showWithoutFooter:(id)sender {
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
+    picker.headerTitleFont = [UIFont systemFontOfSize: 40];
     picker.delegate = self;
     picker.dataSource = self;
     picker.needFooterView = NO;

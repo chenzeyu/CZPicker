@@ -1,6 +1,0 @@
-#include "Pods-CZPicker_Tests-CZPicker.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/CZPicker" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CZPicker"
-OTHER_LDFLAGS = ${PODS_CZPICKER_TESTS_CZPICKER_OTHER_LDFLAGS} -ObjC
-PODS_ROOT = ${SRCROOT}
-SKIP_INSTALL = YES

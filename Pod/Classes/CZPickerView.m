@@ -233,9 +233,12 @@ typedef void (^CZDismissCompletionCallback)(void);
 - (UIView *)buildHeaderView{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, CZP_HEADER_HEIGHT)];
     view.backgroundColor = self.headerBackgroundColor;
+    
+    UIFont *headerFont = self.headerTitleFont == nil ? [UIFont systemFontOfSize:18.0] : self.headerTitleFont;
+    
     NSDictionary *dict = @{
                            NSForegroundColorAttributeName: self.headerTitleColor,
-                           NSFontAttributeName: [UIFont systemFontOfSize:18.0]
+                           NSFontAttributeName:headerFont
                            };
     NSAttributedString *at = [[NSAttributedString alloc] initWithString:self.headerTitle attributes:dict];
     UILabel *label = [[UILabel alloc] initWithFrame:view.frame];

@@ -1,3 +1,28 @@
+### v0.3.8 - 2016-03-08
+
+#### Added
+- Added ```headerTitleFont``` for title setting font.
+
+### v0.3.7 - 2015-11-29
+#### Added
+- Added ```- (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row``` for setting images for every item [#20](https://github.com/chenzeyu/CZPicker/issues/20)
+
+### v0.3.6 - 2015-09-11
+#### Added
+- Added ```animationDuration``` for setting duration of animation (both showing and dismissing) [#14](https://github.com/chenzeyu/CZPicker/issues/14)
+- Added ```- (NSArray *)selectedRows``` to return previously selected items.[#10](https://github.com/chenzeyu/CZPicker/issues/10)
+- Added ```setSelectedRows:rows``` to pre-set selected items before showing.[#15](https://github.com/chenzeyu/CZPicker/issues/15)
+
+
+### v0.3.5 - 2015-07-21
+#### Changed
+- Change delegate & dataSource methods names to conform to apple's guideline and avoid error in swift.(methods' names start with 'CZPicker' to 'czpicker')[#5](https://github.com/chenzeyu/CZPicker/issues/5)
+- Make picker higher in landscape mode.
+
+### v0.3.4 - 2015-07-20
+#### Fixed
+- Fixed multiple selection mode cell selection not remembered issue. [#8](https://github.com/chenzeyu/CZPicker/issues/8)
+
 ### v0.3.3 - 2015-07-20
 #### Fixed
 - Listen to orientation change when needed. (App supports landscape & portrait)

@@ -28,8 +28,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 @property UIView *headerView;
 @property UIView *footerview;
 @property UITableView *tableView;
-@property NSIndexPath *selectedIndexPath;
-@property NSMutableArray *selectedRows;
+@property NSMutableArray *selectedIndexPaths;
 @end
 
 @implementation CZPickerView
@@ -48,6 +47,7 @@ typedef void (^CZDismissCompletionCallback)(void);
         self.tapBackgroundToDismiss = YES;
         self.needFooterView = NO;
         self.allowMultipleSelection = NO;
+        self.animationDuration = 0.5f;
         
         self.confirmButtonTitle = confirmButtonTitle;
         self.cancelButtonTitle = cancelButtonTitle;
@@ -100,7 +100,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 
 - (void)performContainerAnimation {
     
-    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+    [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = self.center;
     } completion:^(BOOL finished) {
         
@@ -125,7 +125,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 }
 
 - (void)dismissPicker:(CZDismissCompletionCallback)completion{
-    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+    [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
     }completion:^(BOOL finished) {
     }];
@@ -233,9 +233,12 @@ typedef void (^CZDismissCompletionCallback)(void);
 - (UIView *)buildHeaderView{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, CZP_HEADER_HEIGHT)];
     view.backgroundColor = self.headerBackgroundColor;
+    
+    UIFont *headerFont = self.headerTitleFont == nil ? [UIFont systemFontOfSize:18.0] : self.headerTitleFont;
+    
     NSDictionary *dict = @{
                            NSForegroundColorAttributeName: self.headerTitleColor,
-                           NSFontAttributeName: [UIFont systemFontOfSize:18.0]
+                           NSFontAttributeName:headerFont
                            };
     NSAttributedString *at = [[NSAttributedString alloc] initWithString:self.headerTitle attributes:dict];
     UILabel *label = [[UILabel alloc] initWithFrame:view.frame];
@@ -257,12 +260,35 @@ typedef void (^CZDismissCompletionCallback)(void);
 - (IBAction)confirmButtonPressed:(id)sender{
     [self dismissPicker:^{
         if(self.allowMultipleSelection && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemsAtRows:)]){
-            [self.delegate czpickerView:self didConfirmWithItemsAtRows:self.selectedRows];
+            [self.delegate czpickerView:self didConfirmWithItemsAtRows:[self selectedRows]];
         }
-        else if(self.selectedIndexPath && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemAtRow:)]){
-            [self.delegate czpickerView:self didConfirmWithItemAtRow:self.selectedIndexPath.row];
+        
+        else if(!self.allowMultipleSelection && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemAtRow:)]){
+            if (self.selectedIndexPaths.count > 0){
+                NSInteger row = ((NSIndexPath *)self.selectedIndexPaths[0]).row;
+                [self.delegate czpickerView:self didConfirmWithItemAtRow:row];
+            }
         }
     }];
+}
+
+- (NSArray *)selectedRows {
+    NSMutableArray *rows = [NSMutableArray new];
+    for (NSIndexPath *ip in self.selectedIndexPaths) {
+        [rows addObject:@(ip.row)];
+    }
+    return rows;
+}
+
+- (void)setSelectedRows:(NSArray *)rows{
+    if (![rows isKindOfClass: NSArray.class]) {
+        return;
+    }
+    self.selectedIndexPaths = [NSMutableArray new];
+    for (NSNumber *n in rows){
+        NSIndexPath *ip = [NSIndexPath indexPathForRow:[n integerValue] inSection: 0];
+        [self.selectedIndexPaths addObject:ip];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -280,15 +306,18 @@ typedef void (^CZDismissCompletionCallback)(void);
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
-    for(NSNumber *n in self.selectedRows){
-        if([n integerValue] == indexPath.row){
+    for(NSIndexPath *ip in self.selectedIndexPaths){
+        if(ip.row == indexPath.row){
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }
-    if([self.selectedIndexPath isEqual:indexPath]){
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    if ([self.dataSource respondsToSelector:@selector(czpickerView:attributedTitleForRow:)]) {
+    if([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)] && [self.dataSource respondsToSelector:@selector(czpickerView:imageForRow:)]){
+        cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];
+        cell.imageView.image = [self.dataSource czpickerView:self imageForRow:indexPath.row];
+    } else if ([self.dataSource respondsToSelector:@selector(czpickerView:attributedTitleForRow:)] && [self.dataSource respondsToSelector:@selector(czpickerView:imageForRow:)]){
+        cell.textLabel.attributedText = [self.dataSource czpickerView:self attributedTitleForRow:indexPath.row];
+        cell.imageView.image = [self.dataSource czpickerView:self imageForRow:indexPath.row];
+    } else if ([self.dataSource respondsToSelector:@selector(czpickerView:attributedTitleForRow:)]) {
         cell.textLabel.attributedText = [self.dataSource czpickerView:self attributedTitleForRow:indexPath.row];
     } else if([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)]){
         cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];
@@ -304,39 +333,47 @@ typedef void (^CZDismissCompletionCallback)(void);
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(self.allowMultipleSelection){
-        if(!self.selectedRows){
-            self.selectedRows = [NSMutableArray new];
-        }
-        NSNumber *row = @(indexPath.row);
-        // the row has already been selected
-        if([self.selectedRows containsObject:row]){
-            [self.selectedRows removeObject:row];
+    if(!self.selectedIndexPaths){
+        self.selectedIndexPaths = [NSMutableArray new];
+    }
+    // the row has already been selected
+    
+    if (self.allowMultipleSelection){
+        
+        if([self.selectedIndexPaths containsObject:indexPath]){
+            [self.selectedIndexPaths removeObject:indexPath];
             cell.accessoryType = UITableViewCellAccessoryNone;
         } else {
-            [self.selectedRows addObject:row];
+            [self.selectedIndexPaths addObject:indexPath];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
-    }
-    else {
-        if(self.selectedIndexPath){
-            UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
-            if(prevCell){
+        
+    } else { //single selection mode
+        
+        if (self.selectedIndexPaths.count > 0){// has selection
+            NSIndexPath *prevIp = (NSIndexPath *)self.selectedIndexPaths[0];
+            UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:prevIp];
+            if(indexPath.row != prevIp.row){ //different cell
                 prevCell.accessoryType = UITableViewCellAccessoryNone;
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            } else {
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                [self.selectedIndexPaths removeObject:prevIp];
+                [self.selectedIndexPaths addObject:indexPath];
+            } else {//same cell
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                self.selectedIndexPaths = [NSMutableArray new];
             }
-        } else{
+        } else {//no selection
+            [self.selectedIndexPaths addObject:indexPath];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
-        self.selectedIndexPath = indexPath;
+        
         if(!self.needFooterView && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemAtRow:)]){
             [self dismissPicker:^{
                 [self.delegate czpickerView:self didConfirmWithItemAtRow:indexPath.row];
             }];
         }
     }
+    
 }
 
 #pragma mark - Notification Handler

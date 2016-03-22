@@ -10,6 +10,8 @@
 
 @interface CZViewController ()
 @property NSArray *fruits;
+@property NSArray *fruitImages;
+@property CZPickerView *pickerWithImage;
 @end
 
 @implementation CZViewController
@@ -18,6 +20,7 @@
 {
     [super viewDidLoad];
     self.fruits = @[@"Apple", @"Banana", @"Grape", @"Watermelon", @"Lychee"];
+    self.fruitImages = @[[UIImage imageNamed:@"Apple"], [UIImage imageNamed:@"Banana"], [UIImage imageNamed:@"Grape"], [UIImage imageNamed:@"Watermelon"], [UIImage imageNamed:@"Lychee"]];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -46,6 +49,13 @@
     return self.fruits[row];
 }
 
+- (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row {
+    if([pickerView isEqual:self.pickerWithImage]) {
+        return self.fruitImages[row];
+    }
+    return nil;
+}
+
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView{
     return self.fruits.count;
 }
@@ -65,6 +75,14 @@
     NSLog(@"Canceled.");
 }
 
+- (IBAction)showWithImages:(id)sender {
+    self.pickerWithImage = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
+    self.pickerWithImage.delegate = self;
+    self.pickerWithImage.dataSource = self;
+    self.pickerWithImage.needFooterView = YES;
+    [self.pickerWithImage show];
+}
+
 - (IBAction)showWithFooter:(id)sender {
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
     picker.delegate = self;
@@ -75,6 +93,7 @@
 
 - (IBAction)showWithoutFooter:(id)sender {
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
+    picker.headerTitleFont = [UIFont systemFontOfSize: 40];
     picker.delegate = self;
     picker.dataSource = self;
     picker.needFooterView = NO;

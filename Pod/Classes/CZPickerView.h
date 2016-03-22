@@ -30,6 +30,9 @@
 - (NSString *)czpickerView:(CZPickerView *)pickerView
                             titleForRow:(NSInteger)row;
 
+/* picker item image for each row */
+- (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row;
+
 @end
 
 @protocol CZPickerViewDelegate <NSObject>
@@ -66,6 +69,12 @@
 /** show the picker */
 - (void)show;
 
+/** return previously selected row, in array of NSNumber form. */
+- (NSArray *)selectedRows;
+
+/** set pre-selected rows, rows should be array of NSNumber. */
+- (void)setSelectedRows: (NSArray *)rows;
+
 @property id<CZPickerViewDelegate> delegate;
 
 @property id<CZPickerViewDataSource> dataSource;
@@ -82,6 +91,9 @@
 
 /** picker header background color */
 @property (nonatomic, strong) UIColor *headerBackgroundColor;
+
+/** picker header title font */
+@property (nonatomic, strong) UIFont *headerTitleFont;
 
 /** picker header title color */
 @property (nonatomic, strong) UIColor *headerTitleColor;
@@ -106,5 +118,8 @@
 
 /** tint color for tableview, also checkmark color */
 @property (nonatomic, strong) UIColor *checkmarkColor;
+
+/** picker's animation duration for showing and dismissing*/
+@property CGFloat animationDuration;
 
 @end

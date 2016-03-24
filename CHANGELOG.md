@@ -1,3 +1,8 @@
+### v0.3.9 - 2016-03-24
+
+#### Added
+- Added ```checkmarkColor``` for cell checkmark.
+
 ### v0.3.8 - 2016-03-08
 
 #### Added

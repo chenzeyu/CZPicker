@@ -13,6 +13,11 @@
 
 Full [change logs](CHANGELOG.md)
 
+### v0.3.9 - 2016-03-24
+
+#### Added
+- Added ```checkmarkColor``` for cell checkmark.
+
 ### v0.3.8 - 2016-03-08
 
 #### Added
@@ -22,13 +27,6 @@ Full [change logs](CHANGELOG.md)
 
 #### Added
 - Added ```- (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row``` for setting images for every item [#20](https://github.com/chenzeyu/CZPicker/issues/20)
-
-### v0.3.6 - 2015-09-11
-
-#### Added
-- Added ```animationDuration``` for setting duration of animation (both showing and dismissing) [#14](https://github.com/chenzeyu/CZPicker/issues/14)
-- Added ```- (NSArray *)selectedRows``` to return previously selected items.[#10](https://github.com/chenzeyu/CZPicker/issues/10)
-- Added ```setSelectedRows:rows``` to pre-set selected items before showing.[#15](https://github.com/chenzeyu/CZPicker/issues/15)
 
 ## Usage
 

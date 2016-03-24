@@ -107,21 +107,35 @@ typedef void (^CZDismissCompletionCallback)(void);
     }];
 }
 
-- (void)show{
+- (void)show {
+
+    UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
+    self.frame = mainWindow.frame;
+    [self show:mainWindow];
+}
+
+- (void)show:(id)container {
     
-    if(self.allowMultipleSelection && !self.needFooterView){
+    self.pickerVisible = YES;
+    if (self.allowMultipleSelection && !self.needFooterView) {
         self.needFooterView = self.allowMultipleSelection;
     }
     
-    UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
-    self.frame = mainWindow.frame;
-    [mainWindow addSubview:self];
-    [self setupSubviews];
-    [self performContainerAnimation];
+    if ([container respondsToSelector:@selector(addSubview:)]) {
+        [container addSubview:self];
+        
+        [self setupSubviews];
+        [self performContainerAnimation];
+        
+        [UIView animateWithDuration:0.3f animations:^{
+            self.backgroundDimmingView.alpha = CZP_BACKGROUND_ALPHA;
+        }];
+    }
+}
+
+- (void)reloadData{
     
-    [UIView animateWithDuration:0.3f animations:^{
-        self.backgroundDimmingView.alpha = CZP_BACKGROUND_ALPHA;
-    }];
+    [self.tableView reloadData];
 }
 
 - (void)dismissPicker:(CZDismissCompletionCallback)completion{
@@ -137,6 +151,7 @@ typedef void (^CZDismissCompletionCallback)(void);
             if(completion){
                 completion();
             }
+            self.pickerVisible = NO;
             [self removeFromSuperview];
         }
     }];
@@ -289,6 +304,11 @@ typedef void (^CZDismissCompletionCallback)(void);
         NSIndexPath *ip = [NSIndexPath indexPathForRow:[n integerValue] inSection: 0];
         [self.selectedIndexPaths addObject:ip];
     }
+}
+
+- (void)unselectAll {
+    self.selectedIndexPaths = [NSMutableArray new];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource

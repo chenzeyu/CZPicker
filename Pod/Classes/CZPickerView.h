@@ -119,7 +119,10 @@
 /** tint color for tableview, also checkmark color */
 @property (nonatomic, strong) UIColor *checkmarkColor;
 
-/** picker's animation duration for showing and dismissing*/
+/** picker's animation duration for showing and dismissing */
 @property CGFloat animationDuration;
+
+/** width of picker */
+@property CGFloat pickerWidth;
 
 @end

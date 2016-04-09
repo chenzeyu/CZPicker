@@ -1,3 +1,6 @@
+### v0.4.0 - 2016-04-09
+- Added ```pickerWidth``` for setting picker width.
+
 ### v0.3.9 - 2016-03-24
 
 #### Added

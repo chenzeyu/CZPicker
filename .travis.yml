@@ -10,7 +10,7 @@ before_install:
 - rvm get stable --auto-dotfiles
 - rvm install 2.3.0
 - gem install cocoapods --pre
-- pod update --project-directory=Example
+- pod install --project-directory=Example
 install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:

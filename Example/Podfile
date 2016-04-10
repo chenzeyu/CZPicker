@@ -5,6 +5,6 @@ target 'CZPicker_Example' do
   pod "CZPicker", :path => "../"
 end
 
-target 'CZPicker_Tests' true do
+target 'CZPicker_Tests' do
   pod "CZPicker", :path => "../"
 end

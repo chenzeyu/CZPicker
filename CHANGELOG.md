@@ -1,3 +1,6 @@
+### v0.4.1 - 2016-04-10
+- Remove bundle resources setting in podspec file.
+
 ### v0.4.0 - 2016-04-09
 - Added ```pickerWidth``` for setting picker width.
 

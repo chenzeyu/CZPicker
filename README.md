@@ -13,6 +13,9 @@
 
 Full [change logs](CHANGELOG.md)
 
+### v0.4.1 - 2016-04-10
+- Remove bundle resources setting in podspec file.
+
 ### v0.4.0 - 2016-04-09
 - Added ```pickerWidth``` for setting picker width.
 
@@ -20,11 +23,6 @@ Full [change logs](CHANGELOG.md)
 
 #### Added
 - Added ```checkmarkColor``` for cell checkmark.
-
-### v0.3.8 - 2016-03-08
-
-#### Added
-- Added ```headerTitleFont``` for title setting font.
 
 ## Usage
 

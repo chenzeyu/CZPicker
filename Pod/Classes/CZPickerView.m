@@ -29,6 +29,7 @@ typedef void (^CZDismissCompletionCallback)(void);
 @property UIView *footerview;
 @property UITableView *tableView;
 @property NSMutableArray *selectedIndexPaths;
+@property CGRect previousBounds;
 @end
 
 @implementation CZPickerView
@@ -64,8 +65,8 @@ typedef void (^CZDismissCompletionCallback)(void);
         self.confirmButtonHighlightedColor = [UIColor colorWithRed:236.0/255 green:240/255.0 blue:241.0/255 alpha:1];
         self.confirmButtonBackgroundColor = [UIColor colorWithRed:56.0/255 green:185.0/255 blue:158.0/255 alpha:1];
         
-        CGRect rect= [UIScreen mainScreen].bounds;
-        self.frame = rect;
+        _previousBounds = [UIScreen mainScreen].bounds;
+        self.frame = _previousBounds;
     }
     return self;
 }
@@ -386,52 +387,25 @@ typedef void (^CZDismissCompletionCallback)(void);
     NSMutableSet *set = [NSMutableSet set];
     for(NSString *o in supportedOrientations){
         NSRange range = [o rangeOfString:@"Portrait"];
-        if ( range.location != NSNotFound ) {
+        if (range.location != NSNotFound) {
             [set addObject:@"Portrait"];
         }
         
         range = [o rangeOfString:@"Landscape"];
-        if ( range.location != NSNotFound ) {
+        if (range.location != NSNotFound) {
             [set addObject:@"Landscape"];
         }
     }
     return set.count == 2;
 }
 
-- (BOOL)orientationSupported:(UIDeviceOrientation)orientation{
-    NSString *orientationStr;
-    switch (orientation) {
-        case UIDeviceOrientationPortrait:
-            orientationStr = @"UIInterfaceOrientationPortrait";
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            orientationStr = @"UIInterfaceOrientationPortraitUpsideDown";
-            break;
-        case UIDeviceOrientationLandscapeLeft:
-            orientationStr = @"UIInterfaceOrientationLandscapeLeft";
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            orientationStr = @"UIInterfaceOrientationLandscapeRight";
-            break;
-        default:
-            orientationStr = @"Invalid Interface Orientation";
-            break;
-    }
-    NSArray *supportedOrientations = [[[NSBundle mainBundle] infoDictionary]
-                                      objectForKey:@"UISupportedInterfaceOrientations"];
-    for(NSString *o in supportedOrientations){
-        if([o hasPrefix:orientationStr]){
-            return YES;
-        }
-    }
-    return NO;
-}
-
 - (void)deviceOrientationDidChange:(NSNotification *)notification{
-    if(![self orientationSupported:[[UIDevice currentDevice] orientation]]){
+    CGRect rect = [UIScreen mainScreen].bounds;
+    if (CGRectEqualToRect(rect, _previousBounds)) {
         return;
     }
-    self.frame = [UIScreen mainScreen].bounds;
+    _previousBounds = rect;
+    self.frame = rect;
     for(UIView *v in self.subviews){
         if([v isEqual:self.backgroundDimmingView]) continue;
         

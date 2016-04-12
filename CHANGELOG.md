@@ -1,3 +1,6 @@
+### v0.4.2 - 2016-04-12
+- Improve orientation handler to avoid unnecessary pop up animations.
+
 ### v0.4.1 - 2016-04-10
 - Remove bundle resources setting in podspec file.
 

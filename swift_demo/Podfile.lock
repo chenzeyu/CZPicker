@@ -1,0 +1,10 @@
+PODS:
+  - CZPicker (0.4.2)
+
+DEPENDENCIES:
+  - CZPicker
+
+SPEC CHECKSUMS:
+  CZPicker: df3d8d0511595b7cd2f032263c82c611d45a9b8e
+
+COCOAPODS: 0.39.0

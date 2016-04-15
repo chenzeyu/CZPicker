@@ -33,8 +33,7 @@ pod "CZPicker"
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-### Swift
-If you are using swift, please refer to swift demo project.
+If you are using swift, please refer to [CZPicker Swift Demo](https://gist.github.com/chenzeyu/6d19a343ffc8d6530fd0)
 
 To show the picker, simply adding the following code:
 

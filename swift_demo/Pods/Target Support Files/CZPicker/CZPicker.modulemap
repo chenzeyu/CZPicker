@@ -1,0 +1,6 @@
+framework module CZPicker {
+  umbrella header "CZPicker-umbrella.h"
+
+  export *
+  module * { export * }
+}

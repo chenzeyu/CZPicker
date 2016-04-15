@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="swift_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1or-Qo-Y0e">
+                                <rect key="frame" x="242" y="122" width="116" height="30"/>
+                                <state key="normal" title="Show with footer"/>
+                                <connections>
+                                    <action selector="showWithFooter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EXe-k3-NPK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aa8-h0-kHf">
+                                <rect key="frame" x="231" y="219" width="138" height="30"/>
+                                <state key="normal" title="Show without footer"/>
+                                <connections>
+                                    <action selector="showWithoutFooter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ipa-3r-1c6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gyi-nJ-ZLk">
+                                <rect key="frame" x="199" y="320" width="203" height="30"/>
+                                <state key="normal" title="Show with multiple selections"/>
+                                <connections>
+                                    <action selector="showWithMultipleSelections:" destination="BYZ-38-t0r" eventType="touchUpInside" id="weW-t3-eYT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGW-n4-G48">
+                                <rect key="frame" x="238" y="400" width="124" height="30"/>
+                                <state key="normal" title="Show with images"/>
+                                <connections>
+                                    <action selector="showWithImages:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ffX-mm-vN7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1or-Qo-Y0e" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="102" id="5Az-OZ-o9m"/>
+                            <constraint firstItem="Gyi-nJ-ZLk" firstAttribute="centerX" secondItem="DGW-n4-G48" secondAttribute="centerX" id="Dpt-CP-IZZ"/>
+                            <constraint firstItem="aa8-h0-kHf" firstAttribute="top" secondItem="1or-Qo-Y0e" secondAttribute="bottom" constant="67" id="GsC-7T-exY"/>
+                            <constraint firstItem="1or-Qo-Y0e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K1I-nU-JEv"/>
+                            <constraint firstItem="1or-Qo-Y0e" firstAttribute="centerX" secondItem="aa8-h0-kHf" secondAttribute="centerX" id="Z1s-pd-Q9U"/>
+                            <constraint firstItem="Gyi-nJ-ZLk" firstAttribute="top" secondItem="aa8-h0-kHf" secondAttribute="bottom" constant="71" id="ago-55-bkR"/>
+                            <constraint firstItem="aa8-h0-kHf" firstAttribute="centerX" secondItem="Gyi-nJ-ZLk" secondAttribute="centerX" id="iff-di-eBe"/>
+                            <constraint firstItem="DGW-n4-G48" firstAttribute="top" secondItem="Gyi-nJ-ZLk" secondAttribute="bottom" constant="50" id="kUb-mE-AfE"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

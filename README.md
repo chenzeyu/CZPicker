@@ -12,24 +12,15 @@
 3 most recent changes are listed here.
 
 Full [change logs](CHANGELOG.md)
-### v0.3.7 - 2015-11-29
 
-#### Added
-- Added ```- (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row``` for setting images for every item [#20](https://github.com/chenzeyu/CZPicker/issues/20)
+### v0.4.2 - 2016-04-12
+- Improve orientation handler to avoid unnecessary pop up animations.
 
-### v0.3.6 - 2015-09-11
+### v0.4.1 - 2016-04-10
+- Remove bundle resources setting in podspec file.
 
-#### Added
-- Added ```animationDuration``` for setting duration of animation (both showing and dismissing) [#14](https://github.com/chenzeyu/CZPicker/issues/14)
-- Added ```- (NSArray *)selectedRows``` to return previously selected items.[#10](https://github.com/chenzeyu/CZPicker/issues/10)
-- Added ```setSelectedRows:rows``` to pre-set selected items before showing.[#15](https://github.com/chenzeyu/CZPicker/issues/15)
-
-
-### v0.3.5 - 2015-07-21
-
-#### Changed
-- Change delegate & dataSource methods names to conform to apple's guideline and avoid error in swift.(methods' names start with 'CZPicker' to 'czpicker')[#5](https://github.com/chenzeyu/CZPicker/issues/5)
-- Make picker higher in landscape mode.
+### v0.4.0 - 2016-04-09
+- Added ```pickerWidth``` for setting picker width.
 
 ## Usage
 
@@ -42,7 +33,8 @@ pod "CZPicker"
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-If you are using swift, please refer to [CZPicker Swift Demo](https://gist.github.com/chenzeyu/6d19a343ffc8d6530fd0)
+### Swift
+If you are using swift, please refer to swift demo project.
 
 To show the picker, simply adding the following code:
 

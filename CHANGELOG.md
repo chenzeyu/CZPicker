@@ -1,3 +1,22 @@
+### v0.4.2 - 2016-04-12
+- Improve orientation handler to avoid unnecessary pop up animations.
+
+### v0.4.1 - 2016-04-10
+- Remove bundle resources setting in podspec file.
+
+### v0.4.0 - 2016-04-09
+- Added ```pickerWidth``` for setting picker width.
+
+### v0.3.9 - 2016-03-24
+
+#### Added
+- Added ```checkmarkColor``` for cell checkmark.
+
+### v0.3.8 - 2016-03-08
+
+#### Added
+- Added ```headerTitleFont``` for title setting font.
+
 ### v0.3.7 - 2015-11-29
 #### Added
 - Added ```- (UIImage *)czpickerView:(CZPickerView *)pickerView imageForRow:(NSInteger)row``` for setting images for every item [#20](https://github.com/chenzeyu/CZPicker/issues/20)

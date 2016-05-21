@@ -102,6 +102,9 @@
 /** picker header background color */
 @property (nonatomic, strong) UIColor *headerBackgroundColor;
 
+/** picker header title font */
+@property (nonatomic, strong) UIFont *headerTitleFont;
+
 /** picker header title color */
 @property (nonatomic, strong) UIColor *headerTitleColor;
 
@@ -123,7 +126,13 @@
 /** picker confirm button highlighted state color */
 @property (nonatomic, strong) UIColor *confirmButtonHighlightedColor;
 
-/** picker's animation duration for showing and dismissing*/
+/** tint color for tableview, also checkmark color */
+@property (nonatomic, strong) UIColor *checkmarkColor;
+
+/** picker's animation duration for showing and dismissing */
 @property CGFloat animationDuration;
+
+/** width of picker */
+@property CGFloat pickerWidth;
 
 @end

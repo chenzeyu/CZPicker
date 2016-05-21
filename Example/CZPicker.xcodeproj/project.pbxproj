@@ -207,6 +207,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				2E3CE8B315B015F0CE3C6A3F /* Copy Pods Resources */,
+				29C583A06F55AA5B44E1222A /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -226,6 +227,7 @@
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				96707B4EDE8F20D10159C54D /* Copy Pods Resources */,
+				347E3C072A55C45DAF40F490 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -293,6 +295,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		29C583A06F55AA5B44E1222A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CZPicker_Example/Pods-CZPicker_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2E3CE8B315B015F0CE3C6A3F /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -306,6 +323,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CZPicker_Example/Pods-CZPicker_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		347E3C072A55C45DAF40F490 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CZPicker_Tests/Pods-CZPicker_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		96707B4EDE8F20D10159C54D /* Copy Pods Resources */ = {

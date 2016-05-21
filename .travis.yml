@@ -3,10 +3,14 @@
 # * https://github.com/supermarin/xcpretty#usage
 
 language: objective-c
+rvm: ruby-head
 cache: cocoapods
 podfile: Example/Podfile
 before_install:
-- gem install cocoapods # Since Travis is not always on latest version
+- rvm get stable --auto-dotfiles
+- rvm install 2.3.0
+- rvm use 2.3.0
+- gem install cocoapods
 - pod update --project-directory=Example
 install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet

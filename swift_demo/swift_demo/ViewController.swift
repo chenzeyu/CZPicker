@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         fruits = ["Apple", "Banana", "Grape", "Watermelon", "Lychee"]
         fruitImages = [UIImage(named: "Apple")!, UIImage(named: "Banana")!, UIImage(named: "Grape")!, UIImage(named: "Watermelon")!, UIImage(named: "Lychee")!]
+        self.title = "CZPicker"
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -59,6 +60,14 @@ class ViewController: UIViewController {
         pickerWithImage?.needFooterView = false
         pickerWithImage?.show()
     }
+    
+    @IBAction func showInsideContainer(snder: AnyObject) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        let picker = CZPickerView(headerTitle: "Fruits", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        picker.delegate = self
+        picker.dataSource = self
+        picker.show(self.view)
+    }
 }
 
 extension ViewController: CZPickerViewDelegate, CZPickerViewDataSource {
@@ -79,6 +88,11 @@ extension ViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         print(fruits[row])
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func czpickerViewDidClickCancelButton(pickerView: CZPickerView!) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {

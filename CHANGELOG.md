@@ -1,3 +1,12 @@
+### v0.4.3 - 2016-08-12
+
+- Added ```- (void)czpickerViewWillDisplay:(CZPickerView *)pickerView;```
+- Added ```- (void)czpickerViewDidDisplay:(CZPickerView *)pickerView;```
+- Added ```- (void)czpickerViewWillDismiss:(CZPickerView *)pickerView;```
+- Added ```- (void)czpickerViewDidDismiss:(CZPickerView *)pickerView;```
+- Added ```- (void)reloadData``` to reload picker.
+- Added ```- (void)showInContainer:(id)container```.
+
 ### v0.4.2 - 2016-04-12
 - Improve orientation handler to avoid unnecessary pop up animations.
 

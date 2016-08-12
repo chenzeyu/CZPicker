@@ -55,16 +55,16 @@
 - (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView;
 
 /* picker will show */
-- (void)pickerViewWillDisplay:(CZPickerView *)pickerView;
+- (void)czpickerViewWillDisplay:(CZPickerView *)pickerView;
 
 /* picker did show */
-- (void)pickerViewDidDisplay:(CZPickerView *)pickerView;
+- (void)czpickerViewDidDisplay:(CZPickerView *)pickerView;
 
 /* picker will dismiss */
-- (void)pickerViewWillDismiss:(CZPickerView *)pickerView;
+- (void)czpickerViewWillDismiss:(CZPickerView *)pickerView;
 
 /* picker did dismiss */
-- (void)pickerViewDidDismiss:(CZPickerView *)pickerView;
+- (void)czpickerViewDidDismiss:(CZPickerView *)pickerView;
 
 @end
 

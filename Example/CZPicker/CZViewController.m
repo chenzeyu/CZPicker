@@ -78,19 +78,19 @@
     NSLog(@"Canceled.");
 }
 
-- (void)pickerViewWillDisplay:(CZPickerView *)pickerView {
+- (void)czpickerViewWillDisplay:(CZPickerView *)pickerView {
     NSLog(@"Picker will display.");
 }
 
-- (void)pickerViewDidDisplay:(CZPickerView *)pickerView {
+- (void)czpickerViewDidDisplay:(CZPickerView *)pickerView {
     NSLog(@"Picker did display.");
 }
 
-- (void)pickerViewWillDismiss:(CZPickerView *)pickerView {
+- (void)czpickerViewWillDismiss:(CZPickerView *)pickerView {
     NSLog(@"Picker will dismiss.");
 }
 
-- (void)pickerViewDidDismiss:(CZPickerView *)pickerView {
+- (void)czpickerViewDidDismiss:(CZPickerView *)pickerView {
     NSLog(@"Picker did dismiss.");
 }
 
@@ -104,7 +104,6 @@
 
 - (IBAction)showWithFooter:(id)sender {
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
-    picker.animationDuration = 2;
     picker.delegate = self;
     picker.dataSource = self;
     picker.needFooterView = YES;

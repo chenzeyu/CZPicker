@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "CZPicker"
-  s.version          = "0.4.2"
+  s.version          = "0.4.3"
   s.summary          = "CZPicker is a picker view shown as a popup."
   s.description      = <<-DESC
                         CZPicker is flexible. It is shown as a popup with customizations.
@@ -28,5 +28,4 @@ Pod::Spec.new do |s|
   s.source_files = 'Pod/Classes/*'
   s.public_header_files = 'Pod/Classes/*.h'
   s.frameworks = 'UIKit'
-  # s.dependency 'pop'
 end

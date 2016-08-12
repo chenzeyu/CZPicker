@@ -104,8 +104,8 @@ typedef void (^CZDismissCompletionCallback)(void);
     [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = self.center;
     } completion:^(BOOL finished) {
-        if([self.delegate respondsToSelector:@selector(pickerViewDidDisplay:)]){
-            [self.delegate pickerViewDidDisplay:self];
+        if([self.delegate respondsToSelector:@selector(czpickerViewDidDisplay:)]){
+            [self.delegate czpickerViewDidDisplay:self];
         }
     }];
 }
@@ -118,8 +118,8 @@ typedef void (^CZDismissCompletionCallback)(void);
 
 - (void)showInContainer:(id)container {
     
-    if([self.delegate respondsToSelector:@selector(pickerViewWillDisplay:)]){
-        [self.delegate pickerViewWillDisplay:self];
+    if([self.delegate respondsToSelector:@selector(czpickerViewWillDisplay:)]){
+        [self.delegate czpickerViewWillDisplay:self];
     }
     if (self.allowMultipleSelection && !self.needFooterView) {
         self.needFooterView = self.allowMultipleSelection;
@@ -143,8 +143,8 @@ typedef void (^CZDismissCompletionCallback)(void);
 
 - (void)dismissPicker:(CZDismissCompletionCallback)completion{
     
-    if([self.delegate respondsToSelector:@selector(pickerViewWillDismiss:)]){
-        [self.delegate pickerViewWillDismiss:self];
+    if([self.delegate respondsToSelector:@selector(czpickerViewWillDismiss:)]){
+        [self.delegate czpickerViewWillDismiss:self];
     }
     [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
@@ -155,8 +155,8 @@ typedef void (^CZDismissCompletionCallback)(void);
         self.backgroundDimmingView.alpha = 0.0;
     } completion:^(BOOL finished) {
         if(finished){
-            if([self.delegate respondsToSelector:@selector(pickerViewDidDismiss:)]){
-                [self.delegate pickerViewDidDismiss:self];
+            if([self.delegate respondsToSelector:@selector(czpickerViewDidDismiss:)]){
+                [self.delegate czpickerViewDidDismiss:self];
             }
             if(completion){
                 completion();

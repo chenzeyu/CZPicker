@@ -78,6 +78,22 @@
     NSLog(@"Canceled.");
 }
 
+- (void)pickerViewWillDisplay:(CZPickerView *)pickerView {
+    NSLog(@"Picker will display.");
+}
+
+- (void)pickerViewDidDisplay:(CZPickerView *)pickerView {
+    NSLog(@"Picker did display.");
+}
+
+- (void)pickerViewWillDismiss:(CZPickerView *)pickerView {
+    NSLog(@"Picker will dismiss.");
+}
+
+- (void)pickerViewDidDismiss:(CZPickerView *)pickerView {
+    NSLog(@"Picker did dismiss.");
+}
+
 - (IBAction)showWithImages:(id)sender {
     self.pickerWithImage = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
     self.pickerWithImage.delegate = self;
@@ -88,6 +104,7 @@
 
 - (IBAction)showWithFooter:(id)sender {
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
+    picker.animationDuration = 2;
     picker.delegate = self;
     picker.dataSource = self;
     picker.needFooterView = YES;
@@ -114,9 +131,8 @@
 - (IBAction)showInsideContainer:(id)sender {
     [self.navigationController setNavigationBarHidden:NO];
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
-    picker.headerTitleFont = [UIFont systemFontOfSize: 40];
     picker.delegate = self;
     picker.dataSource = self;
-    [picker show:self.view];
+    [picker showInContainer:self.view];
 }
 @end

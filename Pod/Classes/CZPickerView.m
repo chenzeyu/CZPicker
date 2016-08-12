@@ -104,20 +104,23 @@ typedef void (^CZDismissCompletionCallback)(void);
     [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = self.center;
     } completion:^(BOOL finished) {
-        
+        if([self.delegate respondsToSelector:@selector(pickerViewDidDisplay:)]){
+            [self.delegate pickerViewDidDisplay:self];
+        }
     }];
 }
 
 - (void)show {
-
     UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
     self.frame = mainWindow.frame;
-    [self show:mainWindow];
+    [self showInContainer:mainWindow];
 }
 
-- (void)show:(id)container {
+- (void)showInContainer:(id)container {
     
-    self.pickerVisible = YES;
+    if([self.delegate respondsToSelector:@selector(pickerViewWillDisplay:)]){
+        [self.delegate pickerViewWillDisplay:self];
+    }
     if (self.allowMultipleSelection && !self.needFooterView) {
         self.needFooterView = self.allowMultipleSelection;
     }
@@ -128,37 +131,42 @@ typedef void (^CZDismissCompletionCallback)(void);
         [self setupSubviews];
         [self performContainerAnimation];
         
-        [UIView animateWithDuration:0.3f animations:^{
+        [UIView animateWithDuration:self.animationDuration animations:^{
             self.backgroundDimmingView.alpha = CZP_BACKGROUND_ALPHA;
         }];
     }
 }
 
 - (void)reloadData{
-    
     [self.tableView reloadData];
 }
 
 - (void)dismissPicker:(CZDismissCompletionCallback)completion{
+    
+    if([self.delegate respondsToSelector:@selector(pickerViewWillDismiss:)]){
+        [self.delegate pickerViewWillDismiss:self];
+    }
     [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
     }completion:^(BOOL finished) {
     }];
     
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:self.animationDuration animations:^{
         self.backgroundDimmingView.alpha = 0.0;
     } completion:^(BOOL finished) {
         if(finished){
+            if([self.delegate respondsToSelector:@selector(pickerViewDidDismiss:)]){
+                [self.delegate pickerViewDidDismiss:self];
+            }
             if(completion){
                 completion();
             }
-            self.pickerVisible = NO;
             [self removeFromSuperview];
         }
     }];
 }
 
-- (UIView *)buildContainerView{
+- (UIView *)buildContainerView {
     CGFloat widthRatio = _pickerWidth ? _pickerWidth / [UIScreen mainScreen].bounds.size.width : 0.8;
     CGAffineTransform transform = CGAffineTransformMake(widthRatio, 0, 0, 0.8, 0, 0);
     CGRect newRect = CGRectApplyAffineTransform(self.frame, transform);

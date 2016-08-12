@@ -53,6 +53,19 @@
 
 /** delegate method for canceling */
 - (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView;
+
+/* picker will show */
+- (void)pickerViewWillDisplay:(CZPickerView *)pickerView;
+
+/* picker did show */
+- (void)pickerViewDidDisplay:(CZPickerView *)pickerView;
+
+/* picker will dismiss */
+- (void)pickerViewWillDismiss:(CZPickerView *)pickerView;
+
+/* picker did dismiss */
+- (void)pickerViewDidDismiss:(CZPickerView *)pickerView;
+
 @end
 
 @interface CZPickerView : UIView<UITableViewDataSource, UITableViewDelegate>
@@ -68,7 +81,7 @@
 
 /** show the picker */
 - (void)show;
-- (void)show:(id)container;
+- (void)showInContainer:(id)container;
 
 /** reload the picker */
 - (void)reloadData;
@@ -91,9 +104,6 @@
 
 /** whether allow tap background to dismiss the picker, default YES */
 @property BOOL tapBackgroundToDismiss;
-
-/** whether the picker is visible or not, default NO */
-@property BOOL pickerVisible;
 
 /** whether allow selection of multiple items/rows, default NO, if this
  property is YES, then footerView will be shown */

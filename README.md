@@ -13,18 +13,14 @@
 
 Full [change logs](CHANGELOG.md)
 
+### v0.4.2 - 2016-04-12
+- Improve orientation handler to avoid unnecessary pop up animations.
+
+### v0.4.1 - 2016-04-10
+- Remove bundle resources setting in podspec file.
+
 ### v0.4.0 - 2016-04-09
 - Added ```pickerWidth``` for setting picker width.
-
-### v0.3.9 - 2016-03-24
-
-#### Added
-- Added ```checkmarkColor``` for cell checkmark.
-
-### v0.3.8 - 2016-03-08
-
-#### Added
-- Added ```headerTitleFont``` for title setting font.
 
 ## Usage
 
@@ -37,7 +33,8 @@ pod "CZPicker"
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-If you are using swift, please refer to [CZPicker Swift Demo](https://gist.github.com/chenzeyu/6d19a343ffc8d6530fd0)
+### Swift
+If you are using swift, please refer to swift demo project.
 
 To show the picker, simply adding the following code:
 

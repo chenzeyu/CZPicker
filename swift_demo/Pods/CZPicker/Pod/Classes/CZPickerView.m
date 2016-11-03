@@ -56,10 +56,6 @@ typedef void (^CZDismissCompletionCallback)(void);
         self.headerTitle = headerTitle ? headerTitle : @"";
         self.headerTitleColor = [UIColor whiteColor];
         self.headerBackgroundColor = [UIColor colorWithRed:56.0/255 green:185.0/255 blue:158.0/255 alpha:1];
-        self.headerTitleMinimumScaleFactor = 0.0f;
-        self.headerTitleAdjustFontSizeToFitWidth = NO;
-        self.headerTitleNumberOfLines = 1;
-        self.headerTitleLineBreakMode = NSLineBreakByTruncatingTail;
         
         self.cancelButtonNormalColor = [UIColor colorWithRed:59.0/255 green:72/255.0 blue:5.0/255 alpha:1];
         self.cancelButtonHighlightedColor = [UIColor grayColor];
@@ -108,23 +104,20 @@ typedef void (^CZDismissCompletionCallback)(void);
     [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = self.center;
     } completion:^(BOOL finished) {
-        if([self.delegate respondsToSelector:@selector(czpickerViewDidDisplay:)]){
-            [self.delegate czpickerViewDidDisplay:self];
-        }
+        
     }];
 }
 
 - (void)show {
+
     UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
     self.frame = mainWindow.frame;
-    [self showInContainer:mainWindow];
+    [self show:mainWindow];
 }
 
-- (void)showInContainer:(id)container {
+- (void)show:(id)container {
     
-    if([self.delegate respondsToSelector:@selector(czpickerViewWillDisplay:)]){
-        [self.delegate czpickerViewWillDisplay:self];
-    }
+    self.pickerVisible = YES;
     if (self.allowMultipleSelection && !self.needFooterView) {
         self.needFooterView = self.allowMultipleSelection;
     }
@@ -135,42 +128,37 @@ typedef void (^CZDismissCompletionCallback)(void);
         [self setupSubviews];
         [self performContainerAnimation];
         
-        [UIView animateWithDuration:self.animationDuration animations:^{
+        [UIView animateWithDuration:0.3f animations:^{
             self.backgroundDimmingView.alpha = CZP_BACKGROUND_ALPHA;
         }];
     }
 }
 
 - (void)reloadData{
+    
     [self.tableView reloadData];
 }
 
 - (void)dismissPicker:(CZDismissCompletionCallback)completion{
-    
-    if([self.delegate respondsToSelector:@selector(czpickerViewWillDismiss:)]){
-        [self.delegate czpickerViewWillDismiss:self];
-    }
     [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         self.containerView.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
     }completion:^(BOOL finished) {
     }];
     
-    [UIView animateWithDuration:self.animationDuration animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         self.backgroundDimmingView.alpha = 0.0;
     } completion:^(BOOL finished) {
         if(finished){
-            if([self.delegate respondsToSelector:@selector(czpickerViewDidDismiss:)]){
-                [self.delegate czpickerViewDidDismiss:self];
-            }
             if(completion){
                 completion();
             }
+            self.pickerVisible = NO;
             [self removeFromSuperview];
         }
     }];
 }
 
-- (UIView *)buildContainerView {
+- (UIView *)buildContainerView{
     CGFloat widthRatio = _pickerWidth ? _pickerWidth / [UIScreen mainScreen].bounds.size.width : 0.8;
     CGAffineTransform transform = CGAffineTransformMake(widthRatio, 0, 0, 0.8, 0, 0);
     CGRect newRect = CGRectApplyAffineTransform(self.frame, transform);
@@ -273,10 +261,6 @@ typedef void (^CZDismissCompletionCallback)(void);
     NSAttributedString *at = [[NSAttributedString alloc] initWithString:self.headerTitle attributes:dict];
     UILabel *label = [[UILabel alloc] initWithFrame:view.frame];
     label.attributedText = at;
-    label.minimumScaleFactor = self.headerTitleMinimumScaleFactor;
-    label.adjustsFontSizeToFitWidth = self.headerTitleAdjustFontSizeToFitWidth;
-    label.numberOfLines = self.headerTitleNumberOfLines;
-    label.lineBreakMode = self.headerTitleLineBreakMode;
     [label sizeToFit];
     [view addSubview:label];
     label.center = view.center;

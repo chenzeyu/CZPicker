@@ -53,19 +53,6 @@
 
 /** delegate method for canceling */
 - (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView;
-
-/* picker will show */
-- (void)czpickerViewWillDisplay:(CZPickerView *)pickerView;
-
-/* picker did show */
-- (void)czpickerViewDidDisplay:(CZPickerView *)pickerView;
-
-/* picker will dismiss */
-- (void)czpickerViewWillDismiss:(CZPickerView *)pickerView;
-
-/* picker did dismiss */
-- (void)czpickerViewDidDismiss:(CZPickerView *)pickerView;
-
 @end
 
 @interface CZPickerView : UIView<UITableViewDataSource, UITableViewDelegate>
@@ -81,7 +68,7 @@
 
 /** show the picker */
 - (void)show;
-- (void)showInContainer:(id)container;
+- (void)show:(id)container;
 
 /** reload the picker */
 - (void)reloadData;
@@ -105,6 +92,9 @@
 /** whether allow tap background to dismiss the picker, default YES */
 @property BOOL tapBackgroundToDismiss;
 
+/** whether the picker is visible or not, default NO */
+@property BOOL pickerVisible;
+
 /** whether allow selection of multiple items/rows, default NO, if this
  property is YES, then footerView will be shown */
 @property BOOL allowMultipleSelection;
@@ -117,18 +107,6 @@
 
 /** picker header title color */
 @property (nonatomic, strong) UIColor *headerTitleColor;
-
-/** picker header title minimum scale factor */
-@property (nonatomic, assign) CGFloat headerTitleMinimumScaleFactor;
-
-/** picker header title adjust font size to fit width */
-@property (nonatomic, assign) BOOL headerTitleAdjustFontSizeToFitWidth;
-
-/** picker header title number of lines */
-@property (nonatomic, assign) NSInteger headerTitleNumberOfLines;
-
-/** picker header title line break mode */
-@property (nonatomic, assign) NSLineBreakMode headerTitleLineBreakMode;
 
 /** picker cancel button background color */
 @property (nonatomic, strong) UIColor *cancelButtonBackgroundColor;

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JQf-7E-cYm">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="JNb-uv-247">
+            <objects>
+                <viewController id="wTL-C2-gnJ" customClass="ViewController" customModule="swift_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oSO-pq-oGR"/>
+                        <viewControllerLayoutGuide type="bottom" id="UTV-Bc-mQ2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zGo-w8-Gug">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNV-uF-x4z">
+                                <rect key="frame" x="242" y="143" width="116" height="30"/>
+                                <state key="normal" title="Show with footer">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showWithFooter:" destination="wTL-C2-gnJ" eventType="touchUpInside" id="bGi-5b-oKK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpt-Gq-FHo">
+                                <rect key="frame" x="231" y="214" width="138" height="30"/>
+                                <state key="normal" title="Show without footer">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showWithoutFooter:" destination="wTL-C2-gnJ" eventType="touchUpInside" id="oIL-DT-3cN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zS-pA-ddE">
+                                <rect key="frame" x="203" y="285" width="195" height="30"/>
+                                <state key="normal" title="Show with multiple selection">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showWithMultipleSelections:" destination="wTL-C2-gnJ" eventType="touchUpInside" id="EAg-15-Dqy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfH-b8-Eqm">
+                                <rect key="frame" x="237" y="347" width="127" height="30"/>
+                                <state key="normal" title="Show With Images"/>
+                                <connections>
+                                    <action selector="showWithImages:" destination="wTL-C2-gnJ" eventType="touchUpInside" id="vGm-8a-NIM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JN5-3g-GWP">
+                                <rect key="frame" x="209" y="405" width="182" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="182" id="nHm-Kt-Q8Q"/>
+                                    <constraint firstAttribute="height" constant="30" id="pA8-hH-hxP"/>
+                                </constraints>
+                                <state key="normal" title="Show Inside Container"/>
+                                <connections>
+                                    <action selector="showInsideContainer:" destination="wTL-C2-gnJ" eventType="touchUpInside" id="DHN-IJ-R1M"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="qpt-Gq-FHo" secondAttribute="centerX" id="2Y1-2z-UMu"/>
+                            <constraint firstAttribute="centerX" secondItem="5zS-pA-ddE" secondAttribute="centerX" id="3UH-IA-I0B"/>
+                            <constraint firstItem="TfH-b8-Eqm" firstAttribute="centerX" secondItem="5zS-pA-ddE" secondAttribute="centerX" id="57l-Mi-ylT"/>
+                            <constraint firstAttribute="centerX" secondItem="xNV-uF-x4z" secondAttribute="centerX" id="5Co-b2-UEb"/>
+                            <constraint firstAttribute="centerY" secondItem="qpt-Gq-FHo" secondAttribute="centerY" id="L0X-FE-C0q"/>
+                            <constraint firstItem="qpt-Gq-FHo" firstAttribute="top" secondItem="xNV-uF-x4z" secondAttribute="bottom" constant="41" id="QJt-VU-1f5"/>
+                            <constraint firstItem="JN5-3g-GWP" firstAttribute="centerX" secondItem="zGo-w8-Gug" secondAttribute="centerX" id="aLd-fe-0bI"/>
+                            <constraint firstItem="5zS-pA-ddE" firstAttribute="top" secondItem="qpt-Gq-FHo" secondAttribute="bottom" constant="41" id="dt4-8s-L3s"/>
+                            <constraint firstItem="TfH-b8-Eqm" firstAttribute="top" secondItem="5zS-pA-ddE" secondAttribute="bottom" constant="32" id="hUB-Jn-tOC"/>
+                            <constraint firstItem="JN5-3g-GWP" firstAttribute="top" secondItem="TfH-b8-Eqm" secondAttribute="bottom" constant="28" id="mAC-k1-59w"/>
+                            <constraint firstItem="5zS-pA-ddE" firstAttribute="centerY" secondItem="zGo-w8-Gug" secondAttribute="centerY" id="sNB-fc-OQv"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="L0X-FE-C0q"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="MZ9-GH-R5F"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cXy-Yc-Jfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="433"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="l5E-S0-lEg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="JQf-7E-cYm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Xg6-La-Ifl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wTL-C2-gnJ" kind="relationship" relationship="rootViewController" id="w9E-wz-9Fd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zn5-CZ-pD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="433"/>
+        </scene>
+    </scenes>
+</document>

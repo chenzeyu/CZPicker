@@ -13,20 +13,14 @@
 
 Full [change logs](CHANGELOG.md)
 
-### v0.4.3 - 2016-08-12
-
-- Added ```- (void)czpickerViewWillDisplay:(CZPickerView *)pickerView;```
-- Added ```- (void)czpickerViewDidDisplay:(CZPickerView *)pickerView;```
-- Added ```- (void)czpickerViewWillDismiss:(CZPickerView *)pickerView;```
-- Added ```- (void)czpickerViewDidDismiss:(CZPickerView *)pickerView;```
-- Added ```- (void)reloadData``` to reload picker.
-- Added ```- (void)showInContainer:(id)container```.
-
 ### v0.4.2 - 2016-04-12
 - Improve orientation handler to avoid unnecessary pop up animations.
 
 ### v0.4.1 - 2016-04-10
 - Remove bundle resources setting in podspec file.
+
+### v0.4.0 - 2016-04-09
+- Added ```pickerWidth``` for setting picker width.
 
 ## Usage
 
@@ -39,8 +33,7 @@ pod "CZPicker"
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-### Swift
-If you are using swift, please refer to swift demo project.
+If you are using swift, please refer to [CZPicker Swift Demo](https://gist.github.com/chenzeyu/6d19a343ffc8d6530fd0)
 
 To show the picker, simply adding the following code:
 

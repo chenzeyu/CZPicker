@@ -118,6 +118,18 @@
 /** picker header title color */
 @property (nonatomic, strong) UIColor *headerTitleColor;
 
+/** picker header title minimum scale factor */
+@property (nonatomic, assign) CGFloat headerTitleMinimumScaleFactor;
+
+/** picker header title adjust font size to fit width */
+@property (nonatomic, assign) BOOL headerTitleAdjustFontSizeToFitWidth;
+
+/** picker header title number of lines */
+@property (nonatomic, assign) NSInteger headerTitleNumberOfLines;
+
+/** picker header title line break mode */
+@property (nonatomic, assign) NSLineBreakMode headerTitleLineBreakMode;
+
 /** picker cancel button background color */
 @property (nonatomic, strong) UIColor *cancelButtonBackgroundColor;
 

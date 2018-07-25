@@ -1,152 +1,78 @@
-# CZPicker
+# RSPickerView
 
-[![CI Status](http://img.shields.io/travis/chenzeyu/CZPicker.svg?style=flat)](https://travis-ci.org/chenzeyu/CZPicker)
-[![Version](https://img.shields.io/cocoapods/v/CZPicker.svg?style=flat)](http://cocoapods.org/pods/CZPicker)
-[![License](https://img.shields.io/cocoapods/l/CZPicker.svg?style=flat)](http://cocoapods.org/pods/CZPicker)
-[![Platform](https://img.shields.io/cocoapods/p/CZPicker.svg?style=flat)](http://cocoapods.org/pods/CZPicker)
+Watch the demo video：
 
-## Demo
-![](demo.gif)
-
-## Change Log
-3 most recent changes are listed here.
-
-Full [change logs](CHANGELOG.md)
-
-### v0.4.3 - 2016-08-12
-
-- Added ```- (void)czpickerViewWillDisplay:(CZPickerView *)pickerView;```
-- Added ```- (void)czpickerViewDidDisplay:(CZPickerView *)pickerView;```
-- Added ```- (void)czpickerViewWillDismiss:(CZPickerView *)pickerView;```
-- Added ```- (void)czpickerViewDidDismiss:(CZPickerView *)pickerView;```
-- Added ```- (void)reloadData``` to reload picker.
-- Added ```- (void)showInContainer:(id)container```.
-
-### v0.4.2 - 2016-04-12
-- Improve orientation handler to avoid unnecessary pop up animations.
-
-### v0.4.1 - 2016-04-10
-- Remove bundle resources setting in podspec file.
-
-## Usage
-
-CZPicker is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod "CZPicker"
-```
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-### Swift
-If you are using swift, please refer to swift demo project.
-
-To show the picker, simply adding the following code:
-
-```objective-c
-CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits"
-                        cancelButtonTitle:@"Cancel"
-                        confirmButtonTitle:@"Confirm"];
-picker.delegate = self;
-picker.dataSource = self;
-[picker show];
-```
-and implement the dataSource and Delegate methods:
-
-```objective-c
-#prama mark - CZPickerViewDataSource
-
-@required
-/* number of items for picker */
-- (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView;
-
-@optional
-/*
- Implement at least one of the following method,
- czpickerView:(CZPickerView *)pickerView
- attributedTitleForRow:(NSInteger)row has higer priority
-*/
-
-/* attributed picker item title for each row */
-- (NSAttributedString *)czpickerView:(CZPickerView *)pickerView
-                            attributedTitleForRow:(NSInteger)row;
-
-/* picker item title for each row */
-- (NSString *)czpickerView:(CZPickerView *)pickerView
-                            titleForRow:(NSInteger)row;
+[![RSPickerView](http://img.youtube.com/vi/36i5PN2-MBQ/0.jpg)](https://youtu.be/36i5PN2-MBQ)
 
 
-
-#prama mark - CZPickerViewDelegate
-@optional
-/** delegate method for picking one item */
-- (void)czpickerView:(CZPickerView *)pickerView
-          didConfirmWithItemAtRow:(NSInteger)row;
-
-/** delegate method for picking multiple items,
- implement this method if allowMultipleSelection is YES,
- rows is an array of NSNumbers
- */
-- (void)czpickerView:(CZPickerView *)pickerView
-          didConfirmWithItemsAtRows:(NSArray *)rows;
-/** delegate method for canceling */
-- (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView;
-```
-
-## Customization
-There are a lot of things can be customized, change the following properties to customize the picker of your own:
-
-```objective-c
-/** whether to show footer (including confirm and cancel buttons), default NO */
-@property BOOL needFooterView;
-
-/** whether allow tap background to dismiss the picker, default YES */
-@property BOOL tapBackgroundToDismiss;
-
-/** whether allow selection of multiple items/rows, default NO, if this
- property is YES, then footerView will be shown */
-@property BOOL allowMultipleSelection;
-
-/** picker header background color */
-@property (nonatomic, strong) UIColor *headerBackgroundColor;
-
-/** picker header title color */
-@property (nonatomic, strong) UIColor *headerTitleColor;
-
-/** picker cancel button background color */
-@property (nonatomic, strong) UIColor *cancelButtonBackgroundColor;
-
-/** picker cancel button normal state color */
-@property (nonatomic, strong) UIColor *cancelButtonNormalColor;
-
-/** picker cancel button highlighted state color */
-@property (nonatomic, strong) UIColor *cancelButtonHighlightedColor;
-
-/** picker confirm button background color */
-@property (nonatomic, strong) UIColor *confirmButtonBackgroundColor;
-
-/** picker confirm button normal state color */
-@property (nonatomic, strong) UIColor *confirmButtonNormalColor;
-
-/** picker confirm button highlighted state color */
-@property (nonatomic, strong) UIColor *confirmButtonHighlightedColor;
-
-/** picker's animation duration for showing and dismissing*/
-@property CGFloat animationDuration;
-
-```
+---------------------------------------
 
 
+## Calculate Height of text:
 
-## Author
+<p>(UsefulTool.h/UsefulTool.m 46)</p>
+<pre><code>+ (CGRect)alterHeightByTextString:(NSString *)aTextString originalRect:(CGRect)aOriginalRect font:(UIFont *)aFont {
+    CGSize size = CGSizeMake(aOriginalRect.size.width, 99999999);
+    CGRect textRect = [aTextString boundingRectWithSize:size
+                                                options:NSStringDrawingUsesLineFragmentOrigin
+                                             attributes:@{NSFontAttributeName:aFont}
+                                                context:nil];
+    aOriginalRect.size.height = textRect.size.height;
+    return aOriginalRect;
+}
+</code></pre>
 
-chenzeyu, zeyufly@gmail.com
+* * *
 
-## License
 
-CZPicker is available under the MIT license. See the LICENSE file for more info.
+## If you want to close picker by clicking background
 
-## Credits
+<p>(CZPickerView.h/CZPickerView.m 237)</p>
+<pre><code>- (UIView *)buildBackgroundDimmingView {
+    ...
+    if (self.tapBackgroundToDismiss) {
+        [bgView addGestureRecognizer:
+         [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                 action:@selector(cancelButtonPressed:)]];
+    }
+}
+</code></pre>
 
-CZPicker is created at and supported by [Fooyo.sg](http://fooyo.sg)
+* * *
+
+
+## Use Custom Cell setting default textLabel frame and get it:
+
+<p>(CZPickerView.h/CZPickerView.m 360)</p>
+<pre><code>- (CGFloat)getTextHeight:(NSString *)aText {
+    PickerViewTableViewCell *cell = [[PickerViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[PickerViewTableViewCell reusableIdentifer]];
+    return [UsefulTool alterHeightByTextString:aText originalRect:cell.originalTextLabelFrame font:PICKER_TEXT_FONT].size.height;
+}
+</code></pre>
+
+* * *
+
+## Change the TextLabel Height
+
+<p>(CZPickerView.h/CZPickerView.m 405)</p>
+<pre><code>- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ...
+    NSString *text = [cell.textLabel.text isEqualToString:@""] ? cell.textLabel.attributedText.string : cell.textLabel.text;
+    //  REBECCA MARK - CALCULATE HEIGHT AND CHANGE UILABEL HEIGHT
+    CGFloat defaultH = [self getTextHeight:text];
+    [cell setTitleHeight:defaultH];
+}
+</code></pre>
+
+* * *
+
+## Get the text height to set tableView cell height
+
+<p>(CZPickerView.h/CZPickerView.m 419)</p>
+<pre><code>- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ...
+    //  REBECCA MARK - CALCULATE HEIGHT AND CHANGE CELL HEIGHT
+    CGFloat defaultH = [self getTextHeight:title];
+    return defaultH + 10 * Scale > CZP_HEIGHT ? defaultH + 10 * Scale : CZP_HEIGHT;
+}
+</code></pre>

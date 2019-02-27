@@ -51,6 +51,14 @@
 - (void)czpickerView:(CZPickerView *)pickerView
           didConfirmWithItemsAtRows:(NSArray *)rows;
 
+/*
+ delegate method for selecting/unselecting multiple items,
+ implement this method if allowMultipleSelection is YES,
+ rows is an array of NSNumbers
+ */
+- (void)czpickerView:(CZPickerView *)pickerView
+didChangeItemsAtRows:(NSArray *)rows;
+
 /** delegate method for canceling */
 - (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView;
 

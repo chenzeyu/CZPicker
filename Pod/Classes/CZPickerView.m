@@ -378,6 +378,7 @@ typedef void (^CZDismissCompletionCallback)(void);
             [self.selectedIndexPaths addObject:indexPath];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
+        [self.delegate czpickerView:self didChangeItemsAtRows:[self selectedRows]];
         
     } else { //single selection mode
         

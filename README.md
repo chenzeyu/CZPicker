@@ -7,7 +7,7 @@
 Searchable selection sheets for **SwiftUI and UIKit**.<br>
 Single or multiple selections. Thoughtful defaults. **Zero external dependencies.**
 
-[Quick start](#quick-start) · [Try the showcase](#try-the-showcase) · [UIKit](#uikit) · [Migration](docs/MIGRATION.md)
+[Screenshots](#at-a-glance) · [Quick start](#quick-start) · [Try the showcase](#try-the-showcase) · [UIKit](#uikit) · [Migration](docs/MIGRATION.md)
 
 </div>
 
@@ -16,8 +16,30 @@ Single or multiple selections. Thoughtful defaults. **Zero external dependencies
 </p>
 <p align="center">
   <sub>Recorded from the running showcase on an iPhone simulator. No mockups.</sub><br>
-  <a href="docs/media/czpicker-demo.mp4">Watch the MP4</a> · <a href="docs/images/teammates.png">Still preview</a>
+  <a href="docs/media/czpicker-demo.mp4">Watch the MP4</a> · <a href="#at-a-glance">Browse screenshots</a>
 </p>
+
+## At a glance
+
+Real screenshots from the running showcase. Click any image for a closer look.
+
+<table>
+  <tr>
+    <th>Explore the showcase</th>
+    <th>Choose several</th>
+    <th>Choose one</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="docs/images/showcase.png"><img src="docs/images/showcase.png" width="240" alt="CZPicker showcase with teammates, destination, and interests examples"></a></td>
+    <td align="center"><a href="docs/images/teammates.png"><img src="docs/images/teammates.png" width="240" alt="Multiple selection sheet with search, selected teammate chips, and grouped rows"></a></td>
+    <td align="center"><a href="docs/images/destination.png"><img src="docs/images/destination.png" width="240" alt="Single selection sheet with destinations grouped by region and Kyoto selected"></a></td>
+  </tr>
+  <tr>
+    <td align="center">Three ready-to-run examples to start from.</td>
+    <td align="center">Search, selected chips, and custom rows.</td>
+    <td align="center">Grouped options with an explicit Done action.</td>
+  </tr>
+</table>
 
 **Pick a team. Choose a destination. Find your interests.** CZPicker handles the selection details so you can focus on your app.
 

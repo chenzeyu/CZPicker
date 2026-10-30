@@ -8,7 +8,7 @@ struct ShowcaseApp: App {
         ShowcaseView().tint(Color(uiColor: UIColor { traits in
             traits.userInterfaceStyle == .dark
                 ? UIColor(red: 0.32, green: 0.85, blue: 0.72, alpha: 1)
-                : UIColor(red: 0.06, green: 0.52, blue: 0.46, alpha: 1)
+                : UIColor(red: 0.04, green: 0.38, blue: 0.33, alpha: 1)
         }))
     } }
 }
@@ -89,7 +89,7 @@ struct ShowcaseView: View {
                             }
                             VStack(alignment: .leading, spacing: 3) {
                                 Text(person.title).font(.body.weight(.medium))
-                                Text(person.subtitle ?? "").font(.subheadline).foregroundStyle(.secondary)
+                                Text(person.subtitle ?? "").font(.subheadline).foregroundStyle(.primary.opacity(0.75))
                             }
                         }
                     }

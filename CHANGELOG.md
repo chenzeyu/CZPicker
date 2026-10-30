@@ -1,3 +1,12 @@
+# 1.0.0 — 2026-10-30
+
+- Release the modern SwiftUI/UIKit API and SPM products while preserving the original Objective-C implementation.
+- Improve modern text contrast and keep Cancel and Done together in a scalable action footer, including during search.
+- Add accessibility-audit, largest-text, and RTL interaction coverage.
+- Remain free of third-party runtime dependencies, as in previous releases.
+- Minimum iOS: 15 for the existing API, 16 for the modern API. Minimum-OS runtime and physical-device validation remain unverified; see docs/VALIDATION.md.
+- CocoaPods Trunk publication is pending; Git-tag installation is available.
+
 # 1.0.0-beta.1 — 2026-10-30 (Prerelease)
 
 - Add Swift Package Manager products with zero external dependencies.

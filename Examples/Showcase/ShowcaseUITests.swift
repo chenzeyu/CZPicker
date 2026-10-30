@@ -51,6 +51,52 @@ final class ShowcaseUITests: XCTestCase {
         XCTAssertTrue(app.buttons["showcase.destination"].staticTexts["Lisbon"].waitForExistence(timeout: 5))
     }
 
+    func testAccessibilityAuditOfSelectionSheet() throws {
+        guard #available(iOS 17.0, *) else { throw XCTSkip("System accessibility audits require iOS 17") }
+        let app = XCUIApplication()
+        app.launchEnvironment["CZPICKER_DEMO"] = "teammates"
+        app.launch()
+        XCTAssertTrue(app.buttons["czpicker.done"].waitForExistence(timeout: 10))
+        guard app.windows.firstMatch.frame.width < 600 else {
+            throw XCTSkip("This audit is scoped to iPhone. iPad full-screen auditing includes the dimmed host; see docs/VALIDATION.md.")
+        }
+        try app.performAccessibilityAudit { issue in
+            print("ACCESSIBILITY: \(issue.element?.label ?? "unknown"): \(issue.detailedDescription)")
+            // Contrast requirements exclude inactive controls. Keep this exception
+            // limited to the known disabled fixture; audit every enabled control.
+            return issue.auditType == .contrast &&
+                ["SR", "Sofia Rossi", "On leave"].contains(issue.element?.label ?? "")
+        }
+    }
+
+    func testLargestTextRetainsConfirmationAndCancellation() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        app.launchEnvironment["CZPICKER_DEMO"] = "destination"
+        app.launch()
+        let done = app.buttons["czpicker.done"]
+        XCTAssertTrue(done.waitForExistence(timeout: 10))
+        XCTAssertTrue(done.isHittable)
+        XCTAssertTrue(app.buttons["czpicker.cancel"].isHittable)
+        XCTAssertLessThanOrEqual(done.frame.maxY, app.windows.firstMatch.frame.maxY)
+        done.tap()
+        XCTAssertTrue(app.buttons["showcase.destination"].waitForExistence(timeout: 5))
+    }
+
+    func testRightToLeftSelectionAndConfirmation() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(ar)", "-AppleLocale", "ar_SA",
+                               "-NSForceRightToLeftWritingDirection", "YES"]
+        app.launchEnvironment["CZPICKER_DEMO"] = "destination"
+        app.launch()
+        let lisbon = app.buttons["czpicker.option.lisbon"]
+        XCTAssertTrue(lisbon.waitForExistence(timeout: 10))
+        lisbon.tap()
+        XCTAssertTrue(app.buttons["czpicker.done"].isHittable)
+        app.buttons["czpicker.done"].tap()
+        XCTAssertTrue(app.buttons["showcase.destination"].staticTexts["Lisbon"].waitForExistence(timeout: 5))
+    }
+
     // This real UI workflow also supplies the README's simulator recording.
     func testReadmeWalkthrough() {
         let app = XCUIApplication()

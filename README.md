@@ -68,12 +68,12 @@ In Xcode, choose **File → Add Package Dependencies**, enter:
 https://github.com/chenzeyu/CZPicker.git
 ```
 
-For this preview, select **Branch → `feature/modern-relaunch`**. Add **CZPickerUI** for the modern API, or **CZPicker** for the Objective-C compatibility API.
+For this preview, select **Branch → `master`**. Add **CZPickerUI** for the modern API, or **CZPicker** for the Objective-C compatibility API.
 
 For a package manifest:
 
 ```swift
-.package(url: "https://github.com/chenzeyu/CZPicker.git", branch: "feature/modern-relaunch")
+.package(url: "https://github.com/chenzeyu/CZPicker.git", branch: "master")
 ```
 
 Then add `.product(name: "CZPickerUI", package: "CZPicker")` to your target's dependencies.
@@ -92,11 +92,11 @@ The same source files are available through subspecs:
 ```ruby
 # Modern SwiftUI + UIKit interface (iOS 16+)
 pod 'CZPicker/SwiftUI', :git => 'https://github.com/chenzeyu/CZPicker.git',
-    :branch => 'feature/modern-relaunch'
+    :branch => 'master'
 
 # Or the Objective-C compatibility interface (iOS 15+)
 pod 'CZPicker/Core', :git => 'https://github.com/chenzeyu/CZPicker.git',
-    :branch => 'feature/modern-relaunch'
+    :branch => 'master'
 ```
 
 With CocoaPods, use **`import CZPicker`** in the Swift examples below. The default `CZPicker` pod selects `Core`; select both subspecs if you need both APIs. No other pods are required.

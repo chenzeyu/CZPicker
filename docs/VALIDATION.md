@@ -29,6 +29,13 @@ This is an unreleased implementation, not a claim of production adoption.
 - Kept confirmation in the main layout after screenshot review exposed a clipped single-selection footer with a search/safe-area-inset combination.
 - Removed obsolete Travis configuration and made pre-release installation instructions explicit.
 
+## Final merge review
+
+- Re-ran all 12 package tests and all four showcase UI tests on iPhone 17; all passed.
+- Replaced the showcase’s version-specific Foundation SDK reference with `SDKROOT`; simulator tests and the unsigned generic iOS device build passed.
+- Reconfirmed the frozen legacy source hashes and empty package dependency list.
+- Updated preview installation instructions to use `master` after merge.
+
 ## Still required before a stable release
 
 - Runtime testing on the minimum supported OS versions (iOS 15 legacy / iOS 16 modern).

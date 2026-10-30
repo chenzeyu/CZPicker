@@ -9,6 +9,7 @@
 
 @class CZPickerView;
 
+NS_SWIFT_UI_ACTOR
 @protocol CZPickerViewDataSource <NSObject>
 
 @required
@@ -35,6 +36,7 @@
 
 @end
 
+NS_SWIFT_UI_ACTOR
 @protocol CZPickerViewDelegate <NSObject>
 
 @optional
@@ -83,6 +85,9 @@
 - (void)show;
 - (void)showInContainer:(id)container;
 
+/** Dismiss without confirming a selection. */
+- (void)dismiss;
+
 /** reload the picker */
 - (void)reloadData;
 
@@ -95,9 +100,9 @@
 /** unselect all rows */
 - (void)unselectAll;
 
-@property id<CZPickerViewDelegate> delegate;
+@property (nonatomic, weak) id<CZPickerViewDelegate> delegate;
 
-@property id<CZPickerViewDataSource> dataSource;
+@property (nonatomic, weak) id<CZPickerViewDataSource> dataSource;
 
 /** whether to show footer (including confirm and cancel buttons), default NO */
 @property BOOL needFooterView;

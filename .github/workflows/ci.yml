@@ -1,0 +1,40 @@
+name: CI
+on:
+  push:
+    branches: [master, feature/modern-relaunch]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Choose an available iPhone simulator
+        run: |
+          DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(v["udid"] for k,vs in d["devices"].items() if "iOS" in k for v in vs if "iPhone" in v["name"]))')
+          echo "DEVICE_ID=$DEVICE_ID" >> "$GITHUB_ENV"
+      - name: Enforce zero package dependencies
+        run: swift package dump-package | python3 -c 'import json,sys; assert json.load(sys.stdin)["dependencies"] == []'
+      - name: Package regression tests
+        run: xcodebuild -scheme CZPicker-Package -destination "platform=iOS Simulator,id=$DEVICE_ID" -resultBundlePath TestResults/Package.xcresult test CODE_SIGNING_ALLOWED=NO
+      - name: Showcase integration tests
+        run: xcodebuild -project Examples/Showcase/Showcase.xcodeproj -scheme Showcase -destination "platform=iOS Simulator,id=$DEVICE_ID" -resultBundlePath TestResults/Showcase.xcresult test CODE_SIGNING_ALLOWED=NO
+      - name: Device consumer build
+        run: xcodebuild -project Examples/Showcase/Showcase.xcodeproj -scheme Showcase -destination 'generic/platform=iOS' build CODE_SIGNING_ALLOWED=NO
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: TestResults
+  cocoapods:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install CocoaPods
+        run: gem install cocoapods --no-document
+      - name: Validate both distribution paths
+        run: |
+          pod lib lint CZPicker.podspec --subspec=Core
+          pod lib lint CZPicker.podspec --subspec=SwiftUI

@@ -1,48 +1,37 @@
-# Validation
+# Release validation — 1.0.0
 
-This is an unreleased implementation, not a claim of production adoption.
+These notes distinguish checks actually performed from unverified coverage. They are not a claim that every app, OS version, or accessibility configuration has been tested.
 
-## Local environment
+## Environment and checks
 
-- Xcode 27.1, iOS 27.1 SDK; iOS 26.5 simulator runtime.
-- iPhone 17 Pro for automated interaction tests; iPhone 17 for README captures.
-- iPad Pro 11-inch (M5) for search/confirmation and UIKit interaction checks.
+- Xcode 27.1 / iOS 27.1 SDK; iOS 26.5 simulators.
+- 12 package regression tests pass: six modern selection tests and six original API contract tests.
+- iPhone 17: seven showcase tests cover search, limits, Cancel, Done, swipe dismissal, UIKit, the recorded walkthrough, largest text, RTL, and an accessibility audit. The scoped iPhone audit also passes in dark appearance.
+- iPad Pro 11-inch (M5): four interaction tests cover search/confirmation/cancellation, UIKit presentation, largest text, and RTL.
+- Both CocoaPods subspecs pass local lint without allowing warnings; the unsigned generic iOS device build passes.
+- The unchanged original Objective-C example controller compiled against the preserved header during the beta review.
+- `scripts/check-legacy-api.sh` verifies the original source/header hashes against 0.4.3. The package dependency array is empty.
 
-## Checks
+## Accessibility findings and scope
 
-- Package suite: **12 passing tests**, comprising six modern selection tests plus six legacy contract tests for defaults, strong adapter ownership, preselection ordering, unchanged reload behavior, cancel behavior, single/multiple confirmation, and lifecycle ordering. The frozen legacy source/header hashes match release 0.4.3.
-- iPhone showcase suite: search with selections retained, maximum count, Cancel, Done, interactive-dismissal cancellation, single selection, and UIKit presentation.
-- iPad showcase suite: search/confirmation/cancellation and UIKit presentation.
-- The unchanged original Objective-C example controller compiles against the restored public header.
-- Both SPM products compile as dependencies of the showcase, including a generic iOS device build with signing disabled.
-- `swift package dump-package` reports an empty dependencies array.
-- Both CocoaPods subspecs pass `pod lib lint` without allowing warnings.
-- README animation and still images are actual simulator captures, not mockups. A UI test drives the recorded interactions; see docs/MEDIA.md.
-- Dark appearance and the largest accessibility text size were visually inspected on iPhone. The demo hides decorative avatars at accessibility sizes and uses an adaptive accent. This is not a full accessibility audit.
+The iPhone system audit found low-contrast secondary text and accent colors, which were improved. Cancel moved from the navigation bar to a scalable footer next to Done, with an explicit high-contrast secondary button. Done uses an appearance-adaptive foreground for the showcase’s dark-mode accent. Disabled rows no longer receive extra opacity on top of native disabled styling.
 
-## Review findings addressed
+The iPhone audit excludes only contrast reports on the three labels belonging to the known disabled Sofia fixture. Inactive controls are exempt from contrast requirements; no enabled control is excluded. See [WCAG contrast guidance](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html#inactive-user-interface-components).
 
-- Replaced the old root Pods-project shortcut, which prevented Xcode from discovering package schemes.
-- Raised the compatibility target to iOS 15 after the installed SDK rejected iOS 13.
-- Removed the preliminary legacy rewrite and actor annotations to preserve the exact 0.4.3 API and behavior. The modern API remains separate.
-- Moved Done out of the navigation bar after a UI test demonstrated that active search hid it.
-- Kept confirmation in the main layout after screenshot review exposed a clipped single-selection footer with a search/safe-area-inset combination.
-- Removed obsolete Travis configuration and made pre-release installation instructions explicit.
+Largest-text tests check that Cancel and Done remain hittable and within the screen. RTL tests verify selection and confirmation under an Arabic locale; they do not establish complete Arabic localization. Search tests exercise on-screen keyboard input.
 
-## Final merge review
+A separate full-screen iPad audit reported elements without accessible identities, including contrast/text-detection findings while a sheet overlays the dimmed showcase. That audit is not recorded as passing. Manual inspection and assistive-technology testing remain needed; automated checks do not establish full accessibility compliance.
 
-- Re-ran all 12 package tests and all four showcase UI tests on iPhone 17; all passed.
-- Replaced the showcase’s version-specific Foundation SDK reference with `SDKROOT`; simulator tests and the unsigned generic iOS device build passed.
-- Reconfirmed the frozen legacy source hashes and empty package dependency list.
-- Updated preview installation instructions to use `master` after merge.
+## Unverified coverage and known limitations
 
-## Still required before a stable release
+- Minimum-OS runtime testing (iOS 15 legacy / iOS 16 modern): not performed. Only iOS 26 runtimes are installed; Xcode reported iOS 15.5 and 16.4 unavailable for download. The maintainer explicitly accepted proceeding without these runtime checks. Deployment-target compilation is not proof of runtime compatibility.
+- Physical-device testing: not performed. The paired iPhone could not be reached. A generic device build is not a device test.
+- Manual VoiceOver, hardware-keyboard navigation, Reduce Motion, and a complete accessibility review remain unverified.
+- Some built-in status and empty-state strings are English. Action and search labels are customizable.
+- Original API behavior is frozen, including its historical limitations. The old demo projects are historical; `Examples/Showcase` is maintained.
+- Hosted CI is not active. The available OAuth token lacks workflow scope; `docs/ci/github-actions.yml` is a template, not a successful hosted run.
+- CocoaPods Trunk requires maintainer authentication. The Git-tag installation uses the same validated source.
 
-- Runtime testing on the minimum supported OS versions (iOS 15 legacy / iOS 16 modern).
-- Physical-device testing and manual VoiceOver, right-to-left, keyboard, and accessibility review.
-- The complete historical Objective-C demo is not modernized; `Examples/Showcase` is the maintained consumer.
-- Built-in status/empty-state strings are currently English. Action/search labels are customizable; full localization is future work.
-- GitHub Actions is supplied as `docs/ci/github-actions.yml`, not active CI. The available GitHub OAuth token lacks the `workflow` scope. After enabling that permission, copy the template to `.github/workflows/ci.yml` and verify hosted results; local passes do not establish hosted CI success.
-- No release tag, CocoaPods publication, package-index submission, or community announcement has been made.
+## Media
 
-Xcode emitted its App Intents metadata note for targets that do not use App Intents; it does not indicate a missing CZPicker dependency.
+README screenshots and animation are real simulator captures. See [recording provenance](MEDIA.md). Demo images are not bundled with either library product.

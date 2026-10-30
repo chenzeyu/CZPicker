@@ -1,6 +1,6 @@
 # Demo recording
 
-The README GIF and MP4 are recordings of the real `Examples/Showcase` application, captured on an iPhone 17 simulator running iOS 26.5 on October 30, 2026. They show actual UIKit/SwiftUI rendering, keyboard interaction, search, selection changes, and sheet transitions.
+The README GIF and MP4 are recordings of the real `Examples/Showcase` application, captured on an iPhone 17 simulator running iOS 26.5 on October 30, 2026. The 1.0.0 captures include the final Cancel/Done footer and contrast improvements. They show actual UIKit/SwiftUI rendering, keyboard interaction, search, selection changes, and sheet transitions.
 
 `ShowcaseUITests.testReadmeWalkthrough` drives the interaction: open teammates, replace Maya with Amara, search for Noah, add him, confirm three teammates, then select Lisbon. Its assertions verify the resulting selections. The short pauses make the recording readable.
 

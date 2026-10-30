@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CZPicker'
-  s.version = '1.0.0-beta.1'
+  s.version = '1.0.0'
   s.summary = 'Beautiful selection sheets for SwiftUI and UIKit. Zero dependencies.'
   s.homepage = 'https://github.com/chenzeyu/CZPicker'
   s.license = { :type => 'MIT', :file => 'LICENSE' }

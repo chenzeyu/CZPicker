@@ -39,12 +39,12 @@ Prepare release notes and a credible README. After release approval: publish a v
 - No claimed device, accessibility, platform, or release validation without evidence.
 - Track adoption, issue quality, and external contributions alongside stars after launch.
 
-## Release checklist
+## Release checklist (historical planning gates)
 
-- [ ] Minimum-supported-OS runtime pass (modern iOS 16, legacy iOS 15).
-- [ ] Physical iPhone/iPad checks, VoiceOver, large text, Reduce Motion, and RTL.
+- [ ] Minimum-supported-OS runtime pass: unavailable locally; maintainer accepted proceeding without it.
+- [ ] Physical-device and manual assistive-technology checks remain unverified. Automated large-text and RTL interaction checks passed.
 - [ ] Confirm final API/version and publish a release tag and pod.
-- [ ] Replace branch installation instructions with the published version.
+- [x] Replace branch installation instructions with version 1.0.0.
 - [ ] Submit to Swift Package Index and review launch posts.
 
 ## Implementation review outcome

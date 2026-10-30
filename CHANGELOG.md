@@ -1,11 +1,11 @@
-# 1.0.0-beta.1 — Unreleased
+# 1.0.0-beta.1 — 2026-10-30 (Prerelease)
 
 - Add Swift Package Manager products with zero external dependencies.
 - Add a modern SwiftUI selection sheet and UIKit presenter, with stable IDs, search, sections, selection chips, limits, and custom rows.
 - Add CocoaPods Core/SwiftUI subspecs using the same sources.
 - Preserve the legacy header and implementation byte-for-byte from 0.4.3, with contract tests and a source-integrity check; raise the minimum deployment target to iOS 15.
 - Add a maintained showcase with real animated recordings, regression/UI tests, a GitHub Actions template, and migration documentation.
-- Modern interface requires iOS 16+. No version tag or pod has been published for this preview.
+- Modern interface requires iOS 16+. The GitHub prerelease and version tag are published; CocoaPods Trunk publication is pending.
 
 ---
 

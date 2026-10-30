@@ -50,7 +50,7 @@ Real screenshots from the running showcase. Click any image for a closer look.
 - **Fits your app.** Semantic colors, scalable text, native sheets, and a UIKit presenter using the same modern UI.
 - **Nothing else to install.** No transitive packages, networking, analytics, or bundled demo assets.
 
-> **1.0 preview:** This branch contains the relaunch implementation. Version `1.0.0-beta.1` is not yet published. Use the branch instructions below to try it; the existing `0.4.3` release does not include these APIs. See the [release checklist](docs/RELAUNCH_PLAN.md#release-checklist) for remaining validation.
+> **1.0 beta:** [Version `1.0.0-beta.1`](https://github.com/chenzeyu/CZPicker/releases/tag/1.0.0-beta.1) is available as a tagged prerelease. Use the exact-version instructions below; `0.4.3` does not include the modern APIs. CocoaPods Trunk publication is pending; the Git-tag installation below works with CocoaPods. See the [release checklist](docs/RELAUNCH_PLAN.md#release-checklist) for validation remaining before a stable release.
 
 ## Already using CZPicker?
 
@@ -68,12 +68,12 @@ In Xcode, choose **File → Add Package Dependencies**, enter:
 https://github.com/chenzeyu/CZPicker.git
 ```
 
-For this preview, select **Branch → `master`**. Add **CZPickerUI** for the modern API, or **CZPicker** for the Objective-C compatibility API.
+For this beta, select **Exact Version → `1.0.0-beta.1`**. Add **CZPickerUI** for the modern API, or **CZPicker** for the Objective-C compatibility API.
 
 For a package manifest:
 
 ```swift
-.package(url: "https://github.com/chenzeyu/CZPicker.git", branch: "master")
+.package(url: "https://github.com/chenzeyu/CZPicker.git", exact: "1.0.0-beta.1")
 ```
 
 Then add `.product(name: "CZPickerUI", package: "CZPicker")` to your target's dependencies.
@@ -92,11 +92,11 @@ The same source files are available through subspecs:
 ```ruby
 # Modern SwiftUI + UIKit interface (iOS 16+)
 pod 'CZPicker/SwiftUI', :git => 'https://github.com/chenzeyu/CZPicker.git',
-    :branch => 'master'
+    :tag => '1.0.0-beta.1'
 
 # Or the Objective-C compatibility interface (iOS 15+)
 pod 'CZPicker/Core', :git => 'https://github.com/chenzeyu/CZPicker.git',
-    :branch => 'master'
+    :tag => '1.0.0-beta.1'
 ```
 
 With CocoaPods, use **`import CZPicker`** in the Swift examples below. The default `CZPicker` pod selects `Core`; select both subspecs if you need both APIs. No other pods are required.

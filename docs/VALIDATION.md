@@ -1,6 +1,6 @@
 # Validation
 
-This is an unreleased implementation, not a claim of production adoption.
+Version 1.0.0-beta.1 is a published beta preview, not a stable-release or production-adoption claim.
 
 ## Local environment
 
@@ -43,6 +43,6 @@ This is an unreleased implementation, not a claim of production adoption.
 - The complete historical Objective-C demo is not modernized; `Examples/Showcase` is the maintained consumer.
 - Built-in status/empty-state strings are currently English. Action/search labels are customizable; full localization is future work.
 - GitHub Actions is supplied as `docs/ci/github-actions.yml`, not active CI. The available GitHub OAuth token lacks the `workflow` scope. After enabling that permission, copy the template to `.github/workflows/ci.yml` and verify hosted results; local passes do not establish hosted CI success.
-- No release tag, CocoaPods publication, package-index submission, or community announcement has been made.
+- The 1.0.0-beta.1 GitHub prerelease and tag are published. CocoaPods Trunk publication, package-index submission, and community announcements remain pending.
 
 Xcode emitted its App Intents metadata note for targets that do not use App Intents; it does not indicate a missing CZPicker dependency.

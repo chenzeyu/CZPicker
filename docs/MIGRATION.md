@@ -1,19 +1,23 @@
-# Migration from 0.4.3
+# Compatibility and adoption
 
-The modern SwiftUI API is additive. Existing Objective-C selectors remain in the `CZPicker` product; `CZPickerUI` is a separate SPM product. CocoaPods exposes the same sources as `Core` and `SwiftUI` subspecs under the `CZPicker` module.
+The relaunch is additive: existing applications keep using `CZPickerView`; new applications can opt into `CZPickerUI`.
 
-## Compatibility changes
+## Existing integrations
 
-- Legacy minimum deployment target is now iOS 15; modern UI requires iOS 16. Keep 0.4.3 if older systems are a requirement.
-- Delegate and data source are now weak. Keep a strong reference to any separate adapter object yourself.
-- `show` only presents when there is exactly one foreground key window. For multi-window apps, always use `showInContainer:` with the intended view.
-- Invalid, fractional, duplicate, and out-of-range row selections are discarded. Single-selection mode retains only the first valid row.
-- `reloadData` prunes selections outside the new row count. Legacy selection is still row-based, so update selections yourself when reordering data.
-- Attributed titles consistently take priority over plain titles, including rows with images.
-- Layout follows the container and safe area. Default colors are adaptive, rows use scalable text, and animation respects Reduce Motion.
-- Repeated `show` while visible is ignored. A picker can be dismissed and shown again without accumulating views.
-- `dismiss` is public and dismisses without confirming or calling the cancel-button callback.
-- Legacy cancellation keeps the existing in-memory row selection, as before. Transactional Cancel/Done behavior belongs to the modern API.
+The Objective-C sources and public header in `Pod/Classes/` are byte-for-byte identical to release **0.4.3**. That preserves:
+
+- Class names, initializer, methods, properties, data-source and delegate selectors.
+- Delegate/data-source ownership and callback ordering.
+- Selection ordering, preselection, `reloadData`, and cancellation semantics.
+- Default appearance, animations, footer behavior, and customization properties.
+
+The default `pod 'CZPicker'` still selects the Objective-C implementation, through the `Core` subspec. No SwiftUI dependency is added to that product. SPM exposes it as `CZPicker` with the same import name.
+
+**The deployment requirement does change:** the preview requires iOS 15+ for `CZPicker`, and iOS 16+ for `CZPickerUI`. SPM requires Swift tools 5.9 / Xcode 15+. Apps may need to raise their deployment target; they do not need to rewrite their existing picker integration.
+
+The compatibility product intentionally retains 0.4.3's limitations, including its application-delegate window lookup and row-based selection. This update does not silently change those behaviors. Use the existing `showInContainer:` method when an explicit host view is appropriate. Modern search, adaptive presentation, stable IDs, and draft selection are offered by the separate modern API.
+
+Run `scripts/check-legacy-api.sh` to verify the frozen source checksums. The reference hashes in `docs/legacy-source.sha256` are from the 0.4.3 tag. Compatibility tests exercise defaults, ownership, selection ordering, reload/cancel behavior, confirmation, and lifecycle callbacks. These checks do not guarantee every historical app on every OS; minimum-OS and physical-device testing remain release gates.
 
 ## Existing Objective-C usage
 
@@ -30,8 +34,10 @@ picker.allowMultipleSelection = YES;
 [picker showInContainer:self.view];
 ```
 
-Continue implementing `numberOfRowsInPickerView:`, a title method, and the relevant confirmation delegate. The old `Example/` and `swift_demo/` directories are historical examples; use `Examples/Showcase/` for the maintained app.
+Continue implementing `numberOfRowsInPickerView:`, a title method, and the relevant confirmation delegate. No new dismiss method or actor annotation is introduced into the legacy public header.
 
-## Moving to the modern API
+## Optional modern API
 
-Replace row numbers with stable model IDs. Pass `[CZPickerItem<ID>]` and a `Set<ID>` selection. Use `CZPickerSheet` from SwiftUI or `CZPickerViewController` from UIKit. Custom rows are SwiftUI views. The host application remains responsible for fetching data and persisting confirmed choices.
+Replace row numbers with stable model IDs when you choose to adopt the new UI. Pass `[CZPickerItem<ID>]` and a `Set<ID>` selection. Use `CZPickerSheet` from SwiftUI or `CZPickerViewController` from UIKit. Its draft selection commits only on Done; Cancel and interactive dismissal leave the caller's selection unchanged. These are modern API semantics, not changes to the legacy API.
+
+The old `Example/` and `swift_demo/` directories are historical examples. `Examples/Showcase/` is the maintained modern demo.

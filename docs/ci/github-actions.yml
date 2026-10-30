@@ -15,6 +15,8 @@ jobs:
         run: |
           DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(v["udid"] for k,vs in d["devices"].items() if "iOS" in k for v in vs if "iPhone" in v["name"]))')
           echo "DEVICE_ID=$DEVICE_ID" >> "$GITHUB_ENV"
+      - name: Verify frozen legacy sources
+        run: scripts/check-legacy-api.sh
       - name: Enforce zero package dependencies
         run: swift package dump-package | python3 -c 'import json,sys; assert json.load(sys.stdin)["dependencies"] == []'
       - name: Package regression tests

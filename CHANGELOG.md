@@ -3,8 +3,8 @@
 - Add Swift Package Manager products with zero external dependencies.
 - Add a modern SwiftUI selection sheet and UIKit presenter, with stable IDs, search, sections, selection chips, limits, and custom rows.
 - Add CocoaPods Core/SwiftUI subspecs using the same sources.
-- Repair legacy presentation, selection validation, title priority, and ownership; raise the legacy minimum to iOS 15.
-- Add a maintained showcase, regression/UI tests, a GitHub Actions template, and migration documentation.
+- Preserve the legacy header and implementation byte-for-byte from 0.4.3, with contract tests and a source-integrity check; raise the minimum deployment target to iOS 15.
+- Add a maintained showcase with real animated recordings, regression/UI tests, a GitHub Actions template, and migration documentation.
 - Modern interface requires iOS 16+. No version tag or pod has been published for this preview.
 
 ---

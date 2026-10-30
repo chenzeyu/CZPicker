@@ -1,152 +1,196 @@
+<div align="center">
+
 # CZPicker
 
-[![CI Status](http://img.shields.io/travis/chenzeyu/CZPicker.svg?style=flat)](https://travis-ci.org/chenzeyu/CZPicker)
-[![Version](https://img.shields.io/cocoapods/v/CZPicker.svg?style=flat)](http://cocoapods.org/pods/CZPicker)
-[![License](https://img.shields.io/cocoapods/l/CZPicker.svg?style=flat)](http://cocoapods.org/pods/CZPicker)
-[![Platform](https://img.shields.io/cocoapods/p/CZPicker.svg?style=flat)](http://cocoapods.org/pods/CZPicker)
+### Good choices. Beautifully simple.
 
-## Demo
-![](demo.gif)
+Searchable selection sheets for **SwiftUI and UIKit**.<br>
+Single or multiple selections. Thoughtful defaults. **Zero external dependencies.**
 
-## Change Log
-3 most recent changes are listed here.
+[Quick start](#quick-start) · [Try the showcase](#try-the-showcase) · [UIKit](#uikit) · [Migration](docs/MIGRATION.md)
 
-Full [change logs](CHANGELOG.md)
+</div>
 
-### v0.4.3 - 2016-08-12
+<!-- Screenshots below are captured from the included simulator showcase. -->
+<p align="center">
+  <img src="docs/images/showcase.png" width="245" alt="CZPicker showcase with teammate, destination, and interest examples">
+  <img src="docs/images/teammates.png" width="245" alt="Searchable teammate selection with selected chips and a three-person limit">
+  <img src="docs/images/destination.png" width="245" alt="Single destination selection with grouped cities and subtitles">
+</p>
 
-- Added ```- (void)czpickerViewWillDisplay:(CZPickerView *)pickerView;```
-- Added ```- (void)czpickerViewDidDisplay:(CZPickerView *)pickerView;```
-- Added ```- (void)czpickerViewWillDismiss:(CZPickerView *)pickerView;```
-- Added ```- (void)czpickerViewDidDismiss:(CZPickerView *)pickerView;```
-- Added ```- (void)reloadData``` to reload picker.
-- Added ```- (void)showInContainer:(id)container```.
+**Pick a team. Choose a destination. Find your interests.** CZPicker handles the selection details so you can focus on your app.
 
-### v0.4.2 - 2016-04-12
-- Improve orientation handler to avoid unnecessary pop up animations.
+- **Search without losing your place.** Selected items stay visible as removable chips while you filter.
+- **Done means done.** Changes remain a draft until confirmation. Cancel or swipe down to leave your original selection untouched.
+- **Your data, your identity.** Stable IDs preserve selection across sorting and filtering.
+- **Just enough control.** Single/multiple selection, optional limits, sections, disabled options, and custom SwiftUI rows.
+- **Fits your app.** Semantic colors, scalable text, native sheets, and a UIKit presenter using the same modern UI.
+- **Nothing else to install.** No transitive packages, networking, analytics, or bundled demo assets.
 
-### v0.4.1 - 2016-04-10
-- Remove bundle resources setting in podspec file.
+> **1.0 preview:** This branch contains the relaunch implementation. Version `1.0.0-beta.1` is not yet published. Use the branch instructions below to try it; the existing `0.4.3` release does not include these APIs. See the [release checklist](docs/RELAUNCH_PLAN.md#release-checklist) for remaining validation.
 
-## Usage
+## Installation
 
-CZPicker is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### Swift Package Manager — recommended
+
+In Xcode, choose **File → Add Package Dependencies**, enter:
+
+```text
+https://github.com/chenzeyu/CZPicker.git
+```
+
+For this preview, select **Branch → `feature/modern-relaunch`**. Add **CZPickerUI** for the modern API, or **CZPicker** for the Objective-C compatibility API.
+
+For a package manifest:
+
+```swift
+.package(url: "https://github.com/chenzeyu/CZPicker.git", branch: "feature/modern-relaunch")
+```
+
+Then add `.product(name: "CZPickerUI", package: "CZPicker")` to your target's dependencies.
+
+| Product | Minimum iOS | Import | Purpose |
+| --- | --- | --- | --- |
+| CZPickerUI | 16 | `import CZPickerUI` | Modern SwiftUI sheet and UIKit presenter |
+| CZPicker | 15 | `import CZPicker` | Existing Objective-C delegate/data-source API |
+
+The package uses Swift tools 5.9 (Xcode 15+). Both products have **zero external package dependencies**.
+
+### CocoaPods
+
+The same source files are available through subspecs:
 
 ```ruby
-pod "CZPicker"
+# Modern SwiftUI + UIKit interface (iOS 16+)
+pod 'CZPicker/SwiftUI', :git => 'https://github.com/chenzeyu/CZPicker.git',
+    :branch => 'feature/modern-relaunch'
+
+# Or the Objective-C compatibility interface (iOS 15+)
+pod 'CZPicker/Core', :git => 'https://github.com/chenzeyu/CZPicker.git',
+    :branch => 'feature/modern-relaunch'
 ```
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+With CocoaPods, use **`import CZPicker`** in the Swift examples below. The default `CZPicker` pod selects `Core`; select both subspecs if you need both APIs. No other pods are required.
 
-### Swift
-If you are using swift, please refer to swift demo project.
+## Quick start
 
-To show the picker, simply adding the following code:
+A complete SwiftUI example:
 
-```objective-c
-CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Fruits"
-                        cancelButtonTitle:@"Cancel"
-                        confirmButtonTitle:@"Confirm"];
-picker.delegate = self;
-picker.dataSource = self;
-[picker show];
-```
-and implement the dataSource and Delegate methods:
+```swift
+import SwiftUI
+import CZPickerUI
 
-```objective-c
-#prama mark - CZPickerViewDataSource
+struct InviteView: View {
+    @State private var showingPicker = false
+    @State private var selected: Set<String> = []
 
-@required
-/* number of items for picker */
-- (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView;
+    private let people = [
+        CZPickerItem(id: "maya", title: "Maya Chen", subtitle: "Designer"),
+        CZPickerItem(id: "leo", title: "Leo Martin", subtitle: "Engineer"),
+        CZPickerItem(id: "amara", title: "Amara Okafor", subtitle: "Engineer")
+    ]
 
-@optional
-/*
- Implement at least one of the following method,
- czpickerView:(CZPickerView *)pickerView
- attributedTitleForRow:(NSInteger)row has higer priority
-*/
-
-/* attributed picker item title for each row */
-- (NSAttributedString *)czpickerView:(CZPickerView *)pickerView
-                            attributedTitleForRow:(NSInteger)row;
-
-/* picker item title for each row */
-- (NSString *)czpickerView:(CZPickerView *)pickerView
-                            titleForRow:(NSInteger)row;
-
-
-
-#prama mark - CZPickerViewDelegate
-@optional
-/** delegate method for picking one item */
-- (void)czpickerView:(CZPickerView *)pickerView
-          didConfirmWithItemAtRow:(NSInteger)row;
-
-/** delegate method for picking multiple items,
- implement this method if allowMultipleSelection is YES,
- rows is an array of NSNumbers
- */
-- (void)czpickerView:(CZPickerView *)pickerView
-          didConfirmWithItemsAtRows:(NSArray *)rows;
-/** delegate method for canceling */
-- (void)czpickerViewDidClickCancelButton:(CZPickerView *)pickerView;
+    var body: some View {
+        Button("Invite teammates (\(selected.count))") {
+            showingPicker = true
+        }
+        .sheet(isPresented: $showingPicker) {
+            CZPickerSheet("Invite teammates", items: people,
+                          selection: $selected,
+                          mode: .multiple(maximum: 3))
+                .tint(.teal)
+        }
+    }
+}
 ```
 
-## Customization
-There are a lot of things can be customized, change the following properties to customize the picker of your own:
+Use `.single` for one choice, or `.multiple()` for no selection limit. Single selection still uses Done and can be cleared. The binding always contains a `Set<ID>`.
 
-```objective-c
-/** whether to show footer (including confirm and cancel buttons), default NO */
-@property BOOL needFooterView;
+## Make it yours
 
-/** whether allow tap background to dismiss the picker, default YES */
-@property BOOL tapBackgroundToDismiss;
+Add an SF Symbol, subtitle, section, or disabled option:
 
-/** whether allow selection of multiple items/rows, default NO, if this
- property is YES, then footerView will be shown */
-@property BOOL allowMultipleSelection;
-
-/** picker header background color */
-@property (nonatomic, strong) UIColor *headerBackgroundColor;
-
-/** picker header title color */
-@property (nonatomic, strong) UIColor *headerTitleColor;
-
-/** picker cancel button background color */
-@property (nonatomic, strong) UIColor *cancelButtonBackgroundColor;
-
-/** picker cancel button normal state color */
-@property (nonatomic, strong) UIColor *cancelButtonNormalColor;
-
-/** picker cancel button highlighted state color */
-@property (nonatomic, strong) UIColor *cancelButtonHighlightedColor;
-
-/** picker confirm button background color */
-@property (nonatomic, strong) UIColor *confirmButtonBackgroundColor;
-
-/** picker confirm button normal state color */
-@property (nonatomic, strong) UIColor *confirmButtonNormalColor;
-
-/** picker confirm button highlighted state color */
-@property (nonatomic, strong) UIColor *confirmButtonHighlightedColor;
-
-/** picker's animation duration for showing and dismissing*/
-@property CGFloat animationDuration;
-
+```swift
+CZPickerItem(id: "kyoto", title: "Kyoto", subtitle: "Japan",
+             symbol: "leaf", section: "Asia")
+CZPickerItem(id: "soon", title: "Coming soon", isEnabled: false)
 ```
 
+Supply your own row with normal SwiftUI views:
 
+```swift
+CZPickerSheet("Invite teammates", items: people, selection: $selected) { person in
+    HStack {
+        Image(systemName: "person.crop.circle.fill")
+            .font(.title).foregroundStyle(.teal)
+        VStack(alignment: .leading) {
+            Text(person.title).font(.headline)
+            Text(person.subtitle ?? "").font(.subheadline).foregroundStyle(.secondary)
+        }
+    }
+}
+```
 
-## Author
+Set `searchable: false` for short lists. Customize action text with `doneTitle:`, `cancelTitle:`, and `searchPrompt:`. Search matches the title, subtitle, and section using locale-aware matching. Your custom row controls appearance; the item fields remain the searchable content.
 
-chenzeyu, zeyufly@gmail.com
+## UIKit
 
-## License
+Present the same modern experience from a view controller:
 
-CZPicker is available under the MIT license. See the LICENSE file for more info.
+```swift
+import CZPickerUI
 
-## Credits
+let picker = CZPickerViewController(
+    title: "Choose a destination",
+    items: [CZPickerItem(id: "kyoto", title: "Kyoto", subtitle: "Japan")],
+    selection: Set<String>(),
+    mode: .single
+) { selectedIDs in
+    print(selectedIDs)
+}
+present(picker, animated: true)
+```
 
-CZPicker is created at and supported by [Fooyo.sg](http://fooyo.sg)
+For custom UIKit-hosted rows, wrap `CZPickerSheet` in your own `UIHostingController`. For existing Objective-C applications, the original `CZPickerView` API remains available through the `CZPicker` product. See [migration and legacy usage](docs/MIGRATION.md).
+
+## Selection rules
+
+- Give every item a unique, stable ID. Duplicate IDs display only the first occurrence.
+- Filtering never removes selections. Removing an item from the supplied data does remove it from the draft.
+- Initial selections are normalized to existing IDs and the limit, in source order. Negative limits behave as zero.
+- Disabled options cannot be toggled, including through their chips. A preselected disabled option remains selected and counts toward the limit.
+- `onConfirm` runs only on Done. `onCancel` runs only on the Cancel button; use the host sheet's `onDismiss` for all dismissal paths.
+- Selection is captured when the sheet is created. Reopen it to apply a different selection mode or externally replaced selection.
+- The library owns no network requests. Load data in your app and pass it in.
+
+## Try the showcase
+
+Open **[Examples/Showcase/Showcase.xcodeproj](Examples/Showcase/Showcase.xcodeproj)**, select the **Showcase** scheme, and run on an iPhone or iPad simulator. It uses the local package—no CocoaPods installation or project generator needed.
+
+Explore teammate selection with custom avatar rows, destinations with single selection, interests with sections and disabled options, and a UIKit presentation example.
+
+## Development
+
+```sh
+# Choose an installed simulator from: xcrun simctl list devices available
+xcodebuild -scheme CZPicker-Package \
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test
+
+xcodebuild -project Examples/Showcase/Showcase.xcodeproj -scheme Showcase \
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test
+
+pod lib lint CZPicker.podspec --subspec=Core
+pod lib lint CZPicker.podspec --subspec=SwiftUI
+```
+
+Regression tests cover selection limits, cancellation isolation, stable IDs, data changes, and legacy behavior. Showcase UI tests exercise search, confirmation, cancellation, and UIKit presentation. See [validation notes](docs/VALIDATION.md) for the exact checks performed on this branch.
+
+## A small library, coming back to life
+
+CZPicker began in 2015 as a customizable popup picker. This relaunch keeps the original API available and adds a modern, dependency-free experience for SwiftUI and UIKit.
+
+Found something awkward? [Open an issue](https://github.com/chenzeyu/CZPicker/issues) with a small reproduction. Built something with CZPicker? We'd love to see it. If it saves you time, a star helps other developers discover it.
+
+Contributions are welcome—see [CONTRIBUTING.md](CONTRIBUTING.md). Thanks to everyone who used, reported issues, and contributed to the original library, which was created at [Fooyo](https://fooyo.sg).
+
+**MIT licensed.** See [LICENSE](LICENSE).

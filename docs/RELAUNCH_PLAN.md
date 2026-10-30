@@ -50,3 +50,5 @@ Prepare release notes and a credible README. After release approval: publish a v
 ## Implementation review outcome
 
 The final design uses one modern SwiftUI interface for both SwiftUI and UIKit callers and keeps the Objective-C interface separate. The legacy minimum is iOS 15, adjusted after actual SDK validation. Package and pod distributions share sources and introduce no external runtime dependencies. The showcase and README use real simulator images. Search confirmation and footer layout issues found during validation were fixed before review handoff. Remaining release gates are documented in VALIDATION.md; publishing a stable version is intentionally separate from this implementation.
+
+Publication constraint: the authenticated owner token can push code but lacks GitHub workflow scope. The reviewed CI definition is supplied at `docs/ci/github-actions.yml`; activating it requires copying it to `.github/workflows/ci.yml` with an appropriately authorized login. Local validation is complete independently of hosted CI.

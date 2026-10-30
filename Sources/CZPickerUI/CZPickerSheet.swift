@@ -71,13 +71,6 @@ public struct CZPickerSheet<ID: Hashable, Row: View>: View {
             searchableContent
                 .navigationTitle(title)
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button(cancelTitle) { onCancel?(); dismiss() }
-                            .accessibilityIdentifier("czpicker.cancel")
-                    }
-
-                }
         }
         .presentationDetents([.medium, .large], selection: $detent)
         .presentationDragIndicator(.visible)
@@ -98,7 +91,7 @@ public struct CZPickerSheet<ID: Hashable, Row: View>: View {
             if case .multiple = mode {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(selectionSummary)
-                        .font(.subheadline.weight(.medium)).foregroundStyle(.secondary)
+                        .font(.subheadline.weight(.medium)).foregroundStyle(.primary.opacity(0.75))
                         .accessibilityIdentifier("czpicker.count")
                     if !selectedItems.isEmpty {
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -131,7 +124,7 @@ public struct CZPickerSheet<ID: Hashable, Row: View>: View {
                             .font(.headline)
                         if !query.isEmpty { Text("Try another search.").font(.subheadline) }
                     }
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.primary.opacity(0.75))
                     .frame(maxWidth: .infinity).padding(.vertical, 36)
                     .listRowBackground(Color.clear)
                 } else {
@@ -141,24 +134,36 @@ public struct CZPickerSheet<ID: Hashable, Row: View>: View {
                                 option(item)
                             }
                         } header: {
-                            if let section { Text(section) }
+                            if let section { Text(section).foregroundStyle(.primary.opacity(0.75)) }
                         }
                     }
                 }
             }
             .listStyle(.insetGrouped)
             .scrollDismissesKeyboard(.interactively)
-            Button {
-                draft.reconcile(draft.ids, orderedIDs: uniqueItems.map(\.id))
-                selection = draft.ids
-                onConfirm?(draft.ids)
-                dismiss()
-            } label: {
-                Text(doneTitle).fontWeight(.semibold).frame(maxWidth: .infinity)
+            HStack(spacing: 12) {
+                Button { onCancel?(); dismiss() } label: {
+                    Text(cancelTitle).foregroundStyle(Color.primary)
+                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .background(Color(uiColor: .systemBackground), in: Capsule())
+                        .overlay(Capsule().strokeBorder(Color.primary.opacity(0.5), lineWidth: 1))
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("czpicker.cancel")
+                Button {
+                    draft.reconcile(draft.ids, orderedIDs: uniqueItems.map(\.id))
+                    selection = draft.ids
+                    onConfirm?(draft.ids)
+                    dismiss()
+                } label: {
+                    Text(doneTitle).fontWeight(.semibold)
+                        .foregroundStyle(Color(uiColor: .systemBackground))
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .accessibilityIdentifier("czpicker.done")
             }
-            .buttonStyle(.borderedProminent)
             .controlSize(.large)
-            .accessibilityIdentifier("czpicker.done")
             .padding(.horizontal, 20).padding(.vertical, 12)
             .background(.regularMaterial)
         }
@@ -178,7 +183,6 @@ public struct CZPickerSheet<ID: Hashable, Row: View>: View {
             }
             .padding(.vertical, 5)
             .contentShape(Rectangle())
-            .opacity(enabled ? 1 : 0.45)
         }
         .buttonStyle(.plain)
         .disabled(!enabled)
@@ -200,7 +204,7 @@ public struct CZPickerDefaultRow<ID: Hashable>: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(item.title).font(.body).foregroundStyle(.primary)
                 if let subtitle = item.subtitle {
-                    Text(subtitle).font(.subheadline).foregroundStyle(.secondary)
+                    Text(subtitle).font(.subheadline).foregroundStyle(.primary.opacity(0.75))
                 }
             }
         }

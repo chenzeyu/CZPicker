@@ -1,236 +1,456 @@
+//
+//  CZPickerView.h
+//
+//  Created by chenzeyu on 9/6/15.
+//  Copyright (c) 2015 chenzeyu. All rights reserved.
+//
+
 #import "CZPickerView.h"
 
+#define CZP_FOOTER_HEIGHT 44.0
+#define CZP_HEADER_HEIGHT 44.0
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1 
+#define CZP_BACKGROUND_ALPHA 0.9
+#else
+#define CZP_BACKGROUND_ALPHA 0.3
+#endif
+
+
+
+typedef void (^CZDismissCompletionCallback)(void);
+
 @interface CZPickerView ()
-@property (nonatomic, copy) NSString *headerTitle;
-@property (nonatomic, copy) NSString *cancelButtonTitle;
-@property (nonatomic, copy) NSString *confirmButtonTitle;
-@property (nonatomic, strong) UIView *backgroundDimmingView;
-@property (nonatomic, strong) UIView *containerView;
-@property (nonatomic, strong) UILabel *headerLabel;
-@property (nonatomic, strong) UIView *footerView;
-@property (nonatomic, strong) UIButton *cancelButton;
-@property (nonatomic, strong) UIButton *confirmButton;
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableOrderedSet<NSNumber *> *selection;
-@property (nonatomic) BOOL dismissing;
+@property NSString *headerTitle;
+@property NSString *cancelButtonTitle;
+@property NSString *confirmButtonTitle;
+@property UIView *backgroundDimmingView;
+@property UIView *containerView;
+@property UIView *headerView;
+@property UIView *footerview;
+@property UITableView *tableView;
+@property NSMutableArray *selectedIndexPaths;
+@property CGRect previousBounds;
 @end
 
 @implementation CZPickerView
 
-- (id)initWithHeaderTitle:(NSString *)headerTitle cancelButtonTitle:(NSString *)cancelButtonTitle confirmButtonTitle:(NSString *)confirmButtonTitle {
-    self = [super initWithFrame:CGRectZero];
-    if (self) {
-        _headerTitle = [headerTitle copy] ?: @"";
-        _cancelButtonTitle = [cancelButtonTitle copy] ?: @"Cancel";
-        _confirmButtonTitle = [confirmButtonTitle copy] ?: @"Confirm";
-        _selection = [NSMutableOrderedSet orderedSet];
-        _tapBackgroundToDismiss = YES;
-        _animationDuration = 0.25;
-        _headerTitleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        _headerTitleColor = UIColor.labelColor;
-        _headerBackgroundColor = UIColor.secondarySystemBackgroundColor;
-        _cancelButtonNormalColor = UIColor.labelColor;
-        _cancelButtonHighlightedColor = UIColor.secondaryLabelColor;
-        _cancelButtonBackgroundColor = UIColor.secondarySystemBackgroundColor;
-        _confirmButtonNormalColor = UIColor.whiteColor;
-        _confirmButtonHighlightedColor = UIColor.lightGrayColor;
-        _confirmButtonBackgroundColor = UIColor.systemTealColor;
-        self.accessibilityViewIsModal = YES;
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+- (id)initWithHeaderTitle:(NSString *)headerTitle
+        cancelButtonTitle:(NSString *)cancelButtonTitle
+       confirmButtonTitle:(NSString *)confirmButtonTitle{
+    self = [super init];
+    if(self){
+        if([self needHandleOrientation]){
+            [[NSNotificationCenter defaultCenter] addObserver: self
+                                                     selector:@selector(deviceOrientationDidChange:)
+                                                         name:UIDeviceOrientationDidChangeNotification
+                                                       object: nil];
+        }
+        self.tapBackgroundToDismiss = YES;
+        self.needFooterView = NO;
+        self.allowMultipleSelection = NO;
+        self.animationDuration = 0.5f;
+        
+        self.confirmButtonTitle = confirmButtonTitle;
+        self.cancelButtonTitle = cancelButtonTitle;
+        
+        self.headerTitle = headerTitle ? headerTitle : @"";
+        self.headerTitleColor = [UIColor whiteColor];
+        self.headerBackgroundColor = [UIColor colorWithRed:56.0/255 green:185.0/255 blue:158.0/255 alpha:1];
+        
+        self.cancelButtonNormalColor = [UIColor colorWithRed:59.0/255 green:72/255.0 blue:5.0/255 alpha:1];
+        self.cancelButtonHighlightedColor = [UIColor grayColor];
+        self.cancelButtonBackgroundColor = [UIColor colorWithRed:236.0/255 green:240/255.0 blue:241.0/255 alpha:1];
+        
+        self.confirmButtonNormalColor = [UIColor whiteColor];
+        self.confirmButtonHighlightedColor = [UIColor colorWithRed:236.0/255 green:240/255.0 blue:241.0/255 alpha:1];
+        self.confirmButtonBackgroundColor = [UIColor colorWithRed:56.0/255 green:185.0/255 blue:158.0/255 alpha:1];
+        
+        _previousBounds = [UIScreen mainScreen].bounds;
+        self.frame = _previousBounds;
     }
     return self;
 }
 
-- (void)show {
-    // Never guess between multiple foreground windows. Explicit presentation is preferred.
-    NSMutableArray<UIWindow *> *windows = [NSMutableArray array];
-    for (UIScene *scene in UIApplication.sharedApplication.connectedScenes) {
-        if (scene.activationState != UISceneActivationStateForegroundActive || ![scene isKindOfClass:UIWindowScene.class]) continue;
-        for (UIWindow *window in ((UIWindowScene *)scene).windows) {
-            if (window.isKeyWindow) [windows addObject:window];
-        }
+- (void)setupSubviews{
+    if(!self.backgroundDimmingView){
+        self.backgroundDimmingView = [self buildBackgroundDimmingView];
+        [self addSubview:self.backgroundDimmingView];
     }
-    if (windows.count == 1) [self showInContainer:windows.firstObject];
+    
+    self.containerView = [self buildContainerView];
+    [self addSubview:self.containerView];
+    
+    self.tableView = [self buildTableView];
+    [self.containerView addSubview:self.tableView];
+    
+    self.headerView = [self buildHeaderView];
+    [self.containerView addSubview:self.headerView];
+    
+    self.footerview = [self buildFooterView];
+    [self.containerView addSubview:self.footerview];
+    
+    CGRect frame = self.containerView.frame;
+    
+    self.containerView.frame = CGRectMake(frame.origin.x,
+                                          frame.origin.y,
+                                          frame.size.width,
+                                          self.headerView.frame.size.height + self.tableView.frame.size.height + self.footerview.frame.size.height);
+    self.containerView.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
+    
+}
+
+- (void)performContainerAnimation {
+    
+    [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        self.containerView.center = self.center;
+    } completion:^(BOOL finished) {
+        if([self.delegate respondsToSelector:@selector(czpickerViewDidDisplay:)]){
+            [self.delegate czpickerViewDidDisplay:self];
+        }
+    }];
+}
+
+- (void)show {
+    UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
+    self.frame = mainWindow.frame;
+    [self showInContainer:mainWindow];
 }
 
 - (void)showInContainer:(id)container {
-    if (![container isKindOfClass:UIView.class] || self.superview || self.dismissing) return;
-    UIView *host = container;
-    if ([self.delegate respondsToSelector:@selector(czpickerViewWillDisplay:)]) [self.delegate czpickerViewWillDisplay:self];
-    if (self.allowMultipleSelection) self.needFooterView = YES;
-    [self validateSelection];
-    self.frame = host.bounds;
-    [host addSubview:self];
-    [self setupSubviews];
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    self.alpha = 0;
-    [UIView animateWithDuration:[self effectiveDuration] animations:^{ self.alpha = 1; } completion:^(BOOL finished) {
-        if (!finished || !self.superview || self.dismissing) return;
-        if ([self.delegate respondsToSelector:@selector(czpickerViewDidDisplay:)]) [self.delegate czpickerViewDidDisplay:self];
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.headerLabel);
-    }];
-}
-
-- (NSTimeInterval)effectiveDuration { return UIAccessibilityIsReduceMotionEnabled() ? 0 : MAX(0, self.animationDuration); }
-
-- (void)setupSubviews {
-    for (UIView *view in self.subviews.copy) [view removeFromSuperview];
-    self.backgroundDimmingView = [[UIView alloc] init];
-    self.backgroundDimmingView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.35];
-    if (self.tapBackgroundToDismiss) {
-        [self.backgroundDimmingView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelButtonPressed:)]];
+    
+    if([self.delegate respondsToSelector:@selector(czpickerViewWillDisplay:)]){
+        [self.delegate czpickerViewWillDisplay:self];
     }
-    [self addSubview:self.backgroundDimmingView];
-    self.containerView = [[UIView alloc] init];
-    self.containerView.backgroundColor = UIColor.systemBackgroundColor;
-    self.containerView.layer.cornerRadius = 16;
-    self.containerView.clipsToBounds = YES;
-    [self addSubview:self.containerView];
-    self.headerLabel = [[UILabel alloc] init];
-    self.headerLabel.text = self.headerTitle;
-    self.headerLabel.font = self.headerTitleFont;
-    self.headerLabel.adjustsFontForContentSizeCategory = YES;
-    self.headerLabel.textColor = self.headerTitleColor;
-    self.headerLabel.backgroundColor = self.headerBackgroundColor;
-    self.headerLabel.textAlignment = NSTextAlignmentCenter;
-    self.headerLabel.numberOfLines = 0;
-    self.headerLabel.accessibilityTraits = UIAccessibilityTraitHeader;
-    [self.containerView addSubview:self.headerLabel];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 52;
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    [self.containerView addSubview:self.tableView];
-    self.footerView = [[UIView alloc] init];
-    [self.containerView addSubview:self.footerView];
-    self.cancelButton = [self buttonWithTitle:self.cancelButtonTitle action:@selector(cancelButtonPressed:) background:self.cancelButtonBackgroundColor normal:self.cancelButtonNormalColor highlighted:self.cancelButtonHighlightedColor];
-    self.confirmButton = [self buttonWithTitle:self.confirmButtonTitle action:@selector(confirmButtonPressed:) background:self.confirmButtonBackgroundColor normal:self.confirmButtonNormalColor highlighted:self.confirmButtonHighlightedColor];
-    [self.footerView addSubview:self.cancelButton];
-    [self.footerView addSubview:self.confirmButton];
-}
-
-- (UIButton *)buttonWithTitle:(NSString *)title action:(SEL)action background:(UIColor *)background normal:(UIColor *)normal highlighted:(UIColor *)highlighted {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:normal forState:UIControlStateNormal];
-    [button setTitleColor:highlighted forState:UIControlStateHighlighted];
-    button.backgroundColor = background;
-    button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-    button.titleLabel.adjustsFontForContentSizeCategory = YES;
-    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    return button;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.backgroundDimmingView.frame = self.bounds;
-    CGRect safe = UIEdgeInsetsInsetRect(self.bounds, self.safeAreaInsets);
-    CGFloat availableWidth = MAX(0, safe.size.width - 32);
-    CGFloat width = MIN(self.pickerWidth > 0 ? self.pickerWidth : MIN(420, availableWidth), availableWidth);
-    CGFloat headerHeight = MAX(52, [self.headerLabel sizeThatFits:CGSizeMake(MAX(1, width - 24), CGFLOAT_MAX)].height + 24);
-    CGFloat footerHeight = self.needFooterView ? MAX(52, self.confirmButton.titleLabel.font.lineHeight + 24) : 0;
-    CGFloat availableHeight = MAX(0, safe.size.height - 32);
-    CGFloat rowHeight = MAX(52, [UIFont preferredFontForTextStyle:UIFontTextStyleBody].lineHeight + 24);
-    CGFloat tableHeight = MIN(MAX(0, availableHeight - headerHeight - footerHeight), MAX(1, [self rowCount]) * rowHeight);
-    CGFloat height = MIN(availableHeight, headerHeight + tableHeight + footerHeight);
-    self.containerView.frame = CGRectMake(CGRectGetMidX(safe) - width / 2, CGRectGetMidY(safe) - height / 2, width, height);
-    self.headerLabel.frame = CGRectMake(0, 0, width, headerHeight);
-    self.tableView.frame = CGRectMake(0, headerHeight, width, tableHeight);
-    self.footerView.frame = CGRectMake(0, headerHeight + tableHeight, width, footerHeight);
-    self.footerView.hidden = !self.needFooterView;
-    self.cancelButton.frame = CGRectMake(0, 0, width / 2, footerHeight);
-    self.confirmButton.frame = CGRectMake(width / 2, 0, width / 2, footerHeight);
-}
-
-- (NSInteger)rowCount {
-    return [self.dataSource respondsToSelector:@selector(numberOfRowsInPickerView:)] ? MAX(0, [self.dataSource numberOfRowsInPickerView:self]) : 0;
-}
-
-- (void)validateSelection {
-    NSInteger count = [self rowCount];
-    NSMutableOrderedSet *valid = [NSMutableOrderedSet orderedSet];
-    for (NSNumber *row in self.selection) {
-        if (row.integerValue >= 0 && row.integerValue < count && (self.allowMultipleSelection || valid.count == 0)) [valid addObject:row];
+    if (self.allowMultipleSelection && !self.needFooterView) {
+        self.needFooterView = self.allowMultipleSelection;
     }
-    self.selection = valid;
+    
+    if ([container respondsToSelector:@selector(addSubview:)]) {
+        [container addSubview:self];
+        
+        [self setupSubviews];
+        [self performContainerAnimation];
+        
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            self.backgroundDimmingView.alpha = CZP_BACKGROUND_ALPHA;
+        }];
+    }
 }
 
-- (NSArray *)selectedRows { return self.selection.array ?: @[]; }
-- (void)setSelectedRows:(NSArray *)rows {
-    if (![rows isKindOfClass:NSArray.class]) return;
-    self.selection = [NSMutableOrderedSet orderedSet];
-    for (id row in rows) {
-        if (![row isKindOfClass:NSNumber.class]) continue;
-        double value = [row doubleValue];
-        if (isfinite(value) && value >= 0 && value < (double)NSIntegerMax && floor(value) == value) [self.selection addObject:@([row integerValue])];
-    }
-    // Permit preselection before the caller assigns its data source.
-    if (self.dataSource) [self validateSelection];
+- (void)reloadData{
     [self.tableView reloadData];
 }
-- (void)unselectAll { [self.selection removeAllObjects]; [self.tableView reloadData]; }
-- (void)reloadData { [self validateSelection]; [self.tableView reloadData]; [self setNeedsLayout]; }
-- (void)dismiss { [self dismissPicker:nil]; }
 
-- (void)dismissPicker:(void (^)(void))completion {
-    if (!self.superview || self.dismissing) return;
-    self.dismissing = YES;
-    if ([self.delegate respondsToSelector:@selector(czpickerViewWillDismiss:)]) [self.delegate czpickerViewWillDismiss:self];
-    [UIView animateWithDuration:[self effectiveDuration] animations:^{ self.alpha = 0; } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-        self.dismissing = NO;
-        if ([self.delegate respondsToSelector:@selector(czpickerViewDidDismiss:)]) [self.delegate czpickerViewDidDismiss:self];
-        if (completion) completion();
+- (void)dismissPicker:(CZDismissCompletionCallback)completion{
+    
+    if([self.delegate respondsToSelector:@selector(czpickerViewWillDismiss:)]){
+        [self.delegate czpickerViewWillDismiss:self];
+    }
+    [UIView animateWithDuration:self.animationDuration delay:0 usingSpringWithDamping:0.7f initialSpringVelocity:3.0f options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        self.containerView.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
+    }completion:^(BOOL finished) {
+    }];
+    
+    [UIView animateWithDuration:self.animationDuration animations:^{
+        self.backgroundDimmingView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        if(finished){
+            if([self.delegate respondsToSelector:@selector(czpickerViewDidDismiss:)]){
+                [self.delegate czpickerViewDidDismiss:self];
+            }
+            if(completion){
+                completion();
+            }
+            [self removeFromSuperview];
+        }
     }];
 }
-- (void)cancelButtonPressed:(id)sender {
+
+- (UIView *)buildContainerView {
+    CGFloat widthRatio = _pickerWidth ? _pickerWidth / [UIScreen mainScreen].bounds.size.width : 0.8;
+    CGAffineTransform transform = CGAffineTransformMake(widthRatio, 0, 0, 0.8, 0, 0);
+    CGRect newRect = CGRectApplyAffineTransform(self.frame, transform);
+    UIView *cv = [[UIView alloc] initWithFrame:newRect];
+    cv.layer.cornerRadius = 6.0f;
+    cv.clipsToBounds = YES;
+    cv.center = CGPointMake(self.center.x, self.center.y + self.frame.size.height);
+    return cv;
+}
+
+- (UITableView *)buildTableView{
+    CGFloat widthRatio = _pickerWidth ? _pickerWidth / [UIScreen mainScreen].bounds.size.width : 0.8;
+    CGAffineTransform transform = CGAffineTransformMake(widthRatio, 0, 0, 0.8, 0, 0);
+    CGRect newRect = CGRectApplyAffineTransform(self.frame, transform);
+    NSInteger n = [self.dataSource numberOfRowsInPickerView:self];
+    CGRect tableRect;
+    float heightOffset = CZP_HEADER_HEIGHT + CZP_FOOTER_HEIGHT;
+    if(n > 0){
+        float height = n * 44.0;
+        height = height > newRect.size.height - heightOffset ? newRect.size.height -heightOffset : height;
+        tableRect = CGRectMake(0, 44.0, newRect.size.width, height);
+    } else {
+        tableRect = CGRectMake(0, 44.0, newRect.size.width, newRect.size.height - heightOffset);
+    }
+    UITableView *tableView = [[UITableView alloc] initWithFrame:tableRect style:UITableViewStylePlain];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    return tableView;
+}
+
+- (UIView *)buildBackgroundDimmingView{
+    
+    UIView *bgView;
+    //blur effect for iOS8
+    CGFloat frameHeight = self.frame.size.height;
+    CGFloat frameWidth = self.frame.size.width;
+    CGFloat sideLength = frameHeight > frameWidth ? frameHeight : frameWidth;
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) {
+        UIBlurEffect *eff = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        bgView = [[UIVisualEffectView alloc] initWithEffect:eff];
+        bgView.frame = CGRectMake(0, 0, sideLength, sideLength);
+    }
+    else {
+        bgView = [[UIView alloc] initWithFrame:self.frame];
+        bgView.backgroundColor = [UIColor blackColor];
+    }
+    bgView.alpha = 0.0;
+    if(self.tapBackgroundToDismiss){
+        [bgView addGestureRecognizer:
+         [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                 action:@selector(cancelButtonPressed:)]];
+    }
+    return bgView;
+}
+
+- (UIView *)buildFooterView{
+    if (!self.needFooterView){
+        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    }
+    CGRect rect = self.tableView.frame;
+    CGRect newRect = CGRectMake(0,
+                                rect.origin.y + rect.size.height,
+                                rect.size.width,
+                                CZP_FOOTER_HEIGHT);
+    CGRect leftRect = CGRectMake(0,0, newRect.size.width /2, CZP_FOOTER_HEIGHT);
+    CGRect rightRect = CGRectMake(newRect.size.width /2,0, newRect.size.width /2, CZP_FOOTER_HEIGHT);
+    
+    UIView *view = [[UIView alloc] initWithFrame:newRect];
+    UIButton *cancelButton = [[UIButton alloc] initWithFrame:leftRect];
+    [cancelButton setTitle:self.cancelButtonTitle forState:UIControlStateNormal];
+    [cancelButton setTitleColor: self.cancelButtonNormalColor forState:UIControlStateNormal];
+    [cancelButton setTitleColor:self.cancelButtonHighlightedColor forState:UIControlStateHighlighted];
+    cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    cancelButton.backgroundColor = self.cancelButtonBackgroundColor;
+    [cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:cancelButton];
+    
+    UIButton *confirmButton = [[UIButton alloc] initWithFrame:rightRect];
+    [confirmButton setTitle:self.confirmButtonTitle forState:UIControlStateNormal];
+    [confirmButton setTitleColor:self.confirmButtonNormalColor forState:UIControlStateNormal];
+    [confirmButton setTitleColor:self.confirmButtonHighlightedColor forState:UIControlStateHighlighted];
+    confirmButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    confirmButton.backgroundColor = self.confirmButtonBackgroundColor;
+    [confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:confirmButton];
+    return view;
+}
+
+- (UIView *)buildHeaderView{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, CZP_HEADER_HEIGHT)];
+    view.backgroundColor = self.headerBackgroundColor;
+    
+    UIFont *headerFont = self.headerTitleFont == nil ? [UIFont systemFontOfSize:18.0] : self.headerTitleFont;
+    
+    NSDictionary *dict = @{
+                           NSForegroundColorAttributeName: self.headerTitleColor,
+                           NSFontAttributeName:headerFont
+                           };
+    NSAttributedString *at = [[NSAttributedString alloc] initWithString:self.headerTitle attributes:dict];
+    UILabel *label = [[UILabel alloc] initWithFrame:view.frame];
+    label.attributedText = at;
+    [label sizeToFit];
+    [view addSubview:label];
+    label.center = view.center;
+    return view;
+}
+
+- (IBAction)cancelButtonPressed:(id)sender{
     [self dismissPicker:^{
-        if ([self.delegate respondsToSelector:@selector(czpickerViewDidClickCancelButton:)]) [self.delegate czpickerViewDidClickCancelButton:self];
+        if([self.delegate respondsToSelector:@selector(czpickerViewDidClickCancelButton:)]){
+            [self.delegate czpickerViewDidClickCancelButton:self];
+        }
     }];
 }
-- (BOOL)accessibilityPerformEscape { [self cancelButtonPressed:nil]; return YES; }
-- (void)confirmButtonPressed:(id)sender {
-    [self validateSelection];
-    NSArray *rows = self.selectedRows;
-    BOOL multiple = self.allowMultipleSelection;
+
+- (IBAction)confirmButtonPressed:(id)sender{
     [self dismissPicker:^{
-        if (multiple && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemsAtRows:)]) [self.delegate czpickerView:self didConfirmWithItemsAtRows:rows];
-        else if (!multiple && rows.count && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemAtRow:)]) [self.delegate czpickerView:self didConfirmWithItemAtRow:[rows.firstObject integerValue]];
+        if(self.allowMultipleSelection && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemsAtRows:)]){
+            [self.delegate czpickerView:self didConfirmWithItemsAtRows:[self selectedRows]];
+        }
+        
+        else if(!self.allowMultipleSelection && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemAtRow:)]){
+            if (self.selectedIndexPaths.count > 0){
+                NSInteger row = ((NSIndexPath *)self.selectedIndexPaths[0]).row;
+                [self.delegate czpickerView:self didConfirmWithItemAtRow:row];
+            }
+        }
     }];
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section { return [self rowCount]; }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CZPickerRow"];
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CZPickerRow"];
-    cell.textLabel.text = nil;
-    cell.textLabel.attributedText = nil;
-    cell.imageView.image = nil;
-    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    cell.textLabel.adjustsFontForContentSizeCategory = YES;
-    cell.textLabel.numberOfLines = 0;
-    if ([self.dataSource respondsToSelector:@selector(czpickerView:attributedTitleForRow:)]) cell.textLabel.attributedText = [self.dataSource czpickerView:self attributedTitleForRow:indexPath.row];
-    else if ([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)]) cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];
-    if ([self.dataSource respondsToSelector:@selector(czpickerView:imageForRow:)]) cell.imageView.image = [self.dataSource czpickerView:self imageForRow:indexPath.row];
-    BOOL selected = [self.selection containsObject:@(indexPath.row)];
-    cell.accessoryType = selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    cell.accessibilityTraits = UIAccessibilityTraitButton | (selected ? UIAccessibilityTraitSelected : 0);
-    cell.tintColor = self.checkmarkColor ?: self.tintColor;
+
+- (NSArray *)selectedRows {
+    NSMutableArray *rows = [NSMutableArray new];
+    for (NSIndexPath *ip in self.selectedIndexPaths) {
+        [rows addObject:@(ip.row)];
+    }
+    return rows;
+}
+
+- (void)setSelectedRows:(NSArray *)rows{
+    if (![rows isKindOfClass: NSArray.class]) {
+        return;
+    }
+    self.selectedIndexPaths = [NSMutableArray new];
+    for (NSNumber *n in rows){
+        NSIndexPath *ip = [NSIndexPath indexPathForRow:[n integerValue] inSection: 0];
+        [self.selectedIndexPaths addObject:ip];
+    }
+}
+
+- (void)unselectAll {
+    self.selectedIndexPaths = [NSMutableArray new];
+    [self.tableView reloadData];
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if ([self.dataSource respondsToSelector:@selector(numberOfRowsInPickerView:)]) {
+        return [self.dataSource numberOfRowsInPickerView:self];
+    }
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"czpicker_view_identifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
+    }
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    for(NSIndexPath *ip in self.selectedIndexPaths){
+        if(ip.row == indexPath.row){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
+    if([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)] && [self.dataSource respondsToSelector:@selector(czpickerView:imageForRow:)]){
+        cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];
+        cell.imageView.image = [self.dataSource czpickerView:self imageForRow:indexPath.row];
+    } else if ([self.dataSource respondsToSelector:@selector(czpickerView:attributedTitleForRow:)] && [self.dataSource respondsToSelector:@selector(czpickerView:imageForRow:)]){
+        cell.textLabel.attributedText = [self.dataSource czpickerView:self attributedTitleForRow:indexPath.row];
+        cell.imageView.image = [self.dataSource czpickerView:self imageForRow:indexPath.row];
+    } else if ([self.dataSource respondsToSelector:@selector(czpickerView:attributedTitleForRow:)]) {
+        cell.textLabel.attributedText = [self.dataSource czpickerView:self attributedTitleForRow:indexPath.row];
+    } else if([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)]){
+        cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];
+    }
+    
+    if(self.checkmarkColor){
+        cell.tintColor = self.checkmarkColor;
+    }
     return cell;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.dismissing || indexPath.row >= [self rowCount]) return;
-    NSNumber *row = @(indexPath.row);
-    if ([self.selection containsObject:row]) [self.selection removeObject:row];
-    else { if (!self.allowMultipleSelection) [self.selection removeAllObjects]; [self.selection addObject:row]; }
-    [tableView reloadData];
-    if (!self.allowMultipleSelection && !self.needFooterView) {
-        // A tap is an immediate choice in the legacy footerless mode.
-        self.selection = [NSMutableOrderedSet orderedSetWithObject:row];
-        [self confirmButtonPressed:nil];
+    if(!self.selectedIndexPaths){
+        self.selectedIndexPaths = [NSMutableArray new];
     }
+    // the row has already been selected
+    
+    if (self.allowMultipleSelection){
+        
+        if([self.selectedIndexPaths containsObject:indexPath]){
+            [self.selectedIndexPaths removeObject:indexPath];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        } else {
+            [self.selectedIndexPaths addObject:indexPath];
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        
+    } else { //single selection mode
+        
+        if (self.selectedIndexPaths.count > 0){// has selection
+            NSIndexPath *prevIp = (NSIndexPath *)self.selectedIndexPaths[0];
+            UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:prevIp];
+            if(indexPath.row != prevIp.row){ //different cell
+                prevCell.accessoryType = UITableViewCellAccessoryNone;
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                [self.selectedIndexPaths removeObject:prevIp];
+                [self.selectedIndexPaths addObject:indexPath];
+            } else {//same cell
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                self.selectedIndexPaths = [NSMutableArray new];
+            }
+        } else {//no selection
+            [self.selectedIndexPaths addObject:indexPath];
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        
+        if(!self.needFooterView && [self.delegate respondsToSelector:@selector(czpickerView:didConfirmWithItemAtRow:)]){
+            [self dismissPicker:^{
+                [self.delegate czpickerView:self didConfirmWithItemAtRow:indexPath.row];
+            }];
+        }
+    }
+    
+}
+
+#pragma mark - Notification Handler
+
+- (BOOL)needHandleOrientation{
+    NSArray *supportedOrientations = [[[NSBundle mainBundle] infoDictionary]
+                                      objectForKey:@"UISupportedInterfaceOrientations"];
+    NSMutableSet *set = [NSMutableSet set];
+    for(NSString *o in supportedOrientations){
+        NSRange range = [o rangeOfString:@"Portrait"];
+        if (range.location != NSNotFound) {
+            [set addObject:@"Portrait"];
+        }
+        
+        range = [o rangeOfString:@"Landscape"];
+        if (range.location != NSNotFound) {
+            [set addObject:@"Landscape"];
+        }
+    }
+    return set.count == 2;
+}
+
+- (void)deviceOrientationDidChange:(NSNotification *)notification{
+    CGRect rect = [UIScreen mainScreen].bounds;
+    if (CGRectEqualToRect(rect, _previousBounds)) {
+        return;
+    }
+    _previousBounds = rect;
+    self.frame = rect;
+    for(UIView *v in self.subviews){
+        if([v isEqual:self.backgroundDimmingView]) continue;
+        
+        [UIView animateWithDuration:0.2f animations:^{
+            v.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [v removeFromSuperview];
+            //as backgroundDimmingView will not be removed
+            if(self.subviews.count == 1){
+                [self setupSubviews];
+                [self performContainerAnimation];
+            }
+        }];
+    }
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

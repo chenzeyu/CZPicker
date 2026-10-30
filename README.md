@@ -11,11 +11,12 @@ Single or multiple selections. Thoughtful defaults. **Zero external dependencies
 
 </div>
 
-<!-- Screenshots below are captured from the included simulator showcase. -->
 <p align="center">
-  <img src="docs/images/showcase.png" width="245" alt="CZPicker showcase with teammate, destination, and interest examples">
-  <img src="docs/images/teammates.png" width="245" alt="Searchable teammate selection with selected chips and a three-person limit">
-  <img src="docs/images/destination.png" width="245" alt="Single destination selection with grouped cities and subtitles">
+  <img src="docs/media/czpicker-demo.gif" width="360" alt="Real CZPicker simulator recording: select teammates, search for Noah without losing selections, confirm, then choose Lisbon">
+</p>
+<p align="center">
+  <sub>Recorded from the running showcase on an iPhone simulator. No mockups.</sub><br>
+  <a href="docs/media/czpicker-demo.mp4">Watch the MP4</a> · <a href="docs/images/teammates.png">Still preview</a>
 </p>
 
 **Pick a team. Choose a destination. Find your interests.** CZPicker handles the selection details so you can focus on your app.
@@ -28,6 +29,12 @@ Single or multiple selections. Thoughtful defaults. **Zero external dependencies
 - **Nothing else to install.** No transitive packages, networking, analytics, or bundled demo assets.
 
 > **1.0 preview:** This branch contains the relaunch implementation. Version `1.0.0-beta.1` is not yet published. Use the branch instructions below to try it; the existing `0.4.3` release does not include these APIs. See the [release checklist](docs/RELAUNCH_PLAN.md#release-checklist) for remaining validation.
+
+## Already using CZPicker?
+
+**Keep your existing integration.** The `CZPickerView` header and implementation are unchanged from 0.4.3: the same methods, delegate callbacks, ownership, selection behavior, and appearance. The default CocoaPod still uses that implementation. The new `CZPickerUI` experience is opt-in.
+
+The minimum OS is now **iOS 15** for the existing API and **iOS 16** for the modern API. See [compatibility details](docs/MIGRATION.md) and the [checks performed](docs/VALIDATION.md).
 
 ## Installation
 
@@ -183,7 +190,7 @@ pod lib lint CZPicker.podspec --subspec=Core
 pod lib lint CZPicker.podspec --subspec=SwiftUI
 ```
 
-Regression tests cover selection limits, cancellation isolation, stable IDs, data changes, and legacy behavior. Showcase UI tests exercise search, confirmation, cancellation, and UIKit presentation. See [validation notes](docs/VALIDATION.md) for the exact checks performed on this branch. A [GitHub Actions template](docs/ci/github-actions.yml) is included; copy it to `.github/workflows/ci.yml` to enable hosted CI.
+Regression tests cover modern selection limits, cancellation isolation, stable IDs, and data changes, plus the existing API’s ownership, defaults, selection semantics, and callback ordering. `scripts/check-legacy-api.sh` verifies the legacy sources against 0.4.3. Showcase UI tests exercise search, confirmation, cancellation, and UIKit presentation. See [validation notes](docs/VALIDATION.md) for the exact checks performed on this branch. A [GitHub Actions template](docs/ci/github-actions.yml) is included; copy it to `.github/workflows/ci.yml` to enable hosted CI.
 
 ## A small library, coming back to life
 

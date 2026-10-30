@@ -10,20 +10,21 @@ This is an unreleased implementation, not a claim of production adoption.
 
 ## Checks
 
-- Package regression suite: 11 tests covering stable selection identity, cancellation isolation, limits, disabled items, deterministic normalization, reload pruning, repeated legacy presentation, dismiss/reuse, weak ownership, and attributed-title precedence.
+- Package suite: **12 passing tests**, comprising six modern selection tests plus six legacy contract tests for defaults, strong adapter ownership, preselection ordering, unchanged reload behavior, cancel behavior, single/multiple confirmation, and lifecycle ordering. The frozen legacy source/header hashes match release 0.4.3.
 - iPhone showcase suite: search with selections retained, maximum count, Cancel, Done, interactive-dismissal cancellation, single selection, and UIKit presentation.
 - iPad showcase suite: search/confirmation/cancellation and UIKit presentation.
+- The unchanged original Objective-C example controller compiles against the restored public header.
 - Both SPM products compile as dependencies of the showcase, including a generic iOS device build with signing disabled.
 - `swift package dump-package` reports an empty dependencies array.
 - Both CocoaPods subspecs pass `pod lib lint` without allowing warnings.
-- README images are actual simulator captures, not mockups.
+- README animation and still images are actual simulator captures, not mockups. A UI test drives the recorded interactions; see docs/MEDIA.md.
 - Dark appearance and the largest accessibility text size were visually inspected on iPhone. The demo hides decorative avatars at accessibility sizes and uses an adaptive accent. This is not a full accessibility audit.
 
 ## Review findings addressed
 
 - Replaced the old root Pods-project shortcut, which prevented Xcode from discovering package schemes.
 - Raised the compatibility target to iOS 15 after the installed SDK rejected iOS 13.
-- Marked legacy delegate/data-source protocols as main-actor UI APIs for Swift callers.
+- Removed the preliminary legacy rewrite and actor annotations to preserve the exact 0.4.3 API and behavior. The modern API remains separate.
 - Moved Done out of the navigation bar after a UI test demonstrated that active search hid it.
 - Kept confirmation in the main layout after screenshot review exposed a clipped single-selection footer with a search/safe-area-inset combination.
 - Removed obsolete Travis configuration and made pre-release installation instructions explicit.

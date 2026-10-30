@@ -15,10 +15,10 @@ Beautiful selection sheets for SwiftUI and UIKit, with zero external runtime dep
 
 ## Implementation sequence and gates
 
-1. Add packaging and repair legacy presentation/reuse, layout, invalid selections, title priority, and weak ownership. Preserve delegate selectors and document compatibility changes.
+1. Add packaging while freezing the legacy public header and implementation to release 0.4.3. Preserve ownership, selection semantics, appearance, and callbacks; test them explicitly. Raising the minimum OS is allowed.
 2. Implement searchable single/multiple selection, selected chips, optional limits, disabled options, default/custom rows, and sections. Test selection identity, cancellation, limits, removal, and data refresh.
 3. Build destination, teammate, and interest demos in a checked-in Xcode app with no generator required. Compile both SwiftUI and UIKit usage.
-4. Add simulator tests for modern state and legacy regressions, device/simulator build checks, CocoaPods lint, and CI. Capture real simulator screenshots for README artwork.
+4. Add simulator tests for modern state and legacy regressions, device/simulator build checks, CocoaPods lint, and CI. Record actual simulator interactions for a README GIF/MP4, with still images as secondary references.
 5. Rewrite README around a real visual, exact installation instructions, a complete minimal example, UIKit usage, supported versions, and migration notes. Keep unreleased status explicit; do not advertise an unavailable release tag.
 6. Review the diff for API clarity, dependency creep, selection edge cases, lifecycle races, accessibility, and documentation accuracy. Fix findings and repeat relevant checks.
 
@@ -35,7 +35,7 @@ Prepare release notes and a credible README. After release approval: publish a v
 - Clean consumer builds for both SPM products; zero package dependencies.
 - CocoaPods subspecs lint/build using the same sources.
 - Regression tests pass on a simulator; showcase builds for device and simulator.
-- Actual simulator screenshots demonstrate the implemented UI.
+- An actual simulator recording demonstrates search and selection in the implemented UI.
 - No claimed device, accessibility, platform, or release validation without evidence.
 - Track adoption, issue quality, and external contributions alongside stars after launch.
 
@@ -52,3 +52,5 @@ Prepare release notes and a credible README. After release approval: publish a v
 The final design uses one modern SwiftUI interface for both SwiftUI and UIKit callers and keeps the Objective-C interface separate. The legacy minimum is iOS 15, adjusted after actual SDK validation. Package and pod distributions share sources and introduce no external runtime dependencies. The showcase and README use real simulator images. Search confirmation and footer layout issues found during validation were fixed before review handoff. Remaining release gates are documented in VALIDATION.md; publishing a stable version is intentionally separate from this implementation.
 
 Publication constraint: the authenticated owner token can push code but lacks GitHub workflow scope. The reviewed CI definition is supplied at `docs/ci/github-actions.yml`; activating it requires copying it to `.github/workflows/ci.yml` with an appropriately authorized login. Local validation is complete independently of hosted CI.
+
+Compatibility review refinement: the Objective-C source/header are restored exactly to 0.4.3. Earlier proposed weak ownership, callback, selection, and appearance changes are not part of the final implementation. New behavior is opt-in through CZPickerUI. The higher minimum OS remains intentional.

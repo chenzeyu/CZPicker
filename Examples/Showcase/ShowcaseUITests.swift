@@ -51,6 +51,43 @@ final class ShowcaseUITests: XCTestCase {
         XCTAssertTrue(app.buttons["showcase.destination"].staticTexts["Lisbon"].waitForExistence(timeout: 5))
     }
 
+    // This real UI workflow also supplies the README's simulator recording.
+    func testReadmeWalkthrough() {
+        let app = XCUIApplication()
+        app.launch()
+        let team = app.buttons["showcase.teammates"]
+        XCTAssertTrue(team.waitForExistence(timeout: 10))
+        print("CZ_DEMO_START=\(Date().timeIntervalSince1970)")
+        Thread.sleep(forTimeInterval: 1.5)
+        team.tap()
+        let maya = app.buttons["czpicker.option.maya"]
+        XCTAssertTrue(maya.waitForExistence(timeout: 5))
+        Thread.sleep(forTimeInterval: 1.5)
+        maya.tap()
+        app.buttons["czpicker.option.amara"].tap()
+        Thread.sleep(forTimeInterval: 1)
+        let search = app.searchFields.firstMatch
+        search.tap()
+        search.typeText("Noah")
+        let noah = app.buttons["czpicker.option.noah"]
+        XCTAssertTrue(noah.waitForExistence(timeout: 5))
+        noah.tap()
+        Thread.sleep(forTimeInterval: 1.5)
+        app.buttons["czpicker.done"].tap()
+        XCTAssertTrue(team.staticTexts["3 selected"].waitForExistence(timeout: 5))
+        Thread.sleep(forTimeInterval: 1.5)
+        app.buttons["showcase.destination"].tap()
+        let lisbon = app.buttons["czpicker.option.lisbon"]
+        XCTAssertTrue(lisbon.waitForExistence(timeout: 5))
+        Thread.sleep(forTimeInterval: 1)
+        lisbon.tap()
+        Thread.sleep(forTimeInterval: 1)
+        app.buttons["czpicker.done"].tap()
+        XCTAssertTrue(app.buttons["showcase.destination"].staticTexts["Lisbon"].waitForExistence(timeout: 5))
+        Thread.sleep(forTimeInterval: 2)
+        print("CZ_DEMO_END=\(Date().timeIntervalSince1970)")
+    }
+
     func testUIKitPresentation() {
         let app = XCUIApplication()
         app.launch()

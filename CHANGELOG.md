@@ -4,7 +4,7 @@
 - Add a modern SwiftUI selection sheet and UIKit presenter, with stable IDs, search, sections, selection chips, limits, and custom rows.
 - Add CocoaPods Core/SwiftUI subspecs using the same sources.
 - Repair legacy presentation, selection validation, title priority, and ownership; raise the legacy minimum to iOS 15.
-- Add a maintained showcase, regression/UI tests, GitHub Actions, and migration documentation.
+- Add a maintained showcase, regression/UI tests, a GitHub Actions template, and migration documentation.
 - Modern interface requires iOS 16+. No version tag or pod has been published for this preview.
 
 ---

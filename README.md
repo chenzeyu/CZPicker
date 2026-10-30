@@ -183,7 +183,7 @@ pod lib lint CZPicker.podspec --subspec=Core
 pod lib lint CZPicker.podspec --subspec=SwiftUI
 ```
 
-Regression tests cover selection limits, cancellation isolation, stable IDs, data changes, and legacy behavior. Showcase UI tests exercise search, confirmation, cancellation, and UIKit presentation. See [validation notes](docs/VALIDATION.md) for the exact checks performed on this branch.
+Regression tests cover selection limits, cancellation isolation, stable IDs, data changes, and legacy behavior. Showcase UI tests exercise search, confirmation, cancellation, and UIKit presentation. See [validation notes](docs/VALIDATION.md) for the exact checks performed on this branch. A [GitHub Actions template](docs/ci/github-actions.yml) is included; copy it to `.github/workflows/ci.yml` to enable hosted CI.
 
 ## A small library, coming back to life
 

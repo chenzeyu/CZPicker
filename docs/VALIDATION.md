@@ -34,7 +34,7 @@ This is an unreleased implementation, not a claim of production adoption.
 - Physical-device testing and manual VoiceOver, right-to-left, keyboard, and accessibility review.
 - The complete historical Objective-C demo is not modernized; `Examples/Showcase` is the maintained consumer.
 - Built-in status/empty-state strings are currently English. Action/search labels are customizable; full localization is future work.
-- GitHub Actions results must be checked after pushing; local passes do not establish hosted CI success.
+- GitHub Actions is supplied as `docs/ci/github-actions.yml`, not active CI. The available GitHub OAuth token lacks the `workflow` scope. After enabling that permission, copy the template to `.github/workflows/ci.yml` and verify hosted results; local passes do not establish hosted CI success.
 - No release tag, CocoaPods publication, package-index submission, or community announcement has been made.
 
 Xcode emitted its App Intents metadata note for targets that do not use App Intents; it does not indicate a missing CZPicker dependency.

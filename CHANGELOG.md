@@ -5,7 +5,7 @@
 - Add accessibility-audit, largest-text, and RTL interaction coverage.
 - Remain free of third-party runtime dependencies, as in previous releases.
 - Minimum iOS: 15 for the existing API, 16 for the modern API. Minimum-OS runtime and physical-device validation remain unverified; see docs/VALIDATION.md.
-- CocoaPods Trunk publication is pending; Git-tag installation is available.
+- CocoaPods Trunk publication completed on November 1, 2026; version 1.0.0 is available through the public registry.
 
 # 1.0.0-beta.1 — 2026-10-30 (Prerelease)
 

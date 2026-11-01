@@ -30,7 +30,10 @@ A separate full-screen iPad audit reported elements without accessible identitie
 - Some built-in status and empty-state strings are English. Action and search labels are customizable.
 - Original API behavior is frozen, including its historical limitations. The old demo projects are historical; `Examples/Showcase` is maintained.
 - Hosted CI is not active. The available OAuth token lacks workflow scope; `docs/ci/github-actions.yml` is a template, not a successful hosted run.
-- CocoaPods Trunk requires maintainer authentication. The Git-tag installation uses the same validated source.
+
+## Distribution
+
+CocoaPods Trunk publication completed on November 1, 2026. `pod trunk push` validated both Core and SwiftUI with Xcode 26.6, and `pod trunk info CZPicker` confirms version 1.0.0.
 
 ## Media
 

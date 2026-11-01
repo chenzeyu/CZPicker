@@ -9,4 +9,4 @@ Keep CZPicker small, accessible, and free of external runtime dependencies.
 5. For UI changes, check light/dark appearance, large text, iPad layout, and VoiceOver. Include screenshots and describe what you actually tested.
 6. Update examples and docs when changing the public API.
 
-The maintained demo is `Examples/Showcase`. The old examples remain for history. Do not commit generated Pods, build outputs, credentials, or personal Xcode settings. Public APIs should solve demonstrated use cases; prefer native framework behavior over new dependencies or configuration layers.
+The maintained demo is `Examples/Showcase`. Historical examples are available in the [1.0.0 tag](https://github.com/chenzeyu/CZPicker/tree/1.0.0); they are no longer kept on the default branch. Do not commit generated Pods, build outputs, credentials, or personal Xcode settings. Public APIs should solve demonstrated use cases; prefer native framework behavior over new dependencies or configuration layers.

@@ -40,4 +40,4 @@ Continue implementing `numberOfRowsInPickerView:`, a title method, and the relev
 
 Replace row numbers with stable model IDs when you choose to adopt the new UI. Pass `[CZPickerItem<ID>]` and a `Set<ID>` selection. Use `CZPickerSheet` from SwiftUI or `CZPickerViewController` from UIKit. Its draft selection commits only on Done; Cancel and interactive dismissal leave the caller's selection unchanged. These are modern API semantics, not changes to the legacy API.
 
-The old `Example/` and `swift_demo/` directories are historical examples. `Examples/Showcase/` is the maintained modern demo.
+Run `Examples/Showcase/` for the maintained SwiftUI and UIKit demo. The retired [Objective-C example](https://github.com/chenzeyu/CZPicker/tree/1.0.0/Example) and [early Swift example](https://github.com/chenzeyu/CZPicker/tree/1.0.0/swift_demo) remain available in the 1.0.0 tag for reference; their old projects and generated Pods are no longer maintained on the default branch.

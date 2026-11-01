@@ -218,6 +218,6 @@ CZPicker began in 2015 as a customizable popup picker. This relaunch keeps the o
 
 Found something awkward? [Open an issue](https://github.com/chenzeyu/CZPicker/issues) with a small reproduction. Built something with CZPicker? We'd love to see it. If it saves you time, a star helps other developers discover it.
 
-Contributions are welcome—see [CONTRIBUTING.md](CONTRIBUTING.md). Thanks to everyone who used, reported issues, and contributed to the original library, which was created at [Fooyo](https://fooyo.sg).
+Contributions are welcome—see [CONTRIBUTING.md](CONTRIBUTING.md). Thanks to everyone who used, reported issues, and contributed to the original library.
 
 **MIT licensed.** See [LICENSE](LICENSE).

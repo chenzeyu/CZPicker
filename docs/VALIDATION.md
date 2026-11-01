@@ -28,7 +28,7 @@ A separate full-screen iPad audit reported elements without accessible identitie
 - Physical-device testing: not performed. The paired iPhone could not be reached. A generic device build is not a device test.
 - Manual VoiceOver, hardware-keyboard navigation, Reduce Motion, and a complete accessibility review remain unverified.
 - Some built-in status and empty-state strings are English. Action and search labels are customizable.
-- Original API behavior is frozen, including its historical limitations. The old demo projects are historical; `Examples/Showcase` is maintained.
+- Original API behavior is frozen, including its historical limitations. The old demo projects are archived in the 1.0.0 tag; `Examples/Showcase` is maintained.
 - Hosted CI is not active. The available OAuth token lacks workflow scope; `docs/ci/github-actions.yml` is a template, not a successful hosted run.
 
 ## Distribution

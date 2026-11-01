@@ -10,7 +10,7 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        .target(name: "CZPicker", path: "Pod/Classes", exclude: [".gitkeep"], publicHeadersPath: "."),
+        .target(name: "CZPicker", path: "Pod/Classes", publicHeadersPath: "."),
         .target(name: "CZPickerUI"),
         .testTarget(name: "CZPickerTests", dependencies: ["CZPicker", "CZPickerUI"])
     ]

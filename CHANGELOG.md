@@ -1,3 +1,9 @@
+# Unreleased
+
+- Retire obsolete Objective-C and early Swift demo projects, generated Pods, duplicate assets, and the superseded root GIF. Historical examples remain available in the 1.0.0 tag.
+- Keep `Examples/Showcase` as the maintained demo and document the intentionally unchanged Objective-C compatibility sources.
+- Remove unused packaging placeholders and ignore generated dependency checkouts. No public API or library implementation changes.
+
 # 1.0.0 — 2026-10-30
 
 - Release the modern SwiftUI/UIKit API and SPM products while preserving the original Objective-C implementation.
